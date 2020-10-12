@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Baraka Travel</string>
+    <string name="invalid_email">Email must be like this \"example@example.com\"</string>
+    <string name="invalid_phone1">Phone number must be \ </string>
+    <string name="invalid_phone2"> number</string>
+    <string name="invalid_confirm_password">Confirm password not match</string>
+    <string name="title_account">Account</string>
+    <string name="hotels">Hotels</string>
+    <string name="flight">Flights</string>
+    <string name="hajj"><![CDATA[Hajj & Umrah]]></string>
+    <string name="discover">Discover</string>
+    <string name="good_price_in_every_package1">Good Price On  Every Package</string>
+    <string name="un_beatable_experience">Unbeatable Experience</string>
+    <string name="no_hidden_charge">No Hidden Charge</string>
+    <string name="customer_care_24">24/7 Customer Care Support</string>
+    <string name="begin">begin</string>
+</resources>

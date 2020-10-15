@@ -14,4 +14,21 @@
     <string name="no_hidden_charge">No Hidden Charge</string>
     <string name="customer_care_24">24/7 Customer Care Support</string>
     <string name="begin">begin</string>
+    <string name="signUp2">Sign Up</string>
+    <string name="enter_email">Email</string>
+    <string name="full_name">Full Name</string>
+    <string name="password">Password</string>
+    <string name="show">Show</string>
+    <string name="subbmitText">I would like to receive your newsletter and other promotional information from Baraka USA</string>
+    <string name="login">Login</string>
+    <string name="forgetpass">Forgot your Password ?</string>
+    <string name="filter">Filter</string>
+    <string name="search">Search</string>
+    <string name="load_more">Load More</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="top_hotels_packages">Top Hotels Packages</string>
+    <string name="night">/Night</string>
+    <string name="my_account">My Account</string>
+    <string name="manage_bookings">Manage Bookings</string>
 </resources>

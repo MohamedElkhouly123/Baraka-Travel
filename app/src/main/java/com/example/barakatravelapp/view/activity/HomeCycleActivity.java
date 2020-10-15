@@ -5,9 +5,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import com.example.barakatravelapp.R;
+import com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.AccountFragment;
+import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.DiscoverFragment;
+import com.example.barakatravelapp.view.fragment.HomeCycle2.flights.FlightsFragment;
+import com.example.barakatravelapp.view.fragment.HomeCycle2.hajj.HujjAndUmrahFragment;
+import com.example.barakatravelapp.view.fragment.HomeCycle2.hotels.HottelsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.ButterKnife;
+
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 
 public class HomeCycleActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -65,23 +72,23 @@ public class HomeCycleActivity extends BaseActivity implements BottomNavigationV
         int id = item.getItemId();
 
         if (id == R.id.navigation_account) {
-//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram,new HomeFragment());
+            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram,new AccountFragment());
         } else if (id == R.id.navigation_hotels) {
 //            if(clientData!=null) {
-//                replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new RestaurantAndClientEditProfileFragment());
+                replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new HottelsFragment());
 //            }else {
 //                goToRegisterFirst(this);
 //                goLogin = true;
 //                backFromLogin=true;
 //            }
         } else if (id == R.id.navigation_flight) {
-//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new MenuesFragment());
+            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new FlightsFragment());
 
         } else if (id == R.id.navigation_hajj) {
-//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new MoreFragment());
+            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new HujjAndUmrahFragment());
         }
         else if (id == R.id.navigation_discover) {
-//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new MoreFragment());
+            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new DiscoverFragment());
         }
 
         return true;

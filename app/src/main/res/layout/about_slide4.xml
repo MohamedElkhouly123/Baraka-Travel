@@ -19,22 +19,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/customer_care_24"
-        android:textColor="#000000"
-        android:textSize="@dimen/_20ssp"
         android:textAlignment="center"
-        android:fontFamily="@font/lemon2"
+        style="@style/LoginAndSignUpTextView"
         android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_30sdp"
-        android:textStyle="bold" />
-    <Button
-        android:id="@+id/splash_food_client_btn"
-        style="@style/Button"
-        android:layout_width="@dimen/_110sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_80sdp"
-        android:text="@string/begin" />
+         />
+
     <ImageView
         android:id="@+id/splash_img"
         android:layout_width="wrap_content"
@@ -44,7 +35,7 @@
         android:layout_marginBottom="@dimen/_5sdp"
         android:layout_gravity="center"
         android:elevation="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_120sdp"
         android:scaleType="centerCrop"
         android:src="@drawable/slider_img4"
         />

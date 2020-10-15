@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,32 +20,36 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-
 import com.example.barakatravelapp.R;
-import com.example.barakatravelapp.view.activity.HomeCycleActivity;
 import com.example.barakatravelapp.view.activity.UserCycleActivity;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Optional;
 
 
 public class AboutAppAndIntroFragment extends BaSeFragment {
 
+    @BindView(R.id.about_app_slide4_btn_begin)
+    Button aboutAppSlide4BtnBegin;
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
     private TextView[] dots;
     private int[] layouts;
-    private Button btnSkip, btnNext;
-    private boolean inHome;
+    //    private Button btnSkipAndBegin;
+    private ImageView btnNext;
+//    private boolean inHome;
+
     public AboutAppAndIntroFragment() {
         // Required empty public constructor
     }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        if(this.getArguments()!=null)
-        {
-            inHome = this.getArguments().getBoolean("INHOME");
+        if (this.getArguments() != null) {
 
         }
         View root = inflater.inflate(R.layout.fragment_about_app, container, false);
@@ -59,8 +64,8 @@ public class AboutAppAndIntroFragment extends BaSeFragment {
 
         viewPager = (ViewPager) root.findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) root.findViewById(R.id.layoutDots);
-        //    btnSkip = (Button) findViewById(R.id.btn_skip);
-//        btnNext = (Button) root.findViewById(R.id.btn_next);
+//        btnSkipAndBegin = (Button) root.findViewById(R.id.about_app_slide4_btn_begin);
+        btnNext = (ImageView) root.findViewById(R.id.fragment_about_app_btn_next);
 
 
         // layouts of all welcome sliders
@@ -81,27 +86,27 @@ public class AboutAppAndIntroFragment extends BaSeFragment {
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
-//            btnSkip.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    launchHomeScreen();
-//                }
-//            });
-
-//        btnNext.setOnClickListener(new View.OnClickListener() {
+//        btnSkipAndBegin.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                // checking for last page
-//                // if last page home screen will be launched
-//                int current = getItem(+1);
-//                if (current < layouts.length) {
-//                    // move to next screen
-//                    viewPager.setCurrentItem(current);
-//                } else {
-//                    launchHomeScreen();
-//                }
+//                launchHomeScreen();
 //            }
 //        });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // checking for last page
+                // if last page home screen will be launched
+                int current = getItem(+1);
+                if (current < layouts.length) {
+                    // move to next screen
+                    viewPager.setCurrentItem(current);
+                } else {
+                    launchHomeScreen();
+                }
+            }
+        });
         return root;
     }
 
@@ -122,6 +127,14 @@ public class AboutAppAndIntroFragment extends BaSeFragment {
 
         if (dots.length > 0)
             dots[currentPage].setTextColor(colorsActive[currentPage]);
+        if (currentPage == 3) {
+            aboutAppSlide4BtnBegin.setVisibility(View.VISIBLE);
+
+        }else {
+            aboutAppSlide4BtnBegin.setVisibility(View.GONE);
+
+        }
+
     }
 
     private int getItem(int i) {
@@ -130,14 +143,14 @@ public class AboutAppAndIntroFragment extends BaSeFragment {
 
     private void launchHomeScreen() {
 //        prefManager.setFirstTimeLaunch(false);
-        if (inHome){
-            homeCycleActivity= (HomeCycleActivity) getActivity();
-//            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new HomeContainerFragment());
-//            homeCycleActivity.buttonNavigation.getMenu().getItem(0).setChecked(true);
-            }
-        else {
-            startActivity(new Intent(getActivity(), UserCycleActivity.class));
-            getActivity().finish();        }
+//        if (inHome) {
+//            homeCycleActivity = (HomeCycleActivity) getActivity();
+////            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new HomeContainerFragment());
+////            homeCycleActivity.buttonNavigation.getMenu().getItem(0).setChecked(true);
+//        } else {
+        startActivity(new Intent(getActivity(), UserCycleActivity.class));
+        getActivity().finish();
+//        }
 
     }
 
@@ -152,11 +165,11 @@ public class AboutAppAndIntroFragment extends BaSeFragment {
             if (position == layouts.length - 1) {
                 // last page. make button text to GOT IT
 //                btnNext.setText(getString(R.string.start));
-                // btnSkip.setVisibility(View.GONE);
+                // btnSkipAndBegin.setVisibility(View.GONE);
             } else {
                 // still pages are left
 //                btnNext.setText(getString(R.string.next));
-                //  btnSkip.setVisibility(View.VISIBLE);
+                //  btnSkipAndBegin.setVisibility(View.VISIBLE);
             }
         }
 
@@ -181,6 +194,14 @@ public class AboutAppAndIntroFragment extends BaSeFragment {
             window.setStatusBarColor(Color.TRANSPARENT);
         }
     }
+
+    @Optional
+    @OnClick(R.id.about_app_slide4_btn_begin)
+    public void onViewClicked() {
+        launchHomeScreen();
+    }
+
+
 
     /**
      * View pager adapter
@@ -222,13 +243,12 @@ public class AboutAppAndIntroFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-        if (inHome){
-            homeCycleActivity= (HomeCycleActivity) getActivity();
-//            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new HomeContainerFragment());
-//        homeCycleActivity.buttonNavigation.getMenu().getItem(0).setChecked(true);
-        }
-        else {
-            getActivity().finish();
-        }
+//        if (inHome) {
+//            homeCycleActivity = (HomeCycleActivity) getActivity();
+////            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new HomeContainerFragment());
+////        homeCycleActivity.buttonNavigation.getMenu().getItem(0).setChecked(true);
+//        } else {
+        getActivity().finish();
+//        }
     }
 }

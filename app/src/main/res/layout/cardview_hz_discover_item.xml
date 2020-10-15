@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/_13sdp"
+    android:paddingTop="@dimen/_5sdp"
+    android:paddingEnd="@dimen/_13sdp"
+    android:paddingBottom="@dimen/_5sdp"
+    >
+
+    <ImageView
+        android:id="@+id/cardview_item_client_food_order_menu_img"
+        android:layout_width="@dimen/_95sdp"
+        android:layout_height="@dimen/_95sdp"
+        android:background="@drawable/round_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/haj" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_8sdp"
+        >
+        <TextView
+            android:id="@+id/cardview_item_client_food_order_menu_tv_meal_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$ 787"
+            android:textColor="@color/txt_color_red"
+            android:textStyle="bold"
+            android:textSize="@dimen/_12ssp"
+            />
+        <TextView
+            android:id="@+id/tx2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:textSize="@dimen/_9ssp"
+            android:visibility="visible"
+            android:text="13 sep"
+            android:textColor="@color/graydate" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/date_or_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Luxury Package"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12ssp"
+        />
+    <TextView
+        android:id="@+id/name_gray_for_top_umrah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Luxury Package"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:visibility="visible"
+        android:textColor="@color/gray_text_color"
+        android:textSize="@dimen/_12ssp"
+        />
+</LinearLayout>

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/manage_bookings"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/_16ssp"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
         android:textStyle="normal"
@@ -23,6 +23,9 @@
         android:id="@+id/card_view_tool2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_1sdp"
+        android:layout_marginStart="@dimen/_1sdp"
+        android:elevation="@dimen/_12sdp"
         app:cardBackgroundColor="@android:color/white"
         >
         <FrameLayout
@@ -36,6 +39,7 @@
                 <ImageView
                     android:layout_width="@dimen/_63sdp"
                     android:layout_height="@dimen/_55sdp"
+
                     android:src="@drawable/haj"
                     android:scaleType="centerCrop"
 

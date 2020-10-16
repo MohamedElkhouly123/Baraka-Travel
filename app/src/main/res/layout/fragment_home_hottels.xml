@@ -23,7 +23,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                                <include layout="@layout/cardview_general_vert_hajj_and_hotels_item" />
+<!--                                <include layout="@layout/cardview_general_vert_hajj_and_hotels_item" />-->
                 <!--                <include layout="@layout/cardview_notifications_item" />-->
                 <!--                <include layout="@layout/cardview_notifications_item" />-->
                 <!--                <include layout="@layout/cardview_notifications_item" />-->
@@ -62,6 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true" />
+                    <include layout="@layout/cardview_general_vert_hajj_and_hotels_item" />
 
                     <include layout="@layout/error" />
 

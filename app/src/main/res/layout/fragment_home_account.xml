@@ -33,12 +33,23 @@
             android:text="@string/my_account"
             android:textColor="@color/black"
             android:textSize="@dimen/_15ssp"
+            android:textStyle="bold"
             android:elevation="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
+        <ImageButton
+            android:id="@+id/toolbar_notification"
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:elevation="@dimen/_5sdp"
+            android:src="@drawable/ic_dehaze_nav_list_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_tool"
@@ -128,7 +139,7 @@
         android:id="@+id/card_view_tool2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         app:cardBackgroundColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,8 +160,8 @@
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:src="@drawable/alard"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
 
                 />
             <LinearLayout
@@ -199,7 +210,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:layout_marginTop="@dimen/_8sdp"            >
+            android:layout_marginTop="@dimen/_6sdp"            >
 
             <com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/notifications_fragment_s_fl_shimmer_donations"
@@ -211,7 +222,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                                    <include layout="@layout/cardview_my_account_item" />
+<!--                                    <include layout="@layout/cardview_my_account_item" />-->
                     <!--                <include layout="@layout/cardview_notifications_item" />-->
                     <!--                <include layout="@layout/cardview_notifications_item" />-->
                     <!--                <include layout="@layout/cardview_notifications_item" />-->
@@ -252,6 +263,7 @@
                             android:layout_alignParentBottom="true" />
 
                         <include layout="@layout/error" />
+                        <include layout="@layout/cardview_my_account_item" />
 
                     </RelativeLayout>
 

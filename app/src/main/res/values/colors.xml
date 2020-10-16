@@ -31,6 +31,8 @@
     <color name="pink">#D81357</color>
     <color name="graydate">#828282</color>
     <color name="gray66">#666666</color>
+    <color name="orange">#FA8C16</color>
+    <color name="green">#18BD5A</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>

@@ -31,4 +31,6 @@
     <string name="night">/Night</string>
     <string name="my_account">My Account</string>
     <string name="manage_bookings">Manage Bookings</string>
+    <string name="top_flight_offers">Top Flight Offers</string>
+    <string name="top_umrah_packages">Top Umrah Packages</string>
 </resources>

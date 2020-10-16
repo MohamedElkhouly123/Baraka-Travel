@@ -38,7 +38,7 @@ public class HomeCycleActivity extends BaseActivity implements BottomNavigationV
 //        child = this;
 //        homeFragment=new HomeFragment();
 //        clientData = LoadUserData(this);
-//        replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram,new HomeFragment());
+        replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram,new DiscoverFragment());
         navView = (BottomNavigationView) findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(this);
 

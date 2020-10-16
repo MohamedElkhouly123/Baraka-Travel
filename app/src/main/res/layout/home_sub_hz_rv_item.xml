@@ -22,17 +22,16 @@
         >
 
         <TextView
-            android:id="@+id/sub_home_verv_item2_category_name_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="products"
-            android:textSize="@dimen/_11ssp"
-            android:fontFamily="@font/lemon2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="@string/top_hotels_packages"
+            android:textSize="@dimen/_16ssp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textStyle="normal"
+            android:visibility="visible"
+            android:layout_marginBottom="@dimen/_15sdp"
+            style="@style/LoginAndSignUpTextView"
+            />
 
         <ScrollView
             android:id="@+id/scrollprodRec2"

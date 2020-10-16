@@ -1,59 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingStart="@dimen/_13sdp"
     android:paddingTop="@dimen/_5sdp"
     android:paddingEnd="@dimen/_13sdp"
-    android:paddingBottom="@dimen/_5sdp"
-    >
+    android:paddingBottom="@dimen/_5sdp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/top_hotels_packages"
-        android:textSize="@dimen/_18ssp"
+        android:text="@string/top_umrah_packages"
+        android:textSize="@dimen/_16ssp"
         android:layout_marginTop="@dimen/_10sdp"
         android:textStyle="normal"
         android:visibility="visible"
         android:layout_marginBottom="@dimen/_15sdp"
         style="@style/LoginAndSignUpTextView"
         />
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="0dp"
+        >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_image"
+        >
+
     <ImageView
         android:id="@+id/cardview_item_client_food_order_menu_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_95sdp"
-        android:background="@drawable/round_image"
         android:scaleType="centerCrop"
+        android:background="@drawable/round_image"
         android:src="@drawable/haj" />
-    <LinearLayout
+        <ImageView
+            android:id="@+id/shadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_gravity="right"
+            android:background="@drawable/offer_white_shape"
+            android:src="@drawable/ic_whatshot_black_24dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:gravity="center"
+            >
+
+        <TextView
+            android:id="@+id/tv_rate_and_nights_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="11 Nights"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+<!--            4.2 11 Nights-->
+<!--        android:drawablePadding="@dimen/_4sdp"-->
+<!--        android:drawableEnd="@drawable/ic_rate"-->
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:visibility="gone"
+                android:layout_gravity="right"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:src="@drawable/ic_rate" />
+        </LinearLayout>
+    </FrameLayout>
+    </androidx.cardview.widget.CardView>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:gravity="left"
         >
+        <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            >
         <TextView
             android:id="@+id/cardview_item_client_food_order_menu_tv_meal_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$ 787"
+            android:layout_gravity="left"
             android:textColor="@color/txt_color_red"
             android:textStyle="bold"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_12ssp"
             />
         <TextView
             android:id="@+id/t3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_40sdp"
             android:text="@string/night"
-            android:visibility="visible"
+            android:layout_gravity="right"
+            android:visibility="gone"
             android:textColor="@color/gray_text_color" />
-        <LinearLayout
+    </FrameLayout>
+        <FrameLayout
             android:id="@+id/cardview_general_vert_hajj_and_hotels_item_additional_part"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_140sdp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_55sdp"
+            android:layout_marginStart="@dimen/_55sdp"
             android:visibility="visible"
             >
         <TextView
@@ -62,6 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_gravity="left"
             android:textSize="@dimen/_12ssp"
             android:text="13 sep"
             android:textColor="@color/graydate" />
@@ -71,6 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_gravity="center"
             android:src="@drawable/ic_trending_flat_black_24dp" />
         <TextView
             android:id="@+id/tx4"
@@ -79,17 +148,19 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:textSize="@dimen/_12ssp"
+            android:layout_gravity="right"
             android:text="19 sep"
             android:textColor="@color/graydate" />
-        </LinearLayout>
-    </LinearLayout>
+        </FrameLayout>
+    </FrameLayout>
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Madinah Movenpick Hotel"
-        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_gravity="left"
+        android:layout_marginTop="@dimen/_2sdp"
         android:textColor="@color/black"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_11ssp"
         />
 </LinearLayout>

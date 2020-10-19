@@ -10,7 +10,11 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.example.barakatravelapp.view.activity.UserCycleActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="com.example.barakatravelapp.view.activity.AboutAppActivity" >
 
@@ -19,11 +23,7 @@
             android:label=""
             android:configChanges="orientation|keyboardHidden|screenSize"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.example.barakatravelapp.view.activity.SplashCycleActivity">
 

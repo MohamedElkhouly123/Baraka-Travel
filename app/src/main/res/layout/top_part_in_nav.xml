@@ -54,7 +54,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/top_part_in_nav_genral_part_search_til"
-                style="@style/search_text_input"
+                style="@style/EditTextSearch"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_42sdp"
                 android:visibility="visible"

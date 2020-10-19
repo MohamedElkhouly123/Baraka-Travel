@@ -19,11 +19,11 @@
     <color name="dot_light_screen1">#F4364F</color>
     <color name="gray">#6000</color>
     <color name="white">#FFFFFF</color>
+    <color name="white2">#E6FFFFFF</color>
     <color name="black">#000000</color>
     <color name="blue">#04B8F9</color>
     <color name="gray2">#F6F6F6</color>
     <color name="gray_text_color">#BDBDBD</color>
-
     <color name="txt_color_red">#F4364F</color>
     <color name="gray_submit_check">#666666</color>
     <color name="check_btn_gray">#E8E8E8</color>
@@ -33,6 +33,7 @@
     <color name="gray66">#666666</color>
     <color name="orange">#FA8C16</color>
     <color name="green">#18BD5A</color>
+    <color name="toggle_gray">#1F000000</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>

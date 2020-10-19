@@ -111,7 +111,7 @@
                     android:textSize="@dimen/_8ssp"
                     android:textAlignment="center"
                     android:visibility="gone"
-                    android:background="@drawable/gradient_btn_orange_shape"
+                    android:background="@drawable/btn_orange_shape"
                     android:textColor="@color/orange"
                     />
             </FrameLayout>

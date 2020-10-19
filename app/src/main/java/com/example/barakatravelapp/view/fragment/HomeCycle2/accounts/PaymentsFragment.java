@@ -13,15 +13,15 @@ import com.example.barakatravelapp.view.fragment.BaSeFragment;
 import butterknife.ButterKnife;
 
 
-public class AccountFragment extends BaSeFragment {
+public class PaymentsFragment extends BaSeFragment {
 
-    public AccountFragment() {
+    public PaymentsFragment() {
         // Required empty public constructor
     }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_home_account_profile, container, false);
+        View root = inflater.inflate(R.layout.fragment_payments, container, false);
 
         ButterKnife.bind(this, root);
 
@@ -30,6 +30,6 @@ public class AccountFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.splash_activity_fram, new LoginFragment());
+//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
     }
 }

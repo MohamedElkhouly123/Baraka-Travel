@@ -76,4 +76,14 @@
     <string name="package_requests">Package Requests</string>
     <string name="I_want_to_make_change">I want to make a change</string>
     <string name="Request_a_refund">Request a refund</string>
+    <string name="madinah_movenpick_hotel">Madinah Movenpick Hotel</string>
+    <string name="confirm_with_the_support">Confirm with the support!</string>
+    <string name="booking_almost_done">Booking almost done!</string>
+    <string name="our_custom_support">Our customer support will call you shortly to confirm your booking and payment details</string>
+    <string name="select_number">Select Number</string>
+    <string name="child">Child</string>
+    <string name="Save">Save</string>
+    <string name="flight_details">Flight Details</string>
+    <string name="fly_out">Fly out</string>
+    <string name="fly_back">Fly back</string>
 </resources>

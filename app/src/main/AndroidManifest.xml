@@ -50,6 +50,9 @@
         <activity android:name="com.example.barakatravelapp.view.activity.HomeCycleActivity"
             android:label=""
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
+
             >
 
         </activity>

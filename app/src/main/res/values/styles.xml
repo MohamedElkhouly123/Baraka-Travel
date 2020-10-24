@@ -66,14 +66,19 @@
         <item name="android:layout_marginStart">@dimen/_15sdp</item>
         <item name="android:layout_marginEnd">@dimen/_15sdp</item>
     </style>
-    <style name="EditTextSearch">
-        <item name="android:fontFamily">@font/lemon2</item>
-        <item name="android:textColorHint">@color/gray_text_color</item>
-        <item name="android:textColor">@color/gray_text_color</item>
-        <item name="android:padding">@dimen/_3ssp</item>
-        <item name="android:textSize">@dimen/_12ssp</item>
+    <style name="search_text_input2">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:layout_marginStart">@dimen/_15sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_15sdp</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="backgroundTint">@color/white</item>
+
+    </style>
+    <style name="EditTextSearch">
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:padding">@dimen/_1ssp</item>
+        <item name="android:textSize">@dimen/_6ssp</item>
     </style>
     <style name="view_style">
         <item name="android:background">@color/gray_text_color</item>

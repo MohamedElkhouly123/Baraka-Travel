@@ -23,7 +23,7 @@ public class HomeCycleActivity extends BaseActivity implements BottomNavigationV
 //    public HomeFragment homeFragment;
 
 
-    public BottomNavigationView navView;
+    public BottomNavigationView bottomNavView;
 //    private ClientData clientData;
 
     public HomeCycleActivity() {
@@ -39,11 +39,13 @@ public class HomeCycleActivity extends BaseActivity implements BottomNavigationV
 //        homeFragment=new HomeFragment();
 //        clientData = LoadUserData(this);
         replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram,new DiscoverFragment());
-        navView = (BottomNavigationView) findViewById(R.id.nav_view);
-        navView.setOnNavigationItemSelectedListener(this);
+        bottomNavView = (BottomNavigationView) findViewById(R.id.nav_view);
+        bottomNavView.setOnNavigationItemSelectedListener(this);
 
 
     }
+
+
 
     private void displayView(int position) {
         switch (position) {
@@ -56,11 +58,11 @@ public class HomeCycleActivity extends BaseActivity implements BottomNavigationV
                 startActivity(intentHome2);
                 break;}}
     public void setNavigation(String visibility) {
-        navView = (BottomNavigationView) findViewById(R.id.nav_view);
+        bottomNavView = (BottomNavigationView) findViewById(R.id.nav_view);
         if (visibility.equals("v")) {
-            navView.setVisibility(View.VISIBLE);
+            bottomNavView.setVisibility(View.VISIBLE);
         } else if (visibility.equals("g")) {
-            navView.setVisibility(View.GONE);
+            bottomNavView.setVisibility(View.GONE);
         }
 
     }

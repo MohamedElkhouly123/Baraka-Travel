@@ -12,6 +12,8 @@ import com.example.barakatravelapp.view.fragment.BaSeFragment;
 
 import butterknife.ButterKnife;
 
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
+
 
 public class PaymentsFragment extends BaSeFragment {
 
@@ -30,6 +32,6 @@ public class PaymentsFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
+        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new ChangeDetailsFragment());
     }
 }

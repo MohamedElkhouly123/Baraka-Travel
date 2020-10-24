@@ -124,6 +124,7 @@
 
         </LinearLayout>
             <ImageButton
+                android:id="@+id/fragment_home_account_profile_edit_bttn"
                 android:layout_width="@dimen/_29sdp"
                 android:layout_height="@dimen/_29sdp"
                 android:src="@drawable/edit_icon"
@@ -195,6 +196,7 @@
 
         </LinearLayout>
             <ImageButton
+                android:id="@+id/fragment_home_account_profile_e_visa_bttn"
                 android:layout_width="@dimen/_27sdp"
                 android:layout_height="@dimen/_27sdp"
                 android:src="@drawable/ic_keyboard_arrow_right_blue_24dp"

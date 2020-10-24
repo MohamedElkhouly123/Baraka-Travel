@@ -9,8 +9,12 @@ import androidx.annotation.NonNull;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
+import com.example.barakatravelapp.view.fragment.HomeCycle2.hotels.HottelViewFragment;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 
 public class SuccessfulPaymentFragment extends BaSeFragment {
@@ -18,6 +22,7 @@ public class SuccessfulPaymentFragment extends BaSeFragment {
     public SuccessfulPaymentFragment() {
         // Required empty public constructor
     }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -30,6 +35,21 @@ public class SuccessfulPaymentFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
+        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram,new SelectPaymentMethodFragment());
+    }
+
+    @OnClick({R.id.fragment_successful_payment_view_my_booking_btn, R.id.fragment_successful_payment_return_home_btn})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.fragment_successful_payment_view_my_booking_btn:
+                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram,new HottelViewFragment());
+
+                break;
+            case R.id.fragment_successful_payment_return_home_btn:
+                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram,new DiscoverFragment());
+                homeCycleActivity.setNavigation("v");
+                homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);
+                break;
+        }
     }
 }

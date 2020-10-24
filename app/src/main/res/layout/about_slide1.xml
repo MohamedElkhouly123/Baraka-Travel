@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/good_price_in_every_package1"
-        android:textAlignment="center"
+        android:gravity="center"
         android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_30sdp"

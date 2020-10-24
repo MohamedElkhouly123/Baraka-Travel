@@ -40,6 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 />
             <ImageButton
+                android:id="@+id/fragment_home_flight_details_back_btn"
                 android:layout_width="@dimen/_27sdp"
                 android:layout_height="@dimen/_27sdp"
                 android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
@@ -72,7 +73,7 @@
                 android:layout_width="@dimen/_39sdp"
                 android:layout_height="@dimen/_37sdp"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:src="@drawable/egyptor"
+                android:src="@drawable/white_egyptor"
 
                 />
         <TextView
@@ -224,6 +225,7 @@
                 />
         </LinearLayout>
     </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -357,8 +359,8 @@
                 android:paddingEnd="@dimen/_20sdp"
                 android:paddingTop="@dimen/_4sdp"
                 android:paddingBottom="@dimen/_4sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:layout_marginStart="@dimen/_7sdp"
                 android:gravity="center_horizontal"
                 android:background="@drawable/gradiant_gray_shape_trangle"
                 >
@@ -388,13 +390,13 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_18ssp" />
             <Button
-                android:id="@+id/btn_next"
+                android:id="@+id/fragment_home_flight_details_book_btn"
                 android:layout_width="@dimen/_115sdp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gragiant_btn_orange_shape"
                 android:text="@string/Confirm_Pay"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:layout_marginStart="@dimen/_7sdp"
                 android:textColor="#fff"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -402,5 +404,6 @@
                 />
 
         </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

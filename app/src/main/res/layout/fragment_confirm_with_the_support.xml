@@ -84,7 +84,7 @@
                 android:textSize="@dimen/_15ssp"
                 />
             <Button
-                android:id="@+id/btn_next"
+                android:id="@+id/fragment_confirm_with_the_support_view_my_booking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -98,7 +98,7 @@
                 android:textStyle="bold"
                 />
             <Button
-                android:id="@+id/btn_next2"
+                android:id="@+id/fragment_confirm_with_the_support_return_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -119,14 +119,16 @@
             >
 
             <TextView
+                android:id="@+id/fragment_confirm_with_the_support_discover_madinah_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_70sdp"
-                android:layout_marginEnd="@dimen/_70sdp"
+                android:layout_marginStart="@dimen/_65sdp"
+                android:layout_marginEnd="@dimen/_65sdp"
                 android:elevation="@dimen/_5sdp"
                 android:text="@string/madinah_movenpick_hotel"
                 android:textColor="@color/white"
                 android:layout_gravity="center"
+                android:visibility="gone"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textSize="@dimen/_22ssp"
@@ -143,19 +145,51 @@
                 android:src="@drawable/hand"
                 />
             <ImageView
+                android:id="@+id/fragment_confirm_with_the_support_discover_approved_img_ly"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_157sdp"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:paddingTop="@dimen/_40sdp"
                 android:scaleType="centerCrop"
                 android:elevation="@dimen/_4sdp"
+                android:visibility="gone"
                 android:layout_marginEnd="-310dp"
                 android:layout_marginBottom="-30dp"
                 android:layout_marginStart="@dimen/_50sdp"
                 android:src="@drawable/circle_red"
                 />
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:id="@+id/fragment_confirm_with_the_support_filight_approved_img_ly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_4sdp"
+                android:visibility="gone"
+                android:layout_marginEnd="@dimen/_40sdp"
+                >
+            <ImageView
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/_170sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:scaleType="centerCrop"
+                android:layout_marginEnd="-260dp"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:src="@drawable/circle_red"
+                />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_confirm_with_the_support_flight_item_ly"
+                android:visibility="gone"
+                >
+            <include layout="@layout/cardview_flight_offers_item"
+
+                />
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fragment_confirm_with_the_support_discover_hotel_img_ly"
+                android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="@dimen/_165sdp"
                 android:layout_margin="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_12sdp"

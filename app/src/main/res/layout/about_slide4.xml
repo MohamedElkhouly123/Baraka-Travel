@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/customer_care_24"
-        android:textAlignment="center"
+        android:gravity="center"
         style="@style/LoginAndSignUpTextView"
         android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginStart="@dimen/_30sdp"

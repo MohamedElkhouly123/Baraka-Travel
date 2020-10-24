@@ -9,8 +9,11 @@ import androidx.annotation.NonNull;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
+import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.DiscoverFragment;
 
 import butterknife.ButterKnife;
+
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 
 public class GetEVisaFragment extends BaSeFragment {
@@ -30,6 +33,7 @@ public class GetEVisaFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
-    }
+        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new AccountFragment());
+        homeCycleActivity.setNavigation("v");
+        homeCycleActivity.bottomNavView.getMenu().getItem(4).setChecked(true);     }
 }

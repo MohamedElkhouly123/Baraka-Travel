@@ -34,6 +34,8 @@
     <color name="orange">#FA8C16</color>
     <color name="green">#18BD5A</color>
     <color name="toggle_gray">#1F000000</color>
+    <color name="yello">#F2C94C</color>
+    <color name="green2">#18BD5A</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>

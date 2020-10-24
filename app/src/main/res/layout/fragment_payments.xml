@@ -81,7 +81,7 @@
                     android:layout_weight="1"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="@string/up_coming"
+                    android:text="@string/my_cards"
                     android:textColor="@color/black" />
 
                 <RadioButton
@@ -95,7 +95,7 @@
                     android:background="@drawable/toggle_widget_background"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="@string/completed"
+                    android:text="@string/Transactions"
                     android:textColor="@color/black" />
             </RadioGroup>
             <androidx.constraintlayout.widget.ConstraintLayout

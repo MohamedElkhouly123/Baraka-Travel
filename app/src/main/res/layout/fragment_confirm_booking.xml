@@ -23,7 +23,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_18ssp" />
         <Button
-            android:id="@+id/btn_next"
+            android:id="@+id/fragment_confirm_booking_confirm_pay_btn"
             android:layout_width="@dimen/_165sdp"
             android:layout_height="wrap_content"
             android:background="@drawable/gragiant_btn_orange_shape"

@@ -20,7 +20,7 @@
         style="@style/LoginAndSignUpTextView"
         />
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_tool2"
+        android:id="@+id/fragment_home_account_profile_cardview_my_account_item_ly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_1sdp"
@@ -76,6 +76,7 @@
                 android:textColor="@color/white"
                 />
             <ImageButton
+                android:id="@+id/fragment_home_account_profile_cardview_my_account_item_next_btn"
                 android:layout_width="@dimen/_27sdp"
                 android:layout_height="@dimen/_27sdp"
                 android:src="@drawable/ic_keyboard_arrow_right_black_24dp"

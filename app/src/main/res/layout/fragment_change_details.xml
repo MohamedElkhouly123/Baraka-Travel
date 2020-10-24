@@ -19,7 +19,7 @@
         >
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/fragment_my_profile_photo_circularImageView"
+            android:id="@+id/fragment_change_details_my_profile_photo_circularImageView"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_120sdp"
             android:layout_marginStart="@dimen/_6sdp"
@@ -126,7 +126,7 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cons2"
+            android:id="@+id/fragment_change_details_change_password_btn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_47sdp"
             android:layout_marginTop="@dimen/_12sdp"
@@ -160,7 +160,7 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cons1"
+            android:id="@+id/fragment_change_details_payment_btn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_47sdp"
             android:layout_marginTop="@dimen/_12sdp"
@@ -196,7 +196,7 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <Button
-            android:id="@+id/btn_next"
+            android:id="@+id/fragment_change_details_save_changes_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

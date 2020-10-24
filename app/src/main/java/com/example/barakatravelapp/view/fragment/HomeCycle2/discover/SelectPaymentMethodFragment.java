@@ -11,6 +11,9 @@ import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 
 public class SelectPaymentMethodFragment extends BaSeFragment {
@@ -18,6 +21,7 @@ public class SelectPaymentMethodFragment extends BaSeFragment {
     public SelectPaymentMethodFragment() {
         // Required empty public constructor
     }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -30,6 +34,12 @@ public class SelectPaymentMethodFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
+        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram,new ConfirmBookingFragment());
+    }
+
+    @OnClick(R.id.fragment_select_payment_method_pay_btn)
+    public void onViewClicked() {
+        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram,new SuccessfulPaymentFragment());
+
     }
 }

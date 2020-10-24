@@ -12,6 +12,8 @@ import com.example.barakatravelapp.view.fragment.BaSeFragment;
 
 import butterknife.ButterKnife;
 
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
+
 
 public class MyUmrahBookingFragment extends BaSeFragment {
 
@@ -30,6 +32,7 @@ public class MyUmrahBookingFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
-    }
+        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new AccountFragment());
+        homeCycleActivity.setNavigation("v");
+        homeCycleActivity.bottomNavView.getMenu().getItem(4).setChecked(true);       }
 }

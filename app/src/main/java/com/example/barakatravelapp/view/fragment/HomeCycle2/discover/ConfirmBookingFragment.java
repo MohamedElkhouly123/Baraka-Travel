@@ -11,6 +11,9 @@ import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 
 public class ConfirmBookingFragment extends BaSeFragment {
@@ -18,6 +21,7 @@ public class ConfirmBookingFragment extends BaSeFragment {
     public ConfirmBookingFragment() {
         // Required empty public constructor
     }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -30,6 +34,12 @@ public class ConfirmBookingFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
+        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram,new LuxuryUmrahPackageFragment());
+    }
+
+    @OnClick(R.id.fragment_confirm_booking_confirm_pay_btn)
+    public void onViewClicked() {
+        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram,new SelectPaymentMethodFragment());
+
     }
 }

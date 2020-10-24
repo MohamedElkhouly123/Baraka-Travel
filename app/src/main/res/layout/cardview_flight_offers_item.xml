@@ -14,11 +14,12 @@
         android:textSize="@dimen/_16ssp"
         android:layout_marginTop="@dimen/_10sdp"
         android:textStyle="normal"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_marginBottom="@dimen/_15sdp"
         style="@style/LoginAndSignUpTextView"
         />
 <androidx.cardview.widget.CardView
+    android:id="@+id/fragment_home_flights_cardview_flight_offers_item_cr_ly"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="3dp"
@@ -100,7 +101,7 @@
             android:textSize="@dimen/_8ssp"
             android:textAlignment="center"
             android:visibility="visible"
-            android:background="@drawable/gradient_btn_green_flight_offer_shape"
+            android:background="@drawable/btn_green_flight_offer_shape"
             android:textColor="@color/green"
             />
                 <TextView

@@ -86,4 +86,25 @@
     <string name="flight_details">Flight Details</string>
     <string name="fly_out">Fly out</string>
     <string name="fly_back">Fly back</string>
+    <string name="package_details">Package Details</string>
+    <string name="package_divided">The package is divided into 6 Days each in Makah and Medina with visa facility. Get benefit from our specially designed personalized packages keeping in view the time, weather and budget because our customer convenience is our priority.</string>
+    <string name="Breakfast">Breakfast</string>
+    <string name="Transport">Transport</string>
+    <string name="Visa">Visa</string>
+    <string name="Buffet">Buffet</string>
+    <string name="Included">Included</string>
+    <string name="your_airline">Your Airline</string>
+    <string name="airline_offer">Baraka Travel airline partner offering competitive prices from the U.S. to Saudi Arabia in particular.</string>
+    <string name="your_stay_in_mekkah">Your stay in Mekkah</string>
+    <string name="distance_details_makah">Accommodation not far away from Makah museum, Muzdalifah and Jabal Thawr.I t has only 20 minute of walk from Makah. The Building is 750 meters away from the Abraj Al Bait Mall, Black stone and Zam Zam well</string>
+    <string name="free_wifi">Free Wifi</string>
+    <string name="central_air_conditioning">Central Air Conditioning</string>
+    <string name="handicap_accessible">Handicap Accessible</string>
+    <string name="your_stay_in_madinah">Your stay in Madinah</string>
+    <string name="distance_details_madinah">This luxury hotel is within a 10-minute walk of  Prodigious Mosque of Makakh. Safa and Marwah and Abraj Al-Bait Towers are also within 3 to 5 km within walking distance of the Al Masjid Al Haram, it also proposals a 24-hour shuttle service</string>
+    <string name="Your_map_view">Your Map view</string>
+    <string name="Book">Book</string>
+    <string name="class1">Class</string>
+    <string name="my_cards">My Cards</string>
+    <string name="Transactions">Transactions</string>
 </resources>

@@ -84,7 +84,7 @@
             android:textSize="@dimen/_15ssp"
             />
         <Button
-            android:id="@+id/btn_next"
+            android:id="@+id/fragment_successful_payment_view_my_booking_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -98,7 +98,7 @@
             android:textStyle="bold"
             />
         <Button
-            android:id="@+id/btn_next2"
+            android:id="@+id/fragment_successful_payment_return_home_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

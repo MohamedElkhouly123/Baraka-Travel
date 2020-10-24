@@ -43,7 +43,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
-                    android:id="@+id/fragment_login_for_sign_up_tv"
+                    android:id="@+id/top_part_in_nav_genral_part_filter_til"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/LoginAndSignUpBlueTextView"
@@ -56,8 +56,8 @@
                 android:id="@+id/top_part_in_nav_genral_part_search_til"
                 style="@style/EditTextSearch"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
-                android:visibility="visible"
+                android:layout_height="@dimen/_45sdp"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:errorTextAppearance="@style/error_appearance"
                 android:background="@drawable/button_seach_style2"
@@ -68,15 +68,13 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/set_new_password_password_etxt"
-                    style="@style/EditTextLogin"
+                    android:id="@+id/top_part_in_nav_genral_part_search_etxt"
+                    style="@style/search_text_input2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/search"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_4sdp"
                     android:textColor="@color/search_gray2"
+                    android:layout_marginBottom="@dimen/_2sdp"
                     android:inputType="textAutoComplete" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +98,6 @@
 
                 >
                 <TextView
-                    android:id="@+id/client_home_fillter_search_keyword_etxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -117,7 +114,7 @@
 
 
                     <Spinner
-                        android:id="@+id/client_home_fillter_spin_id"
+                        android:id="@+id/top_part_in_nav_genral_part_from_spin_id"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center"
@@ -146,7 +143,6 @@
                     android:layout_weight="1"
                     >
                     <TextView
-                        android:id="@+id/client_home_fillter_to_etxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -163,7 +159,7 @@
 
 
                         <Spinner
-                            android:id="@+id/client_home_fillter_spin_id2"
+                            android:id="@+id/top_part_in_nav_genral_part_to_spin_id"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_20sdp"
                             android:layout_gravity="center"

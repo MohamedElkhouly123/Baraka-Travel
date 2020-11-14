@@ -308,5 +308,9 @@ public class HelperMethod {
     public static void showToast(Activity activity, String message) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
     }
+    public static void showLongToast(Activity activity, String message) {
+        Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+
+    }
 
 }

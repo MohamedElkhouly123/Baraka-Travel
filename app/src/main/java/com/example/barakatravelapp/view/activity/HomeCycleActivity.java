@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
+
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.AccountFragment;
 import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.DiscoverFragment;
@@ -17,7 +21,9 @@ import butterknife.ButterKnife;
 import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 
-public class HomeCycleActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class HomeCycleActivity extends BaseActivity
+//        implements BottomNavigationView.OnNavigationItemSelectedListener
+{
 
 
 //    public HomeFragment homeFragment;
@@ -38,10 +44,11 @@ public class HomeCycleActivity extends BaseActivity implements BottomNavigationV
 //        child = this;
 //        homeFragment=new HomeFragment();
 //        clientData = LoadUserData(this);
-        replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram,new DiscoverFragment());
+//        replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment,new DiscoverFragment());
         bottomNavView = (BottomNavigationView) findViewById(R.id.nav_view);
-        bottomNavView.setOnNavigationItemSelectedListener(this);
-
+//        bottomNavView.setOnNavigationItemSelectedListener(this);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.home_activity_fragment);
+        NavigationUI.setupWithNavController(bottomNavView, navHostFragment.getNavController());
 
     }
 
@@ -67,34 +74,34 @@ public class HomeCycleActivity extends BaseActivity implements BottomNavigationV
 
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.navigation_account) {
-            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram,new AccountFragment());
-        } else if (id == R.id.navigation_hotels) {
-//            if(clientData!=null) {
-                replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new HottelsFragment());
-//            }else {
-//                goToRegisterFirst(this);
-//                goLogin = true;
-//                backFromLogin=true;
-//            }
-        } else if (id == R.id.navigation_flight) {
-            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new FlightsFragment());
-
-        } else if (id == R.id.navigation_hajj) {
-            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new HujjAndUmrahFragment());
-        }
-        else if (id == R.id.navigation_discover) {
-            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fram, new DiscoverFragment());
-        }
-
-        return true;
-    }
+//    @SuppressWarnings("StatementWithEmptyBody")
+//    @Override
+//    public boolean onNavigationItemSelected(MenuItem item) {
+//        // Handle navigation view item clicks here.
+//        int id = item.getItemId();
+//
+//        if (id == R.id.navigation_account) {
+//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment,new AccountFragment());
+//        } else if (id == R.id.navigation_hotels) {
+////            if(clientData!=null) {
+//                replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment, new HottelsFragment());
+////            }else {
+////                goToRegisterFirst(this);
+////                goLogin = true;
+////                backFromLogin=true;
+////            }
+//        } else if (id == R.id.navigation_flight) {
+//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment, new FlightsFragment());
+//
+//        } else if (id == R.id.navigation_hajj) {
+//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment, new HujjAndUmrahFragment());
+//        }
+//        else if (id == R.id.navigation_discover) {
+//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment, new DiscoverFragment());
+//        }
+//
+//        return true;
+//    }
 
 
 

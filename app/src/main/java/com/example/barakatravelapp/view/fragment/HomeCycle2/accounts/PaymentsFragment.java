@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
@@ -17,6 +19,7 @@ import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 public class PaymentsFragment extends BaSeFragment {
 
+    private NavController navController;
     public PaymentsFragment() {
         // Required empty public constructor
     }
@@ -26,12 +29,15 @@ public class PaymentsFragment extends BaSeFragment {
         View root = inflater.inflate(R.layout.fragment_payments, container, false);
 
         ButterKnife.bind(this, root);
+        navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
 
         return root;
     }
 
     @Override
     public void onBack() {
-        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new ChangeDetailsFragment());
+//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new ChangeDetailsFragment());
+        navController.navigate(R.id.action_paymentsFragment_to_changeDetailsFragment);
+
     }
 }

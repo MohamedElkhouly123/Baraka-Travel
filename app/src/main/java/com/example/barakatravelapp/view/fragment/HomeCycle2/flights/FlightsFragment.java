@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
 import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.DiscoverFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.hotels.HottelViewFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +25,7 @@ public class FlightsFragment extends BaSeFragment {
 
     @BindView(R.id.top_part_in_nav_flight_part)
     LinearLayout topPartInNavFlightPart;
-
+    private NavController navController;
     public FlightsFragment() {
         // Required empty public constructor
     }
@@ -36,18 +37,23 @@ public class FlightsFragment extends BaSeFragment {
 
         ButterKnife.bind(this, root);
         topPartInNavFlightPart.setVisibility(View.VISIBLE);
+        navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
+
         return root;
     }
 
     @Override
     public void onBack() {
-        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new DiscoverFragment());
-        homeCycleActivity.setNavigation("v");
-        homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);    }
+//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new DiscoverFragment());
+        navController.navigate(R.id.action_navigation_flight_to_navigation_discover);
+//        homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);
+    }
 
     @OnClick(R.id.fragment_home_flights_cardview_flight_offers_item_cr_ly)
     public void onViewClicked() {
-        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new FlightDetailsFragment());
+//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new FlightDetailsFragment());
+        navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
+//        navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment,bundle);
         homeCycleActivity.setNavigation("g");
 
     }

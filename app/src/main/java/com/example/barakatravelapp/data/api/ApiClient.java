@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "https://ipda3-tech.com/sofra-v2/api/v2/";
+    public static final String BASE_URL = "https://barakatravel.net/api/";
     public static Retrofit retrofit = null;
 
     public static ApiServices getApiClient(){

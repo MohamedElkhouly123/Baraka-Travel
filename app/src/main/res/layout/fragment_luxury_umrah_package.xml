@@ -881,31 +881,38 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/donation_details_fragment_mv_map"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_180sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/white_shape"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/fragment_home_hottel_view_mv_map"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_180sdp"
+                android:background="@drawable/white_shape"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
             <ImageView
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_16sdp"
                 android:layout_gravity="center"
                 android:elevation="@dimen/_1sdp"
                 android:scaleType="centerCrop"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
                 android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:src="@drawable/logo"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />
+            <!--            <ImageView-->
+            <!--                android:layout_width="@dimen/_100sdp"-->
+            <!--                android:layout_height="@dimen/_90sdp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:elevation="@dimen/_1sdp"-->
+            <!--                android:src="@drawable/google_icon"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
         <LinearLayout
             android:layout_width="match_parent"

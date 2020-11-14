@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
@@ -36,6 +38,7 @@ public class ConfirmWithTheSupportFragment extends BaSeFragment {
     @BindView(R.id.fragment_confirm_with_the_support_flight_item_ly)
     LinearLayout fragmentConfirmWithTheSupportFlightItemLy;
     private String isDiscoverOrFlight;
+    private NavController navController;
 
     public ConfirmWithTheSupportFragment() {
         // Required empty public constructor
@@ -50,6 +53,7 @@ public class ConfirmWithTheSupportFragment extends BaSeFragment {
         View root = inflater.inflate(R.layout.fragment_confirm_with_the_support, container, false);
 
         ButterKnife.bind(this, root);
+        navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
 
         if (isDiscoverOrFlight.equalsIgnoreCase("discover")) {
             fragmentConfirmWithTheSupportDiscoverApprovedImgLy.setVisibility(View.VISIBLE);
@@ -68,11 +72,15 @@ public class ConfirmWithTheSupportFragment extends BaSeFragment {
     public void onBack() {
         if (isDiscoverOrFlight.equalsIgnoreCase("discover")) {
 
-            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new HottelViewFragment());
+//            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new HottelViewFragment());
+            Bundle bundle = new Bundle();
+            bundle.putString("ISSUCCESSFUL", "successfullPayment");
+            navController.navigate(R.id.action_confirmWithTheSupportFragment_to_hottelViewFragment,bundle);
 
         }else {
 
-            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new FlightDetailsFragment());
+//            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new FlightDetailsFragment());
+            navController.navigate(R.id.action_confirmWithTheSupportFragment_to_flightDetailsFragment);
 
 
         }
@@ -82,12 +90,22 @@ public class ConfirmWithTheSupportFragment extends BaSeFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fragment_confirm_with_the_support_view_my_booking:
-                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new HottelViewFragment());
+//                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new HottelViewFragment());
+                Bundle bundle = new Bundle();
+                if (isDiscoverOrFlight.equalsIgnoreCase("discover")) {
+                bundle.putString("ISSUCCESSFUL", "discover");
+                }else {
+                    bundle.putString("ISSUCCESSFUL", "flight");
+
+                }
+                navController.navigate(R.id.action_confirmWithTheSupportFragment_to_hottelViewFragment,bundle);
+
                 break;
             case R.id.fragment_confirm_with_the_support_return_home:
-                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new DiscoverFragment());
+//                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new DiscoverFragment());
+                navController.navigate(R.id.action_confirmWithTheSupportFragment_to_navigation_discover);
                 homeCycleActivity.setNavigation("v");
-                homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);
+//                homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);
                 break;
         }
     }

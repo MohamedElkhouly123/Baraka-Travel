@@ -56,7 +56,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/client_and_restaurant_login_fragment_til_email"
+            android:id="@+id/fragment_login_for_til_email"
             style="@style/text_input_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:layout_marginTop="@dimen/_12sdp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/register_email_etxt"
+                android:id="@+id/fragment_login_for_email_etxt"
                 style="@style/EditTextLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/client_and_restaurant_login_fragment_til_password"
+                android:id="@+id/fragment_login_for_til_password"
                 style="@style/text_input_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/register_password_etxt"
+                    android:id="@+id/fragment_login_for_password_etxt"
                     style="@style/EditTextLogin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -119,7 +119,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/about_app_slide4_btn_begin"
+            android:id="@+id/fragment_login_for_btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_btn_blue_shape"
@@ -131,7 +131,7 @@
             android:layout_marginTop="@dimen/_105sdp"
             android:text="@string/login" />
         <TextView
-            android:id="@+id/fragment_login_forge_password_tv"
+            android:id="@+id/fragment_login_forget_password_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

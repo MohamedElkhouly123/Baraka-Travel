@@ -6,10 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.DiscoverFragment;
 
 import butterknife.ButterKnife;
 
@@ -18,6 +19,7 @@ import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 public class GetEVisaFragment extends BaSeFragment {
 
+    private NavController navController;
     public GetEVisaFragment() {
         // Required empty public constructor
     }
@@ -27,13 +29,16 @@ public class GetEVisaFragment extends BaSeFragment {
         View root = inflater.inflate(R.layout.fragment_get_e_visa, container, false);
 
         ButterKnife.bind(this, root);
+        navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
 
         return root;
     }
 
     @Override
     public void onBack() {
-        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new AccountFragment());
+//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new AccountFragment());
+        navController.navigate(R.id.action_getEVisaFragment_to_navigation_account);
         homeCycleActivity.setNavigation("v");
-        homeCycleActivity.bottomNavView.getMenu().getItem(4).setChecked(true);     }
+//        homeCycleActivity.bottomNavView.getMenu().getItem(4).setChecked(true);
+    }
 }

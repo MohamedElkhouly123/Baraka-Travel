@@ -15,6 +15,7 @@ import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.SelectPayme
 import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.SuccessfulPaymentFragment;
 import com.example.barakatravelapp.view.fragment.HomeCycle2.flights.FlightDetailsFragment;
 import com.example.barakatravelapp.view.fragment.HomeCycle2.hotels.HottelViewFragment;
+import com.example.barakatravelapp.view.fragment.userCycle.LoginFragment;
 import com.example.barakatravelapp.view.fragment.userCycle.SignUpFragment;
 
 import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
@@ -26,7 +27,7 @@ public class UserCycleActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_cycle);
-        replaceFragment(getSupportFragmentManager(), R.id.user_activity_fram, new SignUpFragment());
+        replaceFragment(getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
 
 //        Toast.makeText(this, "here", Toast.LENGTH_LONG)
 //                .show();

@@ -65,7 +65,7 @@
                 style="@style/EditTextLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/full_name"
+                android:hint="@string/first_name"
                 android:ems="10"
                 android:inputType="textAutoComplete" />
         </com.google.android.material.textfield.TextInputLayout>

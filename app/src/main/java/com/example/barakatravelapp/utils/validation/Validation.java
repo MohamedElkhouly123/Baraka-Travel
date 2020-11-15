@@ -274,8 +274,7 @@ public class Validation {
         if (phone1.length() == 12){
             return true;
         } else {
-            phone.setError(activity.getString(R.string.invalid_phone1) + " " + country1.getLength_min()
-                    + " " + activity.getString(R.string.invalid_phone2));
+            phone.setError(activity.getString(R.string.invalid_phone1));
             return false;
         }
     }

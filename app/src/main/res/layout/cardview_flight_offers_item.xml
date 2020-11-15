@@ -8,6 +8,7 @@
     android:orientation="vertical"
     >
     <TextView
+        android:id="@+id/cardview_flight_offers_item_top_flights_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/top_flight_offers"
@@ -41,13 +42,13 @@
             android:background="@drawable/offer_shape"
             >
             <ImageView
-                android:id="@+id/shadow"
+                android:id="@+id/cardview_flight_offers_item_offer_shadow_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 android:src="@drawable/ic_whatshot_black_24dp" />
             <TextView
-                android:id="@+id/num"
+                android:id="@+id/cardview_flight_offers_item_offer_num_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_11ssp"
@@ -82,7 +83,7 @@
             >
 
             <ImageView
-                android:id="@+id/item_restaurant_orders_img_client"
+                android:id="@+id/cardview_flight_offers_item_flight_airport_logo_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/_6sdp"
@@ -94,6 +95,7 @@
                 android:layout_marginTop="@dimen/_4sdp"
                 >
         <TextView
+            android:id="@+id/cardview_flight_offers_item_economy_shape_hide_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -105,6 +107,7 @@
             android:textColor="@color/green"
             />
                 <TextView
+                    android:id="@+id/cardview_flight_offers_item_efirst_class_shape_hide_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -142,7 +145,7 @@
             android:visibility="visible"
             >
             <TextView
-                android:id="@+id/tx2"
+                android:id="@+id/cardview_flight_offers_item_from_date_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_12ssp"
@@ -158,7 +161,7 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_trending_flat_black_24dp" />
             <TextView
-                android:id="@+id/tx4"
+                android:id="@+id/cardview_flight_offers_item_to_date_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_12ssp"
@@ -175,7 +178,7 @@
             android:text="@string/from"
             />
         <TextView
-            android:id="@+id/my_name"
+            android:id="@+id/cardview_flight_offers_item_from_country_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New York"
@@ -186,6 +189,7 @@
             />
 
         <TextView
+            android:id="@+id/cardview_flight_offers_item_from_city_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kennedy International Airport"
@@ -201,6 +205,7 @@
             android:text="@string/to"
             />
         <TextView
+            android:id="@+id/cardview_flight_offers_item_to_country_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medinah"
@@ -211,9 +216,9 @@
             />
 
         <TextView
+            android:id="@+id/cardview_flight_offers_item_to_city_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fragment_my_profile_tv_email"
             android:text="Prince Mohammed Bin Abdulaziz Internatio.."
             android:layout_marginTop="@dimen/_2sdp"
             android:textSize="@dimen/_10ssp"
@@ -241,6 +246,7 @@
                 android:orientation="horizontal"
                 >
                 <ImageView
+                    android:id="@+id/cardview_flight_offers_item_from_country_img"
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:src="@drawable/amerca2"
@@ -257,6 +263,7 @@
 
                     />
                 <ImageView
+                    android:id="@+id/cardview_flight_offers_item_to_country_img"
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:src="@drawable/soadia"
@@ -266,7 +273,7 @@
                     />
             </FrameLayout>
             <TextView
-                android:id="@+id/cardview_item_client_food_order_menu_tv_meal_name"
+                android:id="@+id/cardview_flight_offers_item_price_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$ 787"

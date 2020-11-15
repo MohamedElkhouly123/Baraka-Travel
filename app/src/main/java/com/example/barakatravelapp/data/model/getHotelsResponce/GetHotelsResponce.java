@@ -1,10 +1,11 @@
 
-package com.example.barakatravelapp.data.model.userLoginResponce;
+package com.example.barakatravelapp.data.model.getHotelsResponce;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserLoginGeneralResponce {
+public class GetHotelsResponce {
 
     @SerializedName("status")
     @Expose
@@ -12,9 +13,9 @@ public class UserLoginGeneralResponce {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("user")
+    @SerializedName("hotels")
     @Expose
-    private UserData user;
+    private List<HotelData> hotels = null;
 
     public String getStatus() {
         return status;
@@ -28,12 +29,12 @@ public class UserLoginGeneralResponce {
 
     public void setMessage(String message) { this.message = message; }
 
-    public UserData getUser() {
-        return user;
+    public List<HotelData> getHotels() {
+        return hotels;
     }
 
-    public void setUser(UserData user) {
-        this.user = user;
+    public void setHotels(List<HotelData> hotels) {
+        this.hotels = hotels;
     }
 
 }

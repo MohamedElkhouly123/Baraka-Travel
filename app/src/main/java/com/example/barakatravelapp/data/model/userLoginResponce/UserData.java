@@ -4,7 +4,7 @@ package com.example.barakatravelapp.data.model.userLoginResponce;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class UserData {
 
     @SerializedName("id")
     @Expose

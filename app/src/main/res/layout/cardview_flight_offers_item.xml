@@ -4,7 +4,7 @@
     android:id="@+id/golds"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_12sdp"
+    android:layout_margin="@dimen/_5sdp"
     android:orientation="vertical"
     >
     <TextView
@@ -13,10 +13,11 @@
         android:layout_height="wrap_content"
         android:text="@string/top_flight_offers"
         android:textSize="@dimen/_16ssp"
-        android:layout_marginTop="@dimen/_10sdp"
         android:textStyle="normal"
         android:visibility="gone"
-        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         style="@style/LoginAndSignUpTextView"
         />
 <androidx.cardview.widget.CardView
@@ -25,6 +26,8 @@
     android:layout_height="wrap_content"
     app:cardElevation="3dp"
     app:cardCornerRadius="5dp"
+    android:layout_marginStart="@dimen/_7sdp"
+    android:layout_marginEnd="@dimen/_7sdp"
     android:clickable="true"
     android:focusable="true"
     app:cardBackgroundColor="@android:color/white"
@@ -137,13 +140,11 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_5sdp"
         >
-        <FrameLayout
-            android:id="@+id/cardview_general_vert_hajj_and_hotels_item_additional_part"
-            android:layout_width="@dimen/_110sdp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="visible"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/cardview_flight_offers_item_from_date_tv"
                 android:layout_width="wrap_content"
@@ -152,6 +153,7 @@
                 android:text="13 sep"
                 android:layout_gravity="left"
                 android:textColor="@color/graydate" />
+
             <ImageView
                 android:id="@+id/arrow"
                 android:layout_width="wrap_content"
@@ -168,7 +170,8 @@
                 android:layout_gravity="right"
                 android:text="19 sep"
                 android:textColor="@color/graydate" />
-        </FrameLayout>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/client_home_fillter_search_keyword_etxt"
             android:layout_width="wrap_content"

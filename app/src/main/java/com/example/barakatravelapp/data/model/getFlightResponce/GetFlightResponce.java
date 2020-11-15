@@ -15,7 +15,10 @@ public class GetFlightResponce {
     private String message;
     @SerializedName("flights")
     @Expose
-    private GetFlightPagination data;
+    private List<FlightData> flights = null;
+//    @SerializedName("flights")
+//    @Expose
+//    private GetFlightPagination data;
 
     public String getStatus() {
         return status;
@@ -29,13 +32,22 @@ public class GetFlightResponce {
 
     public void setMessage(String message) { this.message = message; }
 
-    public GetFlightPagination getData() {
-        return data;
+    public List<FlightData> getFlights() {
+        return flights;
     }
 
-    public void setData(GetFlightPagination data) {
-        this.data = data;
+    public void setFlights(List<FlightData> flights) {
+        this.flights = flights;
     }
+
+
+//    public GetFlightPagination getData() {
+//        return data;
+//    }
+//
+//    public void setData(GetFlightPagination data) {
+//        this.data = data;
+//    }
 
 
 

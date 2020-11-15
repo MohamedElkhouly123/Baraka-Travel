@@ -105,12 +105,12 @@ public class FlightsFragment extends BaSeFragment {
                 try {
                     if (response != null) {
                         if (response.getStatus().equals("success")) {
-                            maxPage = response.getData().getLastPage();
+//                            maxPage = response.getData().getLastPage();
 //                                showToast(getActivity(), "max="+maxPage);
 
-                            if (response.getData() != null && response.getData().getTotal() != 0) {
+                            if (response.getFlights() != null ) {
                                 getFlightsItemsListData.clear();
-                                getFlightsItemsListData.addAll(response.getData().getFlights());
+                                getFlightsItemsListData.addAll(response.getFlights());
 //                                showToast(getActivity(), "list="+clientrestaurantsListData.get(1));
 
                                 getFlightsItemsAdapter.notifyDataSetChanged();
@@ -122,7 +122,6 @@ public class FlightsFragment extends BaSeFragment {
 
                         }
                     } else {
-                        showToast(getActivity(), "null");
 
                     }
 
@@ -180,7 +179,7 @@ public class FlightsFragment extends BaSeFragment {
             public void onRefresh() {
 
                 if (Filter) {
-//                    clientGetRestaurantsListByFilter(0);
+//                    clientGetRestaurantsListByFilter(1);
                 } else {
                     getRestaurantOrClientHomeList(0);
                 }
@@ -222,8 +221,8 @@ public class FlightsFragment extends BaSeFragment {
 
     private void reInit() {
         onEndLess.previousTotal = 0;
-        onEndLess.current_page = 1;
-        onEndLess.previous_page = 1;
+        onEndLess.current_page = 0;
+        onEndLess.previous_page = 0;
             getFlightsItemsListData = new ArrayList<>();
             getFlightsItemsAdapter = new GetFlightsItemsAdapter(getActivity(), getContext(), getFlightsItemsListData);
             fragmentHomeFlightsRecyclerView.setAdapter(getFlightsItemsAdapter);
@@ -237,7 +236,7 @@ public class FlightsFragment extends BaSeFragment {
             public void onClick(View view) {
 
                 if (Filter) {
-//                    clientGetRestaurantsListByFilter(0);
+//                    clientGetRestaurantsListByFilter(1);
                 } else {
                     getRestaurantOrClientHomeList(0);
                 }

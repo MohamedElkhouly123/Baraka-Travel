@@ -30,6 +30,7 @@ import static com.example.barakatravelapp.data.local.SharedPreferencesManger.USE
 import static com.example.barakatravelapp.utils.HelperMethod.dismissProgressDialog;
 import static com.example.barakatravelapp.utils.HelperMethod.progressDialog;
 import static com.example.barakatravelapp.utils.HelperMethod.showLongToast;
+import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 import static com.example.barakatravelapp.utils.ToastCreator.onCreateErrorToast;
 import static com.example.barakatravelapp.utils.network.InternetState.isConnected;
 
@@ -75,6 +76,7 @@ public class ViewModelGetLists extends ViewModel {
 
                         }
                     }
+
                 }
 
                 @Override

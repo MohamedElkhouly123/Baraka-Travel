@@ -38,7 +38,6 @@ import butterknife.OnClick;
 import retrofit2.Call;
 
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
 
 public class FlightsFragment extends BaSeFragment {
@@ -144,9 +143,9 @@ public class FlightsFragment extends BaSeFragment {
                         onEndLess.previous_page = current_page;
                         loadMore.setVisibility(View.VISIBLE);
                         if (Filter) {
-//                            clientGetRestaurantsListByFilter(current_page);
+                            getFlightsListByFilter(current_page);
                         } else {
-                            getRestaurantOrClientHomeList(current_page);
+                            getFlightsList(current_page);
                         }
 
                     } else {
@@ -167,7 +166,7 @@ public class FlightsFragment extends BaSeFragment {
 
 
         if (getFlightsItemsListData.size() == 0) {
-            getRestaurantOrClientHomeList(0);
+            getFlightsList(0);
         }
 //        else {
 //            clientAndRestaurantHomeFragmentSFlShimmer.stopShimmer();
@@ -179,19 +178,20 @@ public class FlightsFragment extends BaSeFragment {
             public void onRefresh() {
 
                 if (Filter) {
-//                    clientGetRestaurantsListByFilter(1);
+                    getFlightsListByFilter(0);
                 } else {
-                    getRestaurantOrClientHomeList(0);
+                    getFlightsList(0);
                 }
 
             }
         });
     }
 
-    private void clientGetRestaurantsListByFilter(int page) {
+    private void getFlightsListByFilter(int page) {
 
         Filter = true;
 //        keyword = clientHomeFillterSearchKeyWordEtxt.getText().toString().trim();
+        keyword="jfk";
         Call<GetFlightResponce> getFlightResponceCall;
         getFlightResponceCall = getApiClient().getFlightItemListByFilter(keyword, page);
 //        startShimmer(page);
@@ -200,7 +200,7 @@ public class FlightsFragment extends BaSeFragment {
 
     }
 
-    private void getRestaurantOrClientHomeList(int page) {
+    private void getFlightsList(int page) {
         Call<GetFlightResponce> getFlightResponceCall;
 
 //        startShimmer(page);
@@ -236,9 +236,9 @@ public class FlightsFragment extends BaSeFragment {
             public void onClick(View view) {
 
                 if (Filter) {
-//                    clientGetRestaurantsListByFilter(1);
+                    getFlightsListByFilter(0);
                 } else {
-                    getRestaurantOrClientHomeList(0);
+                    getFlightsList(0);
                 }
 
             }

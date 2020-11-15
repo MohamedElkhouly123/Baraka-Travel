@@ -33,13 +33,13 @@ public interface ApiServices {
     @FormUrlEncoded
     Call<GetHotelsResponce> getHotelsItemListByFilter(
             @Field("page") String page,
-            @Field("search") String search
+            @Field("search") int search
     );
 
     @POST("getHotels")
     @FormUrlEncoded
     Call<GetHotelsResponce> getHotelsItemList(
-            @Field("page") String page
+            @Field("page") int page
     );
 
     @POST("getFlights")

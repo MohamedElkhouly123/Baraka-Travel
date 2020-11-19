@@ -16,12 +16,24 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_hajj"
-        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.hajj.HujjAndUmrahFragment"
+        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.hajj.HujjFragment"
         android:label="fragment_home_hujj"
         tools:layout="@layout/fragment_home_hujj" >
         <action
             android:id="@+id/action_navigation_hajj_to_navigation_discover"
             app:destination="@id/navigation_discover" />
+        <action
+            android:id="@+id/action_navigation_hajj_to_navigation_umrah"
+            app:destination="@id/navigation_umrah" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_umrah"
+        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.umrah.UmrahFragment"
+        android:label="fragment_home_umrah"
+        tools:layout="@layout/fragment_home_umrah" >
+        <action
+            android:id="@+id/action_navigation_umrah_to_navigation_hajj"
+            app:destination="@id/navigation_hajj" />
     </fragment>
     <fragment
         android:id="@+id/navigation_flight"
@@ -203,4 +215,5 @@
             android:id="@+id/action_paymentsFragment_to_changeDetailsFragment"
             app:destination="@id/changeDetailsFragment" />
     </fragment>
+
 </navigation>

@@ -61,9 +61,9 @@ public class GetFlightsItemsAdapter extends RecyclerView.Adapter<GetFlightsItems
     private void setData(ViewHolder holder, int position) {
         holder.position = position;
         FlightData flightList = flightsListData.get(position);
-        if(position == 0){
-            holder.cardviewFlightOffersItemTopFlightsTitleTv.setVisibility(View.VISIBLE);
-        }
+//        if(position == 0){
+//            holder.cardviewFlightOffersItemTopFlightsTitleTv.setVisibility(View.VISIBLE);
+//        }
         holder.cardviewFlightOffersItemFromDateTv.setText(flightList.getReservationFrom());
         holder.cardviewFlightOffersItemToDateTv.setText(flightList.getReservationTo());
         holder.cardviewFlightOffersItemFromCountryTv.setText(flightList.getFrom());
@@ -98,8 +98,7 @@ public class GetFlightsItemsAdapter extends RecyclerView.Adapter<GetFlightsItems
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.cardview_flight_offers_item_top_flights_title_tv)
-        TextView cardviewFlightOffersItemTopFlightsTitleTv;
+
         @BindView(R.id.cardview_flight_offers_item_offer_shadow_img)
         ImageView cardviewFlightOffersItemOfferShadowImg;
         @BindView(R.id.cardview_flight_offers_item_offer_num_tv)

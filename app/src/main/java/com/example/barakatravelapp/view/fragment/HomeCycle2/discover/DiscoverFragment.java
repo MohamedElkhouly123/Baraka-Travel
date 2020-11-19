@@ -4,20 +4,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.adapter.SubHomeDiscoverVrRvAdapter;
 import com.example.barakatravelapp.data.model.ItemObjectModel;
+import com.example.barakatravelapp.data.model.getDiscoverHomeResponce.GetDiscoverHomeResponce;
+import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
+import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
 import com.example.barakatravelapp.utils.ChoosePersonsRoomsDialog;
 import com.example.barakatravelapp.utils.DialogAdapterCallback;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
-import com.google.android.material.textfield.TextInputLayout;
+import com.example.barakatravelapp.view.viewModel.ViewModelGetLists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,17 +35,36 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+
+import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
+import static com.example.barakatravelapp.utils.HelperMethod.showToast;
+import static com.example.barakatravelapp.utils.network.InternetState.isConnected;
 
 
 public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallback {
 
-    @BindView(R.id.top_part_in_nav_genral_part_search_til)
-    TextInputLayout topPartInNavGenralPartSearchTil;
+
     @BindView(R.id.home_discover_fragment_recycler_view)
     RecyclerView homeDiscoverFragmentRecyclerView;
+    @BindView(R.id.load_more)
+    RelativeLayout loadMore;
+    @BindView(R.id.error_title)
+    TextView errorTitle;
+    @BindView(R.id.error_sub_view)
+    LinearLayout errorSubView;
+    @BindView(R.id.discover_fragment_sr_refresh_discove_items)
+    SwipeRefreshLayout discoverFragmentSrRefreshDiscoveItems;
+    @BindView(R.id.no_result_error_title)
+    TextView noResultErrorTitle;
     private NavController navController;
     private LinearLayoutManager lLayout;
-
+    private List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetHajjDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
+    private List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetUmrahDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
+    private List<HotelData> getHomeDisscoverGetHotelsDataItemsListData = new ArrayList<HotelData>();
+    private ViewModelGetLists viewModel;
+    private SubHomeDiscoverVrRvAdapter subHomeDiscoverVrRvAdapter;
+    private List<ItemObjectModel> rowListItem;
     public DiscoverFragment() {
         // Required empty public constructor
     }
@@ -47,15 +76,59 @@ public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallb
 
         ButterKnife.bind(this, root);
         navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
-        topPartInNavGenralPartSearchTil.setVisibility(View.VISIBLE);
-        List<ItemObjectModel> rowListItem = getAllItemList();
-        lLayout = new LinearLayoutManager(getActivity());
+//        discoverFragmentSrRefreshDiscoveItems.setRefreshing(true);
 
-        homeDiscoverFragmentRecyclerView.setLayoutManager(lLayout);
+        setUpActivity();
+        initListener();
+//        clientData = LoadUserData(getActivity());
+        if (isConnected(getActivity())) {
+        init();}
+        getHotelsHomeList();
 
-        SubHomeDiscoverVrRvAdapter rcAdapter = new SubHomeDiscoverVrRvAdapter(getContext(), getActivity(), rowListItem);
-        homeDiscoverFragmentRecyclerView.setAdapter(rcAdapter);
         return root;
+    }
+
+    private void initListener() {
+
+        viewModel = ViewModelProviders.of(this).get(ViewModelGetLists.class);
+
+        viewModel.makeGetHomeDisscoverDataList().observe(getViewLifecycleOwner(), new Observer<GetDiscoverHomeResponce>() {
+            @Override
+            public void onChanged(@Nullable GetDiscoverHomeResponce response) {
+                try {
+                    if (response != null) {
+                        if (response.getStatus().equals("success")) {
+//                            maxPage = response.getData().getLastPage();
+//                                showToast(getActivity(), "max="+maxPage);
+
+                            if (response.getGetTophajj() != null || response.getGetTopUmar() != null || response.getGetTopHotels() != null) {
+                                getHomeDisscoverGetHajjDataItemsListData.clear();
+                                getHomeDisscoverGetHajjDataItemsListData.addAll(response.getGetTophajj());
+
+                                getHomeDisscoverGetUmrahDataItemsListData.clear();
+                                getHomeDisscoverGetUmrahDataItemsListData.addAll(response.getGetTopUmar());
+
+                                getHomeDisscoverGetHotelsDataItemsListData.clear();
+                                getHomeDisscoverGetHotelsDataItemsListData.addAll(response.getGetTopHotels());
+//                                showToast(getActivity(), "list="+response.getGetTopHotels().get(1));
+
+                                subHomeDiscoverVrRvAdapter.notifyDataSetChanged();
+
+                            } else {
+                                noResultErrorTitle.setVisibility(View.VISIBLE);
+                            }
+//                                showToast(getActivity(), "success1");
+
+                        }
+                    } else {
+
+                    }
+
+                } catch (Exception e) {
+                }
+            }
+        });
+
     }
 
     private List<ItemObjectModel> getAllItemList() {
@@ -64,20 +137,93 @@ public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallb
         allItems.add(new ItemObjectModel(getString(R.string.top_umrah_packages)));
         allItems.add(new ItemObjectModel(getString(R.string.top_hajj_packages)));
         allItems.add(new ItemObjectModel(getString(R.string.top_hotels_packages)));
+        allItems.add(new ItemObjectModel(getString(R.string.top_hotels_packages)));
 
 
         return allItems;
     }
+
+    private void init() {
+
+        lLayout = new LinearLayoutManager(getActivity());
+
+        homeDiscoverFragmentRecyclerView.setLayoutManager(lLayout);
+        if(getHomeDisscoverGetUmrahDataItemsListData.size()!=0 || getHomeDisscoverGetHajjDataItemsListData.size()!=0 || getHomeDisscoverGetHotelsDataItemsListData.size()!=0) {
+            rowListItem = getAllItemList();
+        }
+        subHomeDiscoverVrRvAdapter = new SubHomeDiscoverVrRvAdapter(getContext(), getActivity(), rowListItem,getHomeDisscoverGetHajjDataItemsListData,getHomeDisscoverGetUmrahDataItemsListData,getHomeDisscoverGetHotelsDataItemsListData);
+        homeDiscoverFragmentRecyclerView.setAdapter(subHomeDiscoverVrRvAdapter);
+
+
+
+    }
+
+
+    private void getHotelsHomeList() {
+        discoverFragmentSrRefreshDiscoveItems.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+
+                getHotelsHomeList();
+
+
+            }
+        });
+        Call<GetDiscoverHomeResponce> getDiscoverHomeResponceCall;
+
+//        startShimmer(page);
+
+        reInit();
+        getDiscoverHomeResponceCall = getApiClient().getHomeDiscoverItemList();
+
+        viewModel.getHomeDisscoverDataList(getActivity(), errorSubView, getDiscoverHomeResponceCall,discoverFragmentSrRefreshDiscoveItems, loadMore);
+
+
+
+    }
+
+
+
+
+    private void reInit() {
+        rowListItem = getAllItemList();
+        getHomeDisscoverGetHajjDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
+        getHomeDisscoverGetUmrahDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
+        getHomeDisscoverGetHotelsDataItemsListData = new ArrayList<HotelData>();
+        subHomeDiscoverVrRvAdapter = new SubHomeDiscoverVrRvAdapter(getContext(), getActivity(), rowListItem,getHomeDisscoverGetHajjDataItemsListData,getHomeDisscoverGetUmrahDataItemsListData,getHomeDisscoverGetHotelsDataItemsListData);
+        homeDiscoverFragmentRecyclerView.setAdapter(subHomeDiscoverVrRvAdapter);
+
+
+    }
+
+
+    public void setError(String errorTitleTxt) {
+        View.OnClickListener action = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                    getHotelsHomeList();
+
+
+            }
+        };
+        errorSubView.setVisibility(View.VISIBLE);
+        errorTitle.setText(errorTitleTxt);
+
+    }
+
     @Override
     public void onBack() {
         getActivity().finish();
     }
 
-    @OnClick(R.id.cardview_hz_discover_item_img)
-    public void onViewClicked() {
-        new ChoosePersonsRoomsDialog().showDialog(getActivity(), this);
-
-    }
+//    @OnClick(R.id.cardview_hz_discover_item_img)
+//    public void onViewClicked() {
+//        new ChoosePersonsRoomsDialog().showDialog(getActivity(), this);
+//
+//    }
 
     @Override
     public void onMethodCallback() {

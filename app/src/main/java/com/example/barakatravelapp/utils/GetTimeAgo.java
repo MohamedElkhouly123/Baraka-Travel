@@ -29,7 +29,7 @@ public class GetTimeAgo {
 //            return null;
 //        }
 //
-//        // TODO: localize
+//        // to localize
 //        final long diff = now - time;
 //        if (diff < MINUTE_MILLIS) {
 //            return context.getString(R.string.just_now);

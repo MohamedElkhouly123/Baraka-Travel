@@ -4,28 +4,18 @@
     android:id="@+id/golds"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_5sdp"
+    android:layout_marginStart="@dimen/_5sdp"
+    android:layout_marginEnd="@dimen/_5sdp"
     android:orientation="vertical"
     >
-    <TextView
-        android:id="@+id/cardview_flight_offers_item_top_flights_title_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/top_flight_offers"
-        android:textSize="@dimen/_16ssp"
-        android:textStyle="normal"
-        android:visibility="gone"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginEnd="@dimen/_7sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        style="@style/LoginAndSignUpTextView"
-        />
+
 <androidx.cardview.widget.CardView
     android:id="@+id/fragment_home_flights_cardview_flight_offers_item_cr_ly"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="3dp"
     app:cardCornerRadius="5dp"
+    android:layout_marginTop="@dimen/_10sdp"
     android:layout_marginStart="@dimen/_7sdp"
     android:layout_marginEnd="@dimen/_7sdp"
     android:clickable="true"

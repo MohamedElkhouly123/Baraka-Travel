@@ -7,7 +7,7 @@
     <string name="title_account">Account</string>
     <string name="hotels">Hotels</string>
     <string name="flight">Flights</string>
-    <string name="hajj"><![CDATA[Hajj & Umrah]]></string>
+    <string name="hajj">Hajj</string>
     <string name="discover">Discover</string>
     <string name="good_price_in_every_package1">Good Price On  Every Package</string>
     <string name="un_beatable_experience">Unbeatable Experience</string>
@@ -113,9 +113,12 @@
     <string name="reset_password">Reset Password</string>
     <string name="wait">Please wait....</string>
     <string name="error">Something went wrong</string>
-    <string name="error_inter_net">No internet connection, Please check your internet connection try again later</string>
+    <string name="error_inter_net">No internet connection Please check your internet and try again later</string>
     <string name="empty">Please Enter your Data first</string>
-    <string name="invalid_password">Password mast be more than 6 of cher and number</string>
-    <string name="invalid_user_name">Username mast be more than 3 cher</string>
+    <string name="invalid_password">Password mast be more than 6 of char and number</string>
+    <string name="invalid_user_name">Username mast be more than 3 char</string>
+    <string name="umrah">Umrah</string>
+    <string name="hajj_and_umrah"><![CDATA[Hajj & Umrah]]></string>
+    <string name="invalid_search">Search keyword mast be more than 2 char</string>
 
 </resources>

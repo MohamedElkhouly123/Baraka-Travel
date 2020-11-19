@@ -6,7 +6,19 @@
     android:layout_height="match_parent"
     >
     <include layout="@layout/top_part_in_nav" />
-
+    <TextView
+        android:id="@+id/cardview_flight_offers_item_top_flights_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/top_flight_offers"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="normal"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginEnd="@dimen/_7sdp"
+        style="@style/LoginAndSignUpTextView"
+        />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -4,10 +4,9 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/_13sdp"
-    android:paddingTop="@dimen/_5sdp"
-    android:paddingEnd="@dimen/_13sdp"
-    android:paddingBottom="@dimen/_5sdp">
+    android:paddingStart="@dimen/_18sdp"
+    android:paddingTop="@dimen/_2sdp"
+    android:paddingBottom="@dimen/_2sdp">
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +31,7 @@
             android:id="@+id/cardview_hz_discover_item_img_shadow_hide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_gravity="right"
             android:background="@drawable/offer_white_shape"
             android:src="@drawable/ic_whatshot_black_24dp" />
@@ -63,7 +62,7 @@
                 android:id="@+id/cardview_hz_discover_item_rate_img_hide"
                 android:layout_width="@dimen/_13sdp"
                 android:layout_height="@dimen/_13sdp"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_gravity="right|center"
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:layout_marginStart="@dimen/_3sdp"
@@ -75,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         android:layout_marginTop="@dimen/_6sdp"
         >
         <TextView
@@ -88,18 +88,18 @@
             />
         <TextView
             android:id="@+id/cardview_hz_discover_item_date_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:textSize="@dimen/_9ssp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:text="13 sep"
             android:textColor="@color/graydate" />
     </LinearLayout>
     <TextView
         android:id="@+id/cardview_hz_discover_item_date_or_name_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_70sdp"
         android:layout_height="wrap_content"
         android:text="Luxury Package"
         android:layout_marginTop="@dimen/_2sdp"
@@ -107,12 +107,12 @@
         android:textSize="@dimen/_10ssp"
         />
     <TextView
-        android:id="@+id/cardview_hz_discover_item_name_gray_for_top_umrah_tv"
-        android:layout_width="wrap_content"
+        android:id="@+id/cardview_hz_discover_item_discription_gray_for_top_umrah_tv"
+        android:layout_width="@dimen/_70sdp"
         android:layout_height="wrap_content"
         android:text="Luxury Package"
         android:layout_marginTop="@dimen/_2sdp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:textColor="@color/gray_text_color"
         android:textSize="@dimen/_10ssp"
         />

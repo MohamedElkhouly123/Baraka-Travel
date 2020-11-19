@@ -2,23 +2,15 @@ package com.example.barakatravelapp.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.barakatravelapp.R;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.AccountFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.DiscoverFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.flights.FlightsFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.hajj.HujjAndUmrahFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.hotels.HottelsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.ButterKnife;
-
-import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 
 public class HomeCycleActivity extends BaseActivity
@@ -94,7 +86,7 @@ public class HomeCycleActivity extends BaseActivity
 //            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment, new FlightsFragment());
 //
 //        } else if (id == R.id.navigation_hajj) {
-//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment, new HujjAndUmrahFragment());
+//            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment, new HujjFragment());
 //        }
 //        else if (id == R.id.navigation_discover) {
 //            replaceFragment(getSupportFragmentManager(), R.id.home_activity_fragment, new DiscoverFragment());

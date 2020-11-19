@@ -7,7 +7,11 @@
     <item
         android:id="@+id/navigation_hajj"
         android:icon="@drawable/kaaba"
-        android:title="@string/hajj" />
+        android:title="@string/hajj_and_umrah" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_umrah"-->
+<!--        android:icon="@drawable/kaaba"-->
+<!--        android:title="@string/umrah" />-->
     <item
         android:id="@+id/navigation_flight"
         android:icon="@drawable/ic_flight_black_24dp"

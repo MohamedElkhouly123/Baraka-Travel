@@ -1,14 +1,17 @@
 package com.example.barakatravelapp.data.api;
 
 
+import com.example.barakatravelapp.data.model.getDiscoverHomeResponce.GetDiscoverHomeResponce;
 import com.example.barakatravelapp.data.model.getFlightResponce.GetFlightResponce;
 import com.example.barakatravelapp.data.model.getHotelsResponce.GetHotelsResponce;
+import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetUmrahAndHujjResponce;
 import com.example.barakatravelapp.data.model.userLoginResponce.UserLoginGeneralResponce;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface ApiServices {
 
@@ -32,8 +35,8 @@ public interface ApiServices {
     @POST("getHotels")
     @FormUrlEncoded
     Call<GetHotelsResponce> getHotelsItemListByFilter(
-            @Field("page") String page,
-            @Field("search") int search
+            @Field("page") int page,
+            @Field("search") String search
     );
 
     @POST("getHotels")
@@ -45,14 +48,32 @@ public interface ApiServices {
     @POST("getFlights")
     @FormUrlEncoded
     Call<GetFlightResponce> getFlightItemListByFilter(
-            @Field("page") String page,
-            @Field("search") int search
+            @Field("search") String search,
+            @Field("page") int page
     );
 
     @POST("getFlights")
     @FormUrlEncoded
     Call<GetFlightResponce> getFlightItemList(
             @Field("page") int page
+    );
+
+    @POST("getPackage")
+    @FormUrlEncoded
+    Call<GetUmrahAndHujjResponce> getHajjAndUmrahItemListByFilter(
+            @Field("type") String type,
+            @Field("page") int page,
+            @Field("search") String search
+            );
+
+    @POST("getPackage")
+    @FormUrlEncoded
+    Call<GetUmrahAndHujjResponce> getHajjAndUmrahItemList(
+            @Field("type") String type,
+            @Field("page") int page    );
+
+    @POST("home")
+    Call<GetDiscoverHomeResponce> getHomeDiscoverItemList(
     );
 
 }

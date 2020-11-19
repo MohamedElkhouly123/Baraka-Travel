@@ -6,7 +6,17 @@
     android:layout_height="match_parent"
     >
     <include layout="@layout/top_part_in_nav" />
-
+    <TextView
+        android:id="@+id/cardview_general_vert_hajj_and_hotels_item_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/top_hotels_packages"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="normal"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        style="@style/LoginAndSignUpTextView"
+        />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

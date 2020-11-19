@@ -5,30 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingStart="@dimen/_13sdp"
-    android:paddingTop="@dimen/_5sdp"
     android:paddingEnd="@dimen/_13sdp"
-    android:paddingBottom="@dimen/_5sdp">
+    >
     <TextView
         android:id="@+id/cardview_general_vert_hajj_and_hotels_item_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/top_umrah_packages"
         android:textSize="@dimen/_16ssp"
-        android:layout_marginTop="@dimen/_10sdp"
         android:textStyle="normal"
         android:visibility="gone"
-        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         style="@style/LoginAndSignUpTextView"
         />
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="0dp"
         >
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/round_image"
         >
 
@@ -36,9 +35,9 @@
         android:id="@+id/cardview_general_vert_hajj_and_hotels_item_hotel_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_95sdp"
-        android:scaleType="centerCrop"
-        android:background="@drawable/round_image"
-        android:src="@drawable/haj" />
+        android:scaleType="fitXY"
+        android:src="@drawable/haj"
+      />
         <ImageView
             android:id="@+id/cardview_general_vert_hajj_and_hotels_item_offer_shadow_img"
             android:layout_width="wrap_content"
@@ -86,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         >
         <TextView
             android:id="@+id/cardview_general_vert_hajj_and_hotels_item_price_tv"
@@ -111,14 +110,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:gravity="center"
             android:visibility="visible"
             >
             <TextView
                 android:id="@+id/cardview_general_vert_hajj_and_hotels_item_from_date_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:textSize="@dimen/_12ssp"
                 android:text="13 sep"
                 android:textColor="@color/graydate" />
@@ -126,15 +126,15 @@
                 android:id="@+id/arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
                 android:src="@drawable/ic_trending_flat_black_24dp" />
             <TextView
                 android:id="@+id/cardview_general_vert_hajj_and_hotels_item_to_date_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:textSize="@dimen/_12ssp"
                 android:text="19 sep"
                 android:textColor="@color/graydate" />

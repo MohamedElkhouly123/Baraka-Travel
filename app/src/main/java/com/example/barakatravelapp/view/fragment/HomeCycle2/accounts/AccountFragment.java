@@ -41,7 +41,7 @@ public class AccountFragment extends BaSeFragment {
     public void onBack() {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new DiscoverFragment());
         navController.navigate(R.id.action_navigation_account_to_navigation_discover);
-        homeCycleActivity.setNavigation("v");
+//        homeCycleActivity.setNavigation("v");
 //        homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);
     }
 

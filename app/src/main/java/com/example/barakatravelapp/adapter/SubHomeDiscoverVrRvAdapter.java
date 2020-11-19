@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -14,12 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.ItemObjectModel;
+import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
+import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
 public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDiscoverVrRvAdapter.ViewHolder> {
 
@@ -29,6 +34,15 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
     private Activity activity;
     private List<ItemObjectModel> itemList = new ArrayList<>();
     private LinearLayoutManager lLayout;
+    private List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetHajjDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
+    private List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetUmrahDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
+    private List<HotelData> getHomeDisscoverGetHotelsDataItemsListData = new ArrayList<HotelData>();
+    private List<HotelData> getHomeDisscoverGetHotelsMakahDataItemsListData = new ArrayList<HotelData>();
+    private List<HotelData> getHomeDisscoverGetHotelsMadinaDataItemsListData = new ArrayList<HotelData>();
+    private LinearLayoutManager linearLayoutHorizental;
+    private SubHomeDiscoverTopHzRvAdapter SubHomeDiscoverTopHzRvAdapter;
+    private SubHomeDiscoverTopHzRvAdapter SubHomeDiscoverTopHzRvAdapter2;
+    private SubHomeDiscoverTopHzRvAdapter SubHomeDiscoverTopHzRvAdapter3;
 //    private ProfileItemAdapter homeSubHzItemAdapter;
 //    private SubHomeCategoryHzRvItem2Adapter subHomeCategoryHzRvItem2Adapter;
 //    List<ProductDataModel> rowListItem;
@@ -37,12 +51,16 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
 
     public SubHomeDiscoverVrRvAdapter(Context context,
                                       Activity activity,
-                                      List<ItemObjectModel> itemList
-    ) {
+                                      List<ItemObjectModel> itemList,
+                                      List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetHajjDataItemsListData, List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetUmrahDataItemsListData, List<HotelData> getHomeDisscoverGetHotelsDataItemsListData) {
         this.context = context;
         this.activity = activity;
 //        this.clientRestaurantsDataList.clear();
         this.itemList = itemList;
+        this.getHomeDisscoverGetHajjDataItemsListData = getHomeDisscoverGetHajjDataItemsListData;
+        this.getHomeDisscoverGetUmrahDataItemsListData = getHomeDisscoverGetUmrahDataItemsListData;
+        this.getHomeDisscoverGetHotelsDataItemsListData = getHomeDisscoverGetHotelsDataItemsListData;
+
 //        clientData = LoadUserData(activity);
 
     }
@@ -69,93 +87,63 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
             final int itemType = getItemViewType(position);
             holder.position = position;
             holder.homeDiscoverFragmentSubHomeRvItemTv.setText(itemList.get(position).getName());
-            if (position == 2) {
-                holder.homeDiscoverFragmentSubHomeRvItemVrRv.setVisibility(View.VISIBLE);
-
-            } else {
+            if (position == 0) {
                 holder.homeDiscoverFragmentSubHomeRvItemHzSrVw.setVisibility(View.VISIBLE);
+                initHozental(holder, getHomeDisscoverGetUmrahDataItemsListData, null, 1);
+            }
+            if (position == 1) {
+                holder.homeDiscoverFragmentSubHomeRvItemHzSrVw.setVisibility(View.VISIBLE);
+                initHozental(holder, getHomeDisscoverGetHajjDataItemsListData, null, 2);
 
             }
-
-//            rowListItem = getAllItemList();
-//            if (itemType == 1) {
-////            ((MyNormalViewHolder)holder).bindData((MyModel)myData[position]);
-//
-//                holder.subHomeCategoryHzRvItem2CategoryNameTv.setText(itemList.get(position).getName());
-//                lLayout = new LinearLayoutManager(activity);
-//                holder.subHomeCategory2HzRvRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
-//
-//                subHomeCategoryHzRvItem2Adapter = new SubHomeCategoryHzRvItem2Adapter(context, activity, rowListItem);
-//                holder.subHomeCategory2HzRvRecyclerView.setAdapter(subHomeCategoryHzRvItem2Adapter);
-//
-//                // 5. set item animator to DefaultAnimator
-//                holder.subHomeCategory2HzRvRecyclerView.setItemAnimator(new DefaultItemAnimator());
-//
-//                if( position == getItemCount() - 1 ){
-//                    holder.subHomeCategoryHzRvItem2PaddingTv.setVisibility(View.VISIBLE);
-//                }else {
-//                    holder.subHomeCategoryHzRvItem2PaddingTv.setVisibility(View.GONE);
-//
-//                }
-//            } else if (itemType == 0) {
-////            ((MyHeaderViewHolder)holder).setHeaderText((String)myData[position]);
-//                holder.subHomeCategoryHzRvItemCategoryNameTv.setText(itemList.get(position).getName());
-//                lLayout = new LinearLayoutManager(activity);
-//                holder.subHomeCategoryHzRvRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
-//
-//                homeSubHzItemAdapter = new ProfileItemAdapter(context, activity, rowListItem);
-//                holder.subHomeCategoryHzRvRecyclerView.setAdapter(homeSubHzItemAdapter);
-//
-//                // 5. set item animator to DefaultAnimator
-//                holder.subHomeCategoryHzRvRecyclerView.setItemAnimator(new DefaultItemAnimator());
-//
-//                if( position == getItemCount() - 1 ){
-//                    holder.subHomeCategoryHzRvItemPaddingTv.setVisibility(View.VISIBLE);
-//                }else {
-//                    holder.subHomeCategoryHzRvItemPaddingTv.setVisibility(View.GONE);
-//
-//                }
+//            if (position == 2) {
+//                holder.homeDiscoverFragmentSubHomeRvItemHzSrVw.setVisibility(View.VISIBLE);
+//                showToast(activity, String.valueOf(getHomeDisscoverGetHotelsDataItemsListData.get(0).getMinPrice()));
+//                initHozental2(holder, getHomeDisscoverGetHajjDataItemsListData, null, 3);
 //
 //            }
+            if (position == 2) {
+                splitTopHotelToMakkaAndMadina();
+                holder.subHomeVervItem2CategoryNameTv.setVisibility(View.VISIBLE);
+                holder.subHomeVervItem2CategoryNameTv.setText(activity.getString(R.string.makkah));
+                initHozental(holder,null,getHomeDisscoverGetHotelsMakahDataItemsListData,3);
+//                holder.homeDiscoverFragmentSubHomeRvItemVrRv.setVisibility(View.VISIBLE);
+//                List<ItemObjectModel> rowListItem = getAllItemList();
+//                lLayout = new LinearLayoutManager(activity);
 //
+//                holder.homeDiscoverFragmentSubHomeRvItemVrRv.setLayoutManager(lLayout);
 //
-//
-//            if (position==0) {
-//                holder.subHomeCategory2HzRvUltraViewpagerCardView.setVisibility(View.VISIBLE);
-//                // init all widgets in this activity
-////        UltraViewPager fragmentImportantAdsUltraViewpager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
-//                holder.subHomeCategory2HzRvUltraViewpager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-////initialize ProductDetailsUltraPagerAdapter，and add child view to UltraViewPager
-//                PagerAdapter adapter = new ImportantAdsAndHomeAdsUltraPagerAdapter(false);
-//                holder.subHomeCategory2HzRvUltraViewpager.setAdapter(adapter);
-//
-////initialize built-in indicator
-//                holder.subHomeCategory2HzRvUltraViewpager.initIndicator();
-////set style of indicators
-//                holder.subHomeCategory2HzRvUltraViewpager.getIndicator()
-//                        .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
-//                        .setFocusColor(Color.parseColor("#FC3D04"))
-//                        .setNormalColor(Color.WHITE)
-//                        .setRadius((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, activity.getResources().getDisplayMetrics()));
-////set the alignment
-//                holder.subHomeCategory2HzRvUltraViewpager.getIndicator().setGravity(Gravity.CENTER | Gravity.BOTTOM);
-//                holder.subHomeCategory2HzRvUltraViewpager.getIndicator().setMargin(0, 0, 0, 35);
-//
-////construct built-in indicator, and add it to  UltraViewPager
-//                holder.subHomeCategory2HzRvUltraViewpager.getIndicator().build();
-//
-////set an infinite loop
-//                holder.subHomeCategory2HzRvUltraViewpager.setInfiniteLoop(true);
-////enable auto-scroll mode
-//                holder.subHomeCategory2HzRvUltraViewpager.setAutoScroll(4000);
-//            }else {
-//                holder.subHomeCategory2HzRvUltraViewpagerCardView.setVisibility(View.GONE);
+//                SubHomeDiscoverTopHotelsVr2RvAdapter rcAdapter = new SubHomeDiscoverTopHotelsVr2RvAdapter(context, activity, rowListItem, getHomeDisscoverGetHotelsMadinaDataItemsListData, getHomeDisscoverGetHotelsMakahDataItemsListData);
+//                holder.homeDiscoverFragmentSubHomeRvItemVrRv.setAdapter(rcAdapter);
+            }
+            if (position == 3) {
+                splitTopHotelToMakkaAndMadina();
+                holder.subHomeVervItem2CategoryNameTv.setVisibility(View.VISIBLE);
+                holder.homeDiscoverFragmentSubHomeRvItemTv.setVisibility(View.GONE);
+                holder.subHomeVervItem2CategoryNameTv.setText(activity.getString(R.string.madinah));
+//                holder.subHomeVervItem2CategoryLy.setVisibility(View.VISIBLE);
+                initHozental(holder,null, getHomeDisscoverGetHotelsMadinaDataItemsListData, 4);
+                holder.subHomeVervItemPaddingTv.setVisibility(View.VISIBLE);
+            }
 
-//            }
+
         } catch (Exception e) {
 
         }
 
+    }
+
+    private void splitTopHotelToMakkaAndMadina() {
+        for (int ind = 0; ind < getHomeDisscoverGetHotelsDataItemsListData.size(); ind++) {
+            HotelData hotelData = getHomeDisscoverGetHotelsDataItemsListData.get(ind);
+            if (hotelData.getCity().equals("Makkah")) {
+                getHomeDisscoverGetHotelsMakahDataItemsListData.add(hotelData);
+//                showToast(activity, "list=" + getHomeDisscoverGetHotelsMakahDataItemsListData.get(1).getCity());
+            } else {
+//            if(hotelData.getCity().equals("Makkah")){
+                getHomeDisscoverGetHotelsMadinaDataItemsListData.add(hotelData);
+            }
+        }
     }
 
 
@@ -176,21 +164,58 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
 
     }
 
-//    private List<ProductDataModel> getAllItemList() {
-//
-//        rowListItem = new ArrayList<ProductDataModel>();
-//        rowListItem.add(new ProductDataModel("سكر", "55 ج", R.drawable.flat));
-//        rowListItem.add(new ProductDataModel("سكر", "55 ج", R.drawable.chale));
-//        rowListItem.add(new ProductDataModel("سكر", "55 ج", R.drawable.chale));
-//        rowListItem.add(new ProductDataModel("سكر", "55 ج", R.drawable.flat));
-//        rowListItem.add(new ProductDataModel("سكر", "55 ج", R.drawable.flat));
-//        rowListItem.add(new ProductDataModel("سكر", "55 ج", R.drawable.flat));
-//        rowListItem.add(new ProductDataModel("سكر", "55 ج", R.drawable.chale));
-//
-//
-//        return rowListItem;
-//    }
+    private List<ItemObjectModel> getAllItemList() {
 
+        List<ItemObjectModel> allItems = new ArrayList<ItemObjectModel>();
+        allItems.add(new ItemObjectModel(activity.getString(R.string.makkah)));
+        allItems.add(new ItemObjectModel(activity.getString(R.string.madinah)));
+
+
+        return allItems;
+    }
+
+
+    private void initHozental(ViewHolder holder, List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetItemsListData, List<HotelData> getHomeDisscoverGetHotelsDataItemsListData, int itemNum) {
+        linearLayoutHorizental = new LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false);
+        holder.homeDiscoverFragmentSubHomeRvItemHzRv.setLayoutManager(linearLayoutHorizental);
+        holder.homeDiscoverFragmentSubHomeRvItemHzRv.setHasFixedSize(true);
+//        clientGetRestaurantsFiltterList(0);
+
+        if (itemNum == 1) {
+            SubHomeDiscoverTopHzRvAdapter = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData, getHomeDisscoverGetHotelsDataItemsListData, itemNum);
+            holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter);
+        }
+
+        if (itemNum == 2) {
+            SubHomeDiscoverTopHzRvAdapter2 = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData, getHomeDisscoverGetHotelsDataItemsListData, itemNum);
+            holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter2);
+        }
+        if (itemNum ==3){
+            SubHomeDiscoverTopHzRvAdapter3 = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData,getHomeDisscoverGetHotelsDataItemsListData,itemNum);
+            holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter);}
+
+        if (itemNum ==4){
+            SubHomeDiscoverTopHzRvAdapter2 = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData,getHomeDisscoverGetHotelsDataItemsListData,itemNum);
+            holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter2);}
+
+
+    }
+
+//    private void initHozental2(ViewHolder holder, List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetItemsListData, List<HotelData> getHomeDisscoverGetHotelsDataItemsListData, int itemNum) {
+//        linearLayoutHorizental = new LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false);
+//        holder.homeDiscoverFragmentSubHomeRvItemHzRv.setLayoutManager(linearLayoutHorizental);
+//        holder.homeDiscoverFragmentSubHomeRvItemHzRv.setHasFixedSize(true);
+////        clientGetRestaurantsFiltterList(0);
+//
+//        if (itemNum ==3){
+//            SubHomeDiscoverTopHzRvAdapter3 = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData,getHomeDisscoverGetHotelsDataItemsListData,itemNum);
+//            holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter);}
+//
+//        if (itemNum ==4){
+//            SubHomeDiscoverTopHzRvAdapter2 = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData,getHomeDisscoverGetHotelsDataItemsListData,itemNum);
+//            holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter2);}
+//
+//    }
 
     @Override
     public int getItemCount() {
@@ -205,10 +230,16 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
         RecyclerView homeDiscoverFragmentSubHomeRvItemHzRv;
         @BindView(R.id.home_discover_fragment_sub_home_rv_item_hz_sr_vw)
         ScrollView homeDiscoverFragmentSubHomeRvItemHzSrVw;
-        @BindView(R.id.home_discover_fragment_sub_home_rv_item_vr_rv)
-        RecyclerView homeDiscoverFragmentSubHomeRvItemVrRv;
+//        @BindView(R.id.home_discover_fragment_sub_home_rv_item_vr_rv)
+//        RecyclerView homeDiscoverFragmentSubHomeRvItemVrRv;
         @BindView(R.id.sub_home_verv_item_padding_tv)
         TextView subHomeVervItemPaddingTv;
+        @BindView(R.id.home_discover_fragment_sub_home__name2_tv)
+        TextView subHomeVervItem2CategoryNameTv;
+//        @BindView(R.id.sub_home_verv_item2_hz_rv)
+//        RecyclerView subHomeVervItem2HzRv;
+//        @BindView(R.id.sub_home_verv_item2_category_ly)
+//        LinearLayout subHomeVervItem2CategoryLy;
         private View view;
         private int position;
 

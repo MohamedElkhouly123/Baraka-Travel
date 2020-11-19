@@ -20,15 +20,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.barakatravelapp.R;
-import com.example.barakatravelapp.adapter.GetFlightsItemsAdapter;
 import com.example.barakatravelapp.adapter.GetHotelsItemsAdapter;
-import com.example.barakatravelapp.data.model.getFlightResponce.GetFlightResponce;
 import com.example.barakatravelapp.data.model.getHotelsResponce.GetHotelsResponce;
 import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.data.model.userLoginResponce.UserData;
 import com.example.barakatravelapp.utils.OnEndLess;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.DiscoverFragment;
 import com.example.barakatravelapp.view.viewModel.ViewModelGetLists;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -41,7 +38,8 @@ import butterknife.OnClick;
 import retrofit2.Call;
 
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
-import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
+import static com.example.barakatravelapp.utils.ToastCreator.onCreateErrorToast;
+import static com.example.barakatravelapp.utils.validation.Validation.validationLength;
 
 
 public class HottelsFragment extends BaSeFragment {
@@ -70,7 +68,7 @@ public class HottelsFragment extends BaSeFragment {
     private UserData clientData;
     //    private int citiesSelectedId = 0;
     private String keyword;
-    private AdapterView.OnItemSelectedListener listener;
+//    private AdapterView.OnItemSelectedListener listener;
     public HottelsFragment() {
         // Required empty public constructor
     }
@@ -82,6 +80,7 @@ public class HottelsFragment extends BaSeFragment {
 
         ButterKnife.bind(this, root);
         topPartInNavGenralPartSearchTil.setVisibility(View.VISIBLE);
+        keyword = topPartInNavGenralPartSearchTil.getEditText().getText().toString().trim();
         navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
         setUpActivity();
         initListener();
@@ -100,7 +99,7 @@ public class HottelsFragment extends BaSeFragment {
                 try {
                     if (response != null) {
                         if (response.getStatus().equals("success")) {
-//                            maxPage = response.getData().getLastPage();
+
 //                                showToast(getActivity(), "max="+maxPage);
 
                             if (response.getHotels() != null ) {
@@ -109,6 +108,9 @@ public class HottelsFragment extends BaSeFragment {
 //                                showToast(getActivity(), "list="+clientrestaurantsListData.get(1));
 
                                 getHotelsItemsAdapter.notifyDataSetChanged();
+//                                if(getHotelsItemsListData.size()){
+                                    maxPage++;
+//                                }
 
                             } else {
                                 noResultErrorTitle.setVisibility(View.VISIBLE);
@@ -172,7 +174,7 @@ public class HottelsFragment extends BaSeFragment {
         fragmentHomeHottelsSrRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                maxPage=0;
                 if (Filter) {
                     getHotelsListByFilter(0);
                 } else {
@@ -186,10 +188,9 @@ public class HottelsFragment extends BaSeFragment {
     private void getHotelsListByFilter(int page) {
 
         Filter = true;
-//        keyword = clientHomeFillterSearchKeyWordEtxt.getText().toString().trim();
-        keyword="jfk";
+//        keyword="jfk";
         Call<GetHotelsResponce> getHotelsResponceCall;
-        getHotelsResponceCall = getApiClient().getHotelsItemListByFilter(keyword, page);
+        getHotelsResponceCall = getApiClient().getHotelsItemListByFilter(page, keyword);
 //        startShimmer(page);
         viewModel.getHotelsDataList(getActivity(), errorSubView, getHotelsResponceCall,fragmentHomeHottelsSrRefresh, loadMore);
 
@@ -197,6 +198,7 @@ public class HottelsFragment extends BaSeFragment {
     }
 
     private void getHotelsHomeList(int page) {
+        Filter = false;
         Call<GetHotelsResponce> getHotelsResponceCall;
 
 //        startShimmer(page);
@@ -217,8 +219,8 @@ public class HottelsFragment extends BaSeFragment {
 
     private void reInit() {
         onEndLess.previousTotal = 0;
-        onEndLess.current_page = 0;
-        onEndLess.previous_page = 0;
+        onEndLess.current_page = 1;
+        onEndLess.previous_page = 1;
         getHotelsItemsListData = new ArrayList<>();
         getHotelsItemsAdapter = new GetHotelsItemsAdapter(getActivity(), getContext(), getHotelsItemsListData);
         fragmentHomeHottelsRecyclerView.setAdapter(getHotelsItemsAdapter);
@@ -246,12 +248,27 @@ public class HottelsFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new DiscoverFragment());
-        homeCycleActivity.setNavigation("v");
-        homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);
+//        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new DiscoverFragment());
+        navController.navigate(R.id.action_navigation_hotels_to_navigation_discover);
+//        homeCycleActivity.setNavigation("v");
+//        homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);
     }
 
     @OnClick(R.id.top_part_in_nav_genral_part_filter_til)
     public void onViewClicked() {
+            if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 1)) {
+                onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
+
+                getHotelsHomeList(0);
+            }
+            if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 3)) {
+                onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
+
+                return;
+            }
+
+        getHotelsListByFilter(0);
+
+
     }
 }

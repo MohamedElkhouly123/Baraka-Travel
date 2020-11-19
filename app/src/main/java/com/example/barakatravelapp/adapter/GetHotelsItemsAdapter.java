@@ -11,43 +11,43 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.getHotelsResponce.GetRoom;
 import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.view.activity.BaseActivity;
-import com.example.barakatravelapp.view.activity.HomeCycleActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
-
+import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
 public class GetHotelsItemsAdapter extends RecyclerView.Adapter<GetHotelsItemsAdapter.ViewHolder> {
 
 
-
     private BaseActivity activity;
     private Context context;
-    private List<HotelData> hotelDataList;
-    private List<String> hotelImages;
+    private List<HotelData> hotelDataList= new ArrayList<>();
+    private List<String> hotelImages= new ArrayList<>();
     private NavController navController;
+    private static boolean show =false;
 
     public GetHotelsItemsAdapter(Activity activity, Context context, List<HotelData> hotelDataList) {
+        hotelDataList.clear();
         this.activity = (BaseActivity) activity;
         this.context = context;
-        this.hotelDataList = hotelDataList;
-    }
+        this.hotelDataList = hotelDataList;    }
 
-    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_general_vert_hajj_and_hotels_item, parent, false);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(activity).inflate(R.layout.cardview_general_vert_hajj_and_hotels_item,
+                parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -55,58 +55,65 @@ public class GetHotelsItemsAdapter extends RecyclerView.Adapter<GetHotelsItemsAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         setData(holder, position);
         setAction(holder, position);
-
     }
 
     private void setData(ViewHolder holder, int position) {
-//        holder.position = position;
-        HotelData hotelList = hotelDataList.get(position);
-        GetRoom getRoom = (GetRoom) hotelList.getGetRooms();
-        if (position == 0) {
-            holder.cardviewGeneralVertHajjAndHotelsItemTitleTv.setVisibility(View.VISIBLE);
-        }
-        holder.cardviewGeneralVertHajjAndHotelsItemNameTv.setText(hotelList.getName());
-        holder.cardviewGeneralVertHajjAndHotelsItemPriceTv.setText(hotelList.getMinPrice());
-        holder.cardviewGeneralVertHajjAndHotelsItemFromDateTv.setText(getRoom.getFromDate());
-        holder.cardviewGeneralVertHajjAndHotelsItemToDateTv.setText(getRoom.getToDate());
-        holder.cardviewGeneralVertHajjAndHotelsItemRateImg.setVisibility(View.VISIBLE);
 
+        final int itemType = getItemViewType(position);
+
+//        if (itemType == 0 && show == false) {
+//            holder.cardviewGeneralVertHajjAndHotelsItemTitleTv.setVisibility(View.VISIBLE);
+//            show =true;
+//            showToast(activity,String.valueOf(position));
+//        }
+        HotelData hotelList = hotelDataList.get(position);
+        List<GetRoom> getRoom =  hotelList.getGetRooms();
+        holder.cardviewGeneralVertHajjAndHotelsItemNameTv.setText(hotelList.getName());
+        holder.cardviewGeneralVertHajjAndHotelsItemPriceTv.setText("$ "+hotelList.getMinPrice());
+        holder.cardviewGeneralVertHajjAndHotelsItemFromDateTv.setText(getRoom.get(0).getFromDate());
+        holder.cardviewGeneralVertHajjAndHotelsItemToDateTv.setText(getRoom.get(0).getToDate());
+        holder.cardviewGeneralVertHajjAndHotelsItemRateImg.setVisibility(View.VISIBLE);
 ////        if (flightList.getIsOffer()!=null)
-        holder.cardviewGeneralVertHajjAndHotelsItemTvRateAndNightsNum.setText(hotelList.getRate());
-////        Glide.with(context).load(foodList.getPhotoUrl()).asBitmap().override(1080, 600).into(holder.cardviewItemClientFoodOrderMenuImg);
+        holder.cardviewGeneralVertHajjAndHotelsItemTvRateAndNightsNum.setText(hotelList.getRate().toString());
         hotelImages = hotelList.getHotelImages();
-        onLoadImageFromUrl(holder.cardviewGeneralVertHajjAndHotelsItemHotelImg, hotelImages.get(0), context);
+        String hotelImage = "https://www.barakatravel.net/"+hotelImages.get(0).trim();
+//        Glide.with(context).load(hotelImages.get(0)).asBitmap().override(1080, 600).into(holder.cardviewGeneralVertHajjAndHotelsItemHotelImg);
+//                                        showToast(activity,hotelImages.get(0) );
+        onLoadImageFromUrl(holder.cardviewGeneralVertHajjAndHotelsItemHotelImg, hotelImage.trim(), context);
     }
 
-
-
-    private void setAction(final ViewHolder holder, final int position) {
+    private void setAction(ViewHolder holder, int position) {
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
-                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
-                navigationActivity.setNavigation("g");
+            public void onClick(View view) {
+//                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
+//                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
+//                navigationActivity.setNavigation("g");
 //                FoodMenueFragment foodMenueFragment=new FoodMenueFragment();
 //                foodMenueFragment.restaurantsListData = clientRestaurantsDataList.get(position);
 //                HelperMethod.replaceFragment(navigationActivity.getSupportFragmentManager(), R.id.home_activity_fram, new RestaurantCategoryTabsFragment());
 
             }
         });
-
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if(position==0){
+            return 0;
+        }
+        return 1;
+    }
     @Override
     public int getItemCount() {
         return hotelDataList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_title_tv)
-        TextView cardviewGeneralVertHajjAndHotelsItemTitleTv;
+//        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_title_tv)
+//        TextView cardviewGeneralVertHajjAndHotelsItemTitleTv;
         @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_hotel_img)
         ImageView cardviewGeneralVertHajjAndHotelsItemHotelImg;
         @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_offer_shadow_img)
@@ -127,14 +134,13 @@ public class GetHotelsItemsAdapter extends RecyclerView.Adapter<GetHotelsItemsAd
         LinearLayout cardviewGeneralVertHajjAndHotelsItemAdditionalPart;
         @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_name_tv)
         TextView cardviewGeneralVertHajjAndHotelsItemNameTv;
-        View view;
-//        private int position;
+        private View view;
 
-        ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             view = itemView;
             ButterKnife.bind(this, view);
-            navController = Navigation.findNavController(activity, R.id.home_activity_fragment);
+//            navController = Navigation.findNavController(activity, R.id.home_activity_fragment);
 
         }
     }

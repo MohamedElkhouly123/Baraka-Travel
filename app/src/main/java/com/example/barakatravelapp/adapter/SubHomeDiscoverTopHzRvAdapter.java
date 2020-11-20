@@ -107,37 +107,37 @@ public class SubHomeDiscoverTopHzRvAdapter extends RecyclerView.Adapter<SubHomeD
                      holder.cardviewHzDiscoverItemImgShadowHide.setVisibility(View.VISIBLE);
                  }
             }
-             if (itemNum == 3 ) {
-                 HotelData hotelData = getHomeDisscoverGetHotelsDataItemsListData.get(position);
-//                 showToast(activity, String.valueOf(hotelData.getMinPrice()));
-                 holder.cardviewHzDiscoverItemRateImgHide.setVisibility(View.VISIBLE);
-                 holder.cardviewHzDiscoverItemTvRateAndNightsNum.setText(hotelData.getRate());
-                 holder.cardviewHzDiscoverItemPriceTv.setText("$ "+hotelData.getMinPrice());
-                 holder.cardviewHzDiscoverItemDateOrNameTv.setText(hotelData.getGetRooms().get(0).getFromDate());
-//                holder.cardviewHzDiscoverItemDateOrNameTv.setText(hotelData.getName());
-                 holder.cardviewHzDiscoverItemDateTv.setText(hotelData.getName());
-                 hotelImages = hotelData.getHotelImages();
-                 String hotelImage = "https://www.barakatravel.net/"+hotelImages.get(0).trim();
-                 onLoadImageFromUrl(holder.cardviewHzDiscoverItemImg, hotelImage, context);
-                 if(hotelData.getRate()!= null){
-                     holder.cardviewHzDiscoverItemImgShadowHide.setVisibility(View.VISIBLE);
-                 }}
-                 if (itemNum == 4 ) {
-                     HotelData hotelData = getHomeDisscoverGetHotelsDataItemsListData.get(position);
-//                     showToast(activity, String.valueOf(hotelData.getMinPrice()));
-                     holder.cardviewHzDiscoverItemRateImgHide.setVisibility(View.VISIBLE);
-                     holder.cardviewHzDiscoverItemTvRateAndNightsNum.setText(hotelData.getRate());
-                     holder.cardviewHzDiscoverItemPriceTv.setText("$ "+hotelData.getMinPrice());
-                     holder.cardviewHzDiscoverItemDateOrNameTv.setText(hotelData.getGetRooms().get(0).getFromDate());
-//                holder.cardviewHzDiscoverItemDateOrNameTv.setText(hotelData.getName());
-                     holder.cardviewHzDiscoverItemDateTv.setText(hotelData.getName());
-                     hotelImages = hotelData.getHotelImages();
-                     String hotelImage = "https://www.barakatravel.net/"+hotelImages.get(0).trim();
-                     onLoadImageFromUrl(holder.cardviewHzDiscoverItemImg, hotelImage, context);
-                     if(hotelData.getRate()!= null){
-                         holder.cardviewHzDiscoverItemImgShadowHide.setVisibility(View.VISIBLE);
-                     }
-            }
+//             if (itemNum == 3 ) {
+//                 HotelData hotelData = getHomeDisscoverGetHotelsDataItemsListData.get(position);
+////                 showToast(activity, String.valueOf(hotelData.getMinPrice()));
+//                 holder.cardviewHzDiscoverItemRateImgHide.setVisibility(View.VISIBLE);
+//                 holder.cardviewHzDiscoverItemTvRateAndNightsNum.setText(hotelData.getRate());
+//                 holder.cardviewHzDiscoverItemPriceTv.setText("$ "+hotelData.getMinPrice());
+//                 holder.cardviewHzDiscoverItemDateOrNameTv.setText(hotelData.getGetRooms().get(0).getFromDate());
+////                holder.cardviewHzDiscoverItemDateOrNameTv.setText(hotelData.getName());
+//                 holder.cardviewHzDiscoverItemDateTv.setText(hotelData.getName());
+//                 hotelImages = hotelData.getHotelImages();
+//                 String hotelImage = "https://www.barakatravel.net/"+hotelImages.get(0).trim();
+//                 onLoadImageFromUrl(holder.cardviewHzDiscoverItemImg, hotelImage, context);
+//                 if(hotelData.getRate()!= null){
+//                     holder.cardviewHzDiscoverItemImgShadowHide.setVisibility(View.VISIBLE);
+//                 }}
+//                 if (itemNum == 4 ) {
+//                     HotelData hotelData = getHomeDisscoverGetHotelsDataItemsListData.get(position);
+//                     showToast(activity, String.valueOf(getHomeDisscoverGetHotelsDataItemsListData.size()));
+//                     holder.cardviewHzDiscoverItemRateImgHide.setVisibility(View.VISIBLE);
+//                     holder.cardviewHzDiscoverItemTvRateAndNightsNum.setText(hotelData.getRate());
+//                     holder.cardviewHzDiscoverItemPriceTv.setText("$ "+hotelData.getMinPrice());
+//                     holder.cardviewHzDiscoverItemDateOrNameTv.setText(hotelData.getGetRooms().get(0).getFromDate());
+////                holder.cardviewHzDiscoverItemDateOrNameTv.setText(hotelData.getName());
+//                     holder.cardviewHzDiscoverItemDateTv.setText(hotelData.getName());
+//                     hotelImages = hotelData.getHotelImages();
+//                     String hotelImage = "https://www.barakatravel.net/"+hotelImages.get(0).trim();
+//                     onLoadImageFromUrl(holder.cardviewHzDiscoverItemImg, hotelImage, context);
+//                     if(hotelData.getRate()!= null){
+//                         holder.cardviewHzDiscoverItemImgShadowHide.setVisibility(View.VISIBLE);
+//                     }
+//            }
 
 //            else if (itemNum == 4) {
 //
@@ -169,14 +169,23 @@ public class SubHomeDiscoverTopHzRvAdapter extends RecyclerView.Adapter<SubHomeD
 
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (itemNum == 1 || itemNum == 2) {
+            return 0;
+        }
+        return 1;
+    }
 
     @Override
     public int getItemCount() {
-        if (itemNum == 3 || itemNum == 4) {
-            return getHomeDisscoverGetHotelsDataItemsListData.size();
+//        if (itemNum == 1 || itemNum == 2) {
+//            return getHomeDisscoverGetItemsListData.size();
+//
+//        }else {
+            return getHomeDisscoverGetItemsListData.size();
 
-        }
-        return getHomeDisscoverGetItemsListData.size();
+//        }
     }
 
 

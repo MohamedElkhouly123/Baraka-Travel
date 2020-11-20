@@ -85,7 +85,6 @@ public class HujjFragment extends BaSeFragment {
         topPartInNavGenralPartSearchTil.setVisibility(View.VISIBLE);
         topPartInNavGenralPartHajjAndUmrahToggleBtn.setVisibility(View.VISIBLE);
         topPartInNavGenralPartHajjAndUmrahToggleBtn.setText(getString(R.string.umrah));
-        keyword = topPartInNavGenralPartSearchTil.getEditText().getText().toString().trim();
         navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
         setUpActivity();
         initListener();
@@ -116,6 +115,7 @@ public class HujjFragment extends BaSeFragment {
 //                                if(getHotelsItemsListData.size()){
                                 maxPage++;
 //                                }
+                                noResultErrorTitle.setVisibility(View.GONE);
 
                             } else {
                                 noResultErrorTitle.setVisibility(View.VISIBLE);
@@ -193,6 +193,8 @@ public class HujjFragment extends BaSeFragment {
     private void getHajjAndUmrahListByFilter(int page) {
 
         Filter = true;
+        if(page == 0){ maxPage=0;}
+        keyword = topPartInNavGenralPartSearchTil.getEditText().getText().toString().trim();
 //        keyword="jfk";
         Call<GetUmrahAndHujjResponce> getUmrahAndHujjResponceCall;
         getUmrahAndHujjResponceCall = getApiClient().getHajjAndUmrahItemListByFilter("hajj", page,keyword);
@@ -204,6 +206,7 @@ public class HujjFragment extends BaSeFragment {
 
     private void getHajjAndUmrahHomeList(int page) {
         Filter = false;
+        if(page == 0){ maxPage=0;}
         Call<GetUmrahAndHujjResponce> getUmrahAndHujjResponceCall;
 
 //        startShimmer(page);
@@ -266,17 +269,18 @@ public class HujjFragment extends BaSeFragment {
         switch (view.getId()) {
             case R.id.top_part_in_nav_genral_part_filter_til:
                 if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 1)) {
-                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
+//                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
 
                     getHajjAndUmrahHomeList(0);
+//                    return;
                 }
                 if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 3)) {
                     onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
 
                     return;
+                }else {
+                    getHajjAndUmrahListByFilter(0);
                 }
-
-                getHajjAndUmrahListByFilter(0);
 
                 break;
             case R.id.top_part_in_nav_genral_part_hajj_and_umrah_toggle_btn:

@@ -113,6 +113,8 @@ public class FlightsFragment extends BaSeFragment {
 //                                showToast(getActivity(), "list="+clientrestaurantsListData.get(1));
 
                                 getFlightsItemsAdapter.notifyDataSetChanged();
+                                maxPage++;
+                                noResultErrorTitle.setVisibility(View.GONE);
 
                             } else {
                                 noResultErrorTitle.setVisibility(View.VISIBLE);
@@ -176,7 +178,7 @@ public class FlightsFragment extends BaSeFragment {
         fragmentHomeFlightsSrRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                 maxPage=0;
                 if (Filter) {
                     getFlightsListByFilter(0);
                 } else {
@@ -190,6 +192,7 @@ public class FlightsFragment extends BaSeFragment {
     private void getFlightsListByFilter(int page) {
 
         Filter = true;
+        if(page == 0){ maxPage=0;}
 //        keyword = clientHomeFillterSearchKeyWordEtxt.getText().toString().trim();
         keyword="jfk";
         Call<GetFlightResponce> getFlightResponceCall;
@@ -202,6 +205,7 @@ public class FlightsFragment extends BaSeFragment {
 
     private void getFlightsList(int page) {
         Call<GetFlightResponce> getFlightResponceCall;
+        if(page == 0){ maxPage=0;}
 
 //        startShimmer(page);
 
@@ -259,5 +263,6 @@ public class FlightsFragment extends BaSeFragment {
 
     @OnClick(R.id.top_part_in_nav_genral_part_filter_til)
     public void onViewClicked() {
+
     }
 }

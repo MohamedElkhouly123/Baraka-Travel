@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/_18sdp"
+    android:paddingStart="@dimen/_12sdp"
+    android:paddingEnd="@dimen/_3sdp"
     android:paddingTop="@dimen/_2sdp"
     android:paddingBottom="@dimen/_2sdp">
     <androidx.cardview.widget.CardView

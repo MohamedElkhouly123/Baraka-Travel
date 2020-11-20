@@ -95,8 +95,6 @@
                         android:id="@+id/home_discover_fragment_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_1sdp"
-                        android:layout_marginEnd="@dimen/_1sdp"
                         android:layout_above="@+id/load_more"
                         android:scrollbars="vertical" />
 

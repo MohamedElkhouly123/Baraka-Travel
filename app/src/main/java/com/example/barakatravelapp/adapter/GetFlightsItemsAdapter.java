@@ -5,8 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,13 +24,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
-import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 
 
 public class GetFlightsItemsAdapter extends RecyclerView.Adapter<GetFlightsItemsAdapter.ViewHolder> {
 
 
-
+    @BindView(R.id.cardview_flight_offers_item_from_country2_tv)
+    TextView cardviewFlightOffersItemFromCountry2Tv;
+    @BindView(R.id.cardview_flight_offers_item_to_country2_tv)
+    TextView cardviewFlightOffersItemToCountry2Tv;
     private BaseActivity activity;
     private Context context;
     private List<FlightData> flightsListData;
@@ -68,13 +68,14 @@ public class GetFlightsItemsAdapter extends RecyclerView.Adapter<GetFlightsItems
         holder.cardviewFlightOffersItemToDateTv.setText(flightList.getReservationTo());
         holder.cardviewFlightOffersItemFromCountryTv.setText(flightList.getFrom());
         holder.cardviewFlightOffersItemToCountryTv.setText(flightList.getTo());
+        holder.cardviewFlightOffersItemFromCountry2Tv.setText(flightList.getFrom());
+        holder.cardviewFlightOffersItemToCountry2Tv.setText(flightList.getTo());
         holder.cardviewFlightOffersItemPriceTv.setText(flightList.getPriceAdult().toString());
 //        if (flightList.getIsOffer()!=null)
-        holder.cardviewFlightOffersItemOfferNumTv.setText(flightList.getIsOffer()+" %");
+        holder.cardviewFlightOffersItemOfferNumTv.setText(flightList.getIsOffer() + " %");
 //        Glide.with(context).load(foodList.getPhotoUrl()).asBitmap().override(1080, 600).into(holder.cardviewItemClientFoodOrderMenuImg);
         onLoadImageFromUrl(holder.cardviewFlightOffersItemFlightAirportLogoImg, flightList.getImage(), context);
     }
-
 
 
     private void setAction(ViewHolder holder, int position) {
@@ -121,10 +122,12 @@ public class GetFlightsItemsAdapter extends RecyclerView.Adapter<GetFlightsItems
         TextView cardviewFlightOffersItemToCountryTv;
         @BindView(R.id.cardview_flight_offers_item_to_city_tv)
         TextView cardviewFlightOffersItemToCityTv;
-        @BindView(R.id.cardview_flight_offers_item_from_country_img)
-        ImageView cardviewFlightOffersItemFromCountryImg;
         @BindView(R.id.cardview_flight_offers_item_price_tv)
         TextView cardviewFlightOffersItemPriceTv;
+        @BindView(R.id.cardview_flight_offers_item_from_country2_tv)
+        TextView cardviewFlightOffersItemFromCountry2Tv;
+        @BindView(R.id.cardview_flight_offers_item_to_country2_tv)
+        TextView cardviewFlightOffersItemToCountry2Tv;
         View view;
         private int position;
 

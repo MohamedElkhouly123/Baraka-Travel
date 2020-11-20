@@ -80,7 +80,6 @@ public class HottelsFragment extends BaSeFragment {
 
         ButterKnife.bind(this, root);
         topPartInNavGenralPartSearchTil.setVisibility(View.VISIBLE);
-        keyword = topPartInNavGenralPartSearchTil.getEditText().getText().toString().trim();
         navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
         setUpActivity();
         initListener();
@@ -111,7 +110,8 @@ public class HottelsFragment extends BaSeFragment {
 //                                if(getHotelsItemsListData.size()){
                                     maxPage++;
 //                                }
-
+                                noResultErrorTitle.setVisibility(View.GONE);
+//
                             } else {
                                 noResultErrorTitle.setVisibility(View.VISIBLE);
                             }
@@ -188,6 +188,9 @@ public class HottelsFragment extends BaSeFragment {
     private void getHotelsListByFilter(int page) {
 
         Filter = true;
+        if(page == 0){
+            maxPage=0;}
+        keyword = topPartInNavGenralPartSearchTil.getEditText().getText().toString().trim();
 //        keyword="jfk";
         Call<GetHotelsResponce> getHotelsResponceCall;
         getHotelsResponceCall = getApiClient().getHotelsItemListByFilter(page, keyword);
@@ -199,6 +202,8 @@ public class HottelsFragment extends BaSeFragment {
 
     private void getHotelsHomeList(int page) {
         Filter = false;
+        if(page == 0){
+        maxPage=0;}
         Call<GetHotelsResponce> getHotelsResponceCall;
 
 //        startShimmer(page);
@@ -257,18 +262,18 @@ public class HottelsFragment extends BaSeFragment {
     @OnClick(R.id.top_part_in_nav_genral_part_filter_til)
     public void onViewClicked() {
             if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 1)) {
-                onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
-
+//                onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
                 getHotelsHomeList(0);
+//                return;
             }
             if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 3)) {
                 onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
 
                 return;
+            } else {
+
+                getHotelsListByFilter(0);
+
             }
-
-        getHotelsListByFilter(0);
-
-
     }
 }

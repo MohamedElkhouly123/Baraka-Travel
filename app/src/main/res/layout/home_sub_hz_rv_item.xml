@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="@string/top_hotels_packages"
             android:textSize="@dimen/_16ssp"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:textStyle="normal"
             android:visibility="visible"
@@ -30,7 +30,7 @@
         android:id="@+id/home_discover_fragment_sub_home__name2_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:text="products"
         android:visibility="gone"
         android:textSize="@dimen/_11ssp"
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_1sdp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginTop="@dimen/_8sdp"
             >
 

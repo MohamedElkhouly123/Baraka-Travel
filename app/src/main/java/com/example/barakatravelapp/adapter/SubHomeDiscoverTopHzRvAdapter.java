@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
+import com.example.barakatravelapp.utils.DialogAdapterCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 public class SubHomeDiscoverTopHzRvAdapter extends RecyclerView.Adapter<SubHomeDiscoverTopHzRvAdapter.ViewHolder> {
 
 
-
+    private final DialogAdapterCallback dialogAdapterCallback;
     private Context context;
     private Activity activity;
     private List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetItemsListData = new ArrayList<>();
@@ -36,6 +37,7 @@ public class SubHomeDiscoverTopHzRvAdapter extends RecyclerView.Adapter<SubHomeD
     private LinearLayoutManager lLayout;
     private int itemNum;
     private List<String> hotelImages;
+
 //    private ProfileItemAdapter homeSubHzItemAdapter;
 //    private SubHomeCategoryHzRvItem2Adapter subHomeCategoryHzRvItem2Adapter;
 //    List<ProductDataModel> rowListItem;
@@ -43,13 +45,14 @@ public class SubHomeDiscoverTopHzRvAdapter extends RecyclerView.Adapter<SubHomeD
 //    private ApiService apiService;
 
     public SubHomeDiscoverTopHzRvAdapter(Context context, Activity activity, List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetItemsListData,
-                                         List<HotelData> getHomeDisscoverGetHotelsDataItemsListData, int itemNum) {
+                                         List<HotelData> getHomeDisscoverGetHotelsDataItemsListData, int itemNum,DialogAdapterCallback dialogAdapterCallback) {
         this.context = context;
         this.activity = activity;
 //        this.clientRestaurantsDataList.clear();
         this.getHomeDisscoverGetItemsListData = getHomeDisscoverGetItemsListData;
         this.getHomeDisscoverGetHotelsDataItemsListData = getHomeDisscoverGetHotelsDataItemsListData;
         this.itemNum = itemNum;
+        this.dialogAdapterCallback=dialogAdapterCallback;
 //        showToast(activity, "list=" + getHomeDisscoverGetHotelsDataItemsListData.get(0).getCity());
 
 //        showToast(activity, String.valueOf(itemNum));
@@ -158,6 +161,8 @@ public class SubHomeDiscoverTopHzRvAdapter extends RecyclerView.Adapter<SubHomeD
             @Override
             public void onClick(View v) {
                 showToast(activity, "here");
+                dialogAdapterCallback.onMethodCallback(getHomeDisscoverGetItemsListData.get(position));
+
 //                HomeCycleActivity homeCycleActivity = (HomeCycleActivity) activity;
 //                Toast.makeText(v.getContext(), "Clicked Country Position = " + position, Toast.LENGTH_SHORT).show();
 //                if (position == 0) {

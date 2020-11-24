@@ -6,14 +6,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 
 import com.example.barakatravelapp.R;
 
 
-public class ChoosePersonsRoomsDialog {
+public class WriteRateDialog {
     private static int adultNum;
     private DialogAdapterCallback dialogAdapterCallback;
 
@@ -23,67 +23,24 @@ public class ChoosePersonsRoomsDialog {
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 //        dialog.setCanceledOnTouchOutside(true);
-        dialog.setContentView(R.layout.dialog_choose_persons_rooms);
+        dialog.setContentView(R.layout.dialog_write_rate);
         dialog.setCanceledOnTouchOutside(true);
 
         adultNum=0;
 
-        TextView adultNumTv = (TextView) dialog.findViewById(R.id.dialog_choose_persons_rooms_adults_num_tv);
-        TextView childNumTv = (TextView) dialog.findViewById(R.id.dialog_choose_persons_rooms_childs_num_tv);
-        TextView roomsNumTv = (TextView) dialog.findViewById(R.id.dialog_choose_persons_rooms_rooms_num_tv);
+        EditText rateNameTv = (EditText) dialog.findViewById(R.id.dialog_write_rate_name_et);
+        EditText ratePhoneTv = (EditText) dialog.findViewById(R.id.dialog_write_rate_phone_et);
+        EditText rateMessageTv = (EditText) dialog.findViewById(R.id.dialog_write_rate_message_et);
 
-        ImageButton minusAdultsBtn = (ImageButton) dialog.findViewById(R.id.dialog_choose_persons_rooms_minus_adults_btn);
-        ImageButton plusAdultsBtn = (ImageButton) dialog.findViewById(R.id.dialog_choose_persons_rooms_plus_adults_btn);
-        ImageButton minusChildsBtn = (ImageButton) dialog.findViewById(R.id.dialog_choose_persons_rooms_minus_child_btn);
-        ImageButton plusChildsBtn = (ImageButton) dialog.findViewById(R.id.dialog_choose_persons_rooms_plus_child_btn);
-        ImageButton minusRoomsBtn = (ImageButton) dialog.findViewById(R.id.dialog_choose_persons_rooms_minus_room_btn);
-        ImageButton plusRoomsBtn = (ImageButton) dialog.findViewById(R.id.dialog_choose_persons_rooms_plus_room_btn);
+        ImageView rateCloseBtn = (ImageView) dialog.findViewById(R.id.dialog_write_rate_close_btn);
+        RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.dialog_write_rate_simple_rating_bar);
 
-        Button saveBtn = (Button) dialog.findViewById(R.id.dialog_choose_persons_rooms_save_btn);
 
-        minusAdultsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              adultNum=5;
-            }
-        });
+//        Button saveBtn = (Button) dialog.findViewById(R.id.dialog_choose_persons_rooms_save_btn);
 
-        plusAdultsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
-        minusChildsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        plusChildsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        minusRoomsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        plusRoomsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        saveBtn.setOnClickListener(new View.OnClickListener() {
+        rateCloseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                dialogAdapterCallback.onMethodCallback(getHomeDisscoverGetItemsListData.get(position));

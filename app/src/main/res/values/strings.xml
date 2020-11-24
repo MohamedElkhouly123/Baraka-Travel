@@ -120,5 +120,24 @@
     <string name="umrah">Umrah</string>
     <string name="hajj_and_umrah"><![CDATA[Hajj & Umrah]]></string>
     <string name="invalid_search">Search keyword mast be more than 2 char</string>
+    <string name="price">Price</string>
+    <string name="discription">Description</string>
+    <string name="manasik">Manasik</string>
+    <string name="air">Air</string>
+    <string name="photo_gallery">Photo Gallery</string>
+    <string name="location">Location</string>
+    <string name="day_by_day_itinerary">Day By Day Itinerary</string>
+    <string name="Packages_included">Packages Included</string>
+    <string name="additional_info">Additional Info</string>
+    <string name="how_to_book">How To Book ?</string>
+    <string name="important_notes">Important Notes</string>
+    <string name="not_included">Not Included</string>
+    <string name="included">Included</string>
+    <string name="pricing">Pricing</string>
+    <string name="write_your_rating_here">WRITE YOUR RATING HERE</string>
+    <string name="send_inquiry">Send Inquiry</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="message">Message</string>
 
 </resources>

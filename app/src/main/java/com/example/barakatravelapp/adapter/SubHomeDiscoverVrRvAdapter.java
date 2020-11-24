@@ -17,6 +17,7 @@ import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.ItemObjectModel;
 import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
+import com.example.barakatravelapp.utils.DialogAdapterCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDiscoverVrRvAdapter.ViewHolder> {
 
 
-
+    private final DialogAdapterCallback dialogAdapterCallback;
     private Context context;
     private Activity activity;
     private List<ItemObjectModel> itemList = new ArrayList<>();
@@ -52,7 +53,7 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
 //    private ApiService apiService;
 
     public SubHomeDiscoverVrRvAdapter(Context context,
-                                      Activity activity,
+                                      Activity activity, DialogAdapterCallback dialogAdapterCallback,
                                       List<ItemObjectModel> itemList,
                                       List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetHajjDataItemsListData, List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetUmrahDataItemsListData, List<HotelData> getHomeDisscoverGetHotelsDataItemsListData) {
         this.context = context;
@@ -62,7 +63,7 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
         this.getHomeDisscoverGetHajjDataItemsListData = getHomeDisscoverGetHajjDataItemsListData;
         this.getHomeDisscoverGetUmrahDataItemsListData = getHomeDisscoverGetUmrahDataItemsListData;
         this.getHomeDisscoverGetHotelsDataItemsListData = getHomeDisscoverGetHotelsDataItemsListData;
-
+        this.dialogAdapterCallback=dialogAdapterCallback;
 //        clientData = LoadUserData(activity);
 
     }
@@ -115,7 +116,7 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
 //
 //                holder.homeDiscoverFragmentSubHomeRvItemVrRv.setLayoutManager(lLayout);
 //
-//                SubHomeDiscoverTopHotelsVr2RvAdapter rcAdapter = new SubHomeDiscoverTopHotelsVr2RvAdapter(context, activity, rowListItem, getHomeDisscoverGetHotelsMadinaDataItemsListData, getHomeDisscoverGetHotelsMakahDataItemsListData);
+//                ShowDayByDayVrRvAdapter rcAdapter = new ShowDayByDayVrRvAdapter(context, activity, rowListItem, getHomeDisscoverGetHotelsMadinaDataItemsListData, getHomeDisscoverGetHotelsMakahDataItemsListData);
 //                holder.homeDiscoverFragmentSubHomeRvItemVrRv.setAdapter(rcAdapter);
             }
             if (position == 3) {
@@ -184,12 +185,12 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
 //        clientGetRestaurantsFiltterList(0);
 
         if (itemNum == 1) {
-            SubHomeDiscoverTopHzRvAdapter = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData, getHomeDisscoverGetHotelsDataItemsListData, itemNum);
+            SubHomeDiscoverTopHzRvAdapter = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData, getHomeDisscoverGetHotelsDataItemsListData, itemNum,dialogAdapterCallback);
             holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter);
         }
 
         if (itemNum == 2) {
-            SubHomeDiscoverTopHzRvAdapter2 = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData, getHomeDisscoverGetHotelsDataItemsListData, itemNum);
+            SubHomeDiscoverTopHzRvAdapter2 = new SubHomeDiscoverTopHzRvAdapter(context, activity, getHomeDisscoverGetItemsListData, getHomeDisscoverGetHotelsDataItemsListData, itemNum,dialogAdapterCallback);
             holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter2);
         }
 //        if (itemNum ==3){

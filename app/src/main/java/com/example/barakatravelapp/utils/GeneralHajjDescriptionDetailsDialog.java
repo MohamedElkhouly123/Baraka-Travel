@@ -43,6 +43,18 @@ public class GeneralHajjDescriptionDetailsDialog {
         if(btnName.equalsIgnoreCase("air")){
             descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getFlighting()).toString()));
         }
+        if(btnName.equalsIgnoreCase("included")){
+            descriptionTv.setText(Html.fromHtml(String.valueOf(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getIncluded()))));
+        }
+        if(btnName.equalsIgnoreCase("not_included")){
+            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getNotSelected()).toString()));
+        }
+        if(btnName.equalsIgnoreCase("important_nots")){
+            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getImportantNotes()).toString()));
+        }
+        if(btnName.equalsIgnoreCase("how_to_book")){
+            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getHowToBook()).toString()));
+        }
 
 
         detailsCloseBtn.setOnClickListener(new View.OnClickListener() {

@@ -2,7 +2,9 @@ package com.example.barakatravelapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -61,7 +63,7 @@ public class ShowDayByDayVrRvAdapter extends RecyclerView.Adapter<ShowDayByDayVr
             holder.position = position;
             UmarhDay umarhDayList= getUmarDayItemsListData.get(position);
             holder.cardviewHzHajjDetailsDayByDayDialogItemDateAndDayNumTv.setText("Day  "+umarhDayList.getDayNumber()+"  :   "+umarhDayList.getName());
-            holder.cardviewHzHajjDetailsDayByDayDialogItemDateAndDayNumTv.setText(umarhDayList.getDesciption());
+            holder.cardviewHzHajjDetailsDayByDayDialogItemDescriptionTv.setText(umarhDayList.getDesciption());
 
 
         } catch (Exception e) {
@@ -83,6 +85,18 @@ public class ShowDayByDayVrRvAdapter extends RecyclerView.Adapter<ShowDayByDayVr
 //                    replaceFragmentWithAnimation(homeCycleActivity.getSupportFragmentManager(), R.id.home_activity_fram, new SubCategoryFragment(), "t");
 //                    homeCycleActivity.setNavigationAndToolBar(View.GONE, true);
 //                }
+            }
+        });
+
+
+        //for Scrolling of textView
+//        holder.cardviewHzHajjDetailsDayByDayDialogItemDescriptionTv.setMovementMethod(new ScrollingMovementMethod());
+//to stop parent linearlayout scrollview when touched on textview
+        holder.cardviewHzHajjDetailsDayByDayDialogItemDescriptionTv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
             }
         });
 

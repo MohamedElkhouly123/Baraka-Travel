@@ -12,15 +12,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.adapter.ShowDayByDayVrRvAdapter;
+import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.UmarhDay;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.barakatravelapp.utils.HelperMethod.showToast;
+
 public class ShowDayByDayDialog extends DialogFragment {
 
     private LinearLayoutManager lLayout;
     private ImageView cancelBtn ,backBtn,titleName;
+//    List<UmarhDay> dialogDayByDayListItem = new ArrayList<UmarhDay>();
+    private GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackage;
+    private ShowDayByDayVrRvAdapter rcAdapter;
+
+    public ShowDayByDayDialog(GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackage) {
+        this.getTopUmarAndTophajjPackage=getTopUmarAndTophajjPackage;
+    }
 
 //    public static DialogFragment newInstance(View.OnClickListener listener) {
 //        DialogFragment fragment = new DialogFragment();
@@ -37,21 +47,20 @@ public class ShowDayByDayDialog extends DialogFragment {
 
         //SET TITLE DIALOG TITLE
 //        getDialog().setTitle("Best Players In The World");
-        List<UmarhDay> dialogDayByDayListItem = new ArrayList<UmarhDay>();
 //        this.getDialog().setTitle("أختيار القسم العام");
 //        this.getDialog().setCancelable(true);
 
         cancelBtn=(ImageView) rootView.findViewById(R.id.dialog_day_by_day_rv_cancel_btn_tv);
 //        backBtn=(TextView) rootView.findViewById(R.id.dialog_categories_rv_back_btn_tv);
 //        titleName=(TextView) rootView.findViewById(R.id.dialog_categories_rv_category_name_tv);
-
+//        showToast(getActivity(), String.valueOf(getTopUmarAndTophajjPackage.getUmarImages().get(0)));
         RecyclerView dialogCategoriesRvRecyclerView = (RecyclerView) rootView.findViewById(R.id.dialog_day_by_day_rv_recycler_view);
 
         lLayout = new LinearLayoutManager(getActivity());
 
         dialogCategoriesRvRecyclerView.setLayoutManager(lLayout);
 
-        ShowDayByDayVrRvAdapter rcAdapter = new ShowDayByDayVrRvAdapter(getContext(), getActivity(), dialogDayByDayListItem);
+         rcAdapter = new ShowDayByDayVrRvAdapter(getContext(), getActivity(), getTopUmarAndTophajjPackage.getUmarhDays());
         dialogCategoriesRvRecyclerView.setAdapter(rcAdapter);
         rcAdapter.notifyDataSetChanged();
 

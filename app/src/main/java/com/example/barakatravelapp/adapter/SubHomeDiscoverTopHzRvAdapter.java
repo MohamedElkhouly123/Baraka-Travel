@@ -160,7 +160,7 @@ public class SubHomeDiscoverTopHzRvAdapter extends RecyclerView.Adapter<SubHomeD
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast(activity, "here");
+//                showToast(activity, "here");
                 dialogAdapterCallback.onMethodCallback(getHomeDisscoverGetItemsListData.get(position));
 
 //                HomeCycleActivity homeCycleActivity = (HomeCycleActivity) activity;

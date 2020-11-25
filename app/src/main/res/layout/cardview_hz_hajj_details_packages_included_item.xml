@@ -12,16 +12,17 @@
     >
 
     <ImageView
-        android:id="@+id/cardview_hz_discover_item_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/visa_passport" />
+        android:id="@+id/cardview_hz_hajj_details_packages_included_item_img"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:src="@drawable/visa_passport"
+         />
     <TextView
+        android:id="@+id/cardview_hz_hajj_details_packages_included_item_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:text="@string/password"
         android:textColor="@color/black"
-        android:textSize="@dimen/_10ssp" />
+        android:textSize="@dimen/_11ssp" />
 </LinearLayout>

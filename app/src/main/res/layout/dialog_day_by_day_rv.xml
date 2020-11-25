@@ -2,7 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    >
     <!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
     <!--        android:id="@+id/dialog_categories_rv_sr_refresh_donations"-->
     <!--        android:layout_width="match_parent"-->
@@ -19,13 +21,13 @@
             android:layout_gravity="start"
             android:elevation="3dp"
             android:src="@drawable/ic_close_black_24dp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_4sdp"
             />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_350sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             >
 
             <androidx.recyclerview.widget.RecyclerView
@@ -33,7 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/load_more"
-                android:paddingTop="@dimen/_3sdp"
                 android:layout_marginBottom="@dimen/_32sdp"
                 android:scrollbars="vertical" />
 

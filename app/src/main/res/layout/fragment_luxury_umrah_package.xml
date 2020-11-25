@@ -85,6 +85,7 @@
             />
         </androidx.constraintlayout.widget.ConstraintLayout>
     <ScrollView
+        android:id="@+id/fragment_luxury_umrah_package_scroll_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_3sdp"
@@ -272,6 +273,14 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+<!--            <com.zolad.zoominimageview.ZoomInImageView-->
+<!--                android:id="@+id/cardview_hz_hajj_details_photo_gallery_item_img"-->
+<!--                android:layout_width="@dimen/_80sdp"-->
+<!--                android:layout_height="@dimen/_80sdp"-->
+<!--                android:background="@drawable/round_image"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:src="@drawable/haj"/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -413,15 +422,21 @@
 
     </LinearLayout>
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                >
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_5sdp"
                 android:paddingStart="@dimen/_6sdp"
                 android:paddingEnd="@dimen/_6sdp"
                 android:orientation="vertical"
@@ -433,17 +448,23 @@
                     android:text="@string/location"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp" />
-                <com.google.android.gms.maps.MapView
+<!--                <com.google.android.gms.maps.MapView-->
+<!--                    android:id="@+id/fragment_luxury_umrah_package_mv_map"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_140sdp"-->
+<!--                    android:layout_marginTop="@dimen/_8sdp"-->
+<!--                    android:elevation="@dimen/_3sdp"-->
+<!--                    />-->
+
+                <WebView
                     android:id="@+id/fragment_luxury_umrah_package_mv_map"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_140sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:elevation="@dimen/_3sdp"
                     />
-
-
             </LinearLayout>
-
+            </ScrollView>
             <Button
                 android:id="@+id/fragment_luxury_umrah_package_day_by_day_btn"
                 android:layout_width="match_parent"

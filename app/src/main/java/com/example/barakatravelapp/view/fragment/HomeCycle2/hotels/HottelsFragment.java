@@ -263,6 +263,7 @@ public class HottelsFragment extends BaSeFragment {
     public void onViewClicked() {
             if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 1)) {
 //                onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
+                topPartInNavGenralPartSearchTil.setErrorEnabled(false);
                 getHotelsHomeList(0);
 //                return;
             }

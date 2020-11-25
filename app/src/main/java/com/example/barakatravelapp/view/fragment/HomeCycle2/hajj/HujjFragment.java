@@ -270,7 +270,7 @@ public class HujjFragment extends BaSeFragment {
             case R.id.top_part_in_nav_genral_part_filter_til:
                 if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 1)) {
 //                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
-
+                    topPartInNavGenralPartSearchTil.setErrorEnabled(false);
                     getHajjAndUmrahHomeList(0);
 //                    return;
                 }

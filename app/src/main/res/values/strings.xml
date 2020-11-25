@@ -115,8 +115,9 @@
     <string name="error">Something went wrong</string>
     <string name="error_inter_net">No internet connection Please check your internet and try again later</string>
     <string name="empty">Please Enter your Data first</string>
-    <string name="invalid_password">Password mast be more than 6 of char and number</string>
-    <string name="invalid_user_name">Username mast be more than 3 char</string>
+    <string name="invalid_password">Password must be more than 7 of char and number</string>
+    <string name="invalid_user_name">Username must be more than 2 char</string>
+    <string name="invalid_message">Message must be more than 2 char</string>
     <string name="umrah">Umrah</string>
     <string name="hajj_and_umrah"><![CDATA[Hajj & Umrah]]></string>
     <string name="invalid_search">Search keyword mast be more than 2 char</string>

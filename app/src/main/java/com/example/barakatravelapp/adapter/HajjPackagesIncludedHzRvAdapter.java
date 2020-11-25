@@ -6,14 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
-import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
-import com.example.barakatravelapp.utils.PhotoGallaryAdapterCallback;
+import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.PackagesInclude;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,8 @@ import butterknife.ButterKnife;
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
 import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
-public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoGallaryHzRvAdapter.ViewHolder> {
+public class HajjPackagesIncludedHzRvAdapter extends RecyclerView.Adapter<HajjPackagesIncludedHzRvAdapter.ViewHolder> {
+
 
 
 //    private final DialogAdapterCallback dialogAdapterCallback;
@@ -33,23 +34,16 @@ public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoG
     private Activity activity;
     private LinearLayoutManager lLayout;
     private int itemNum;
-    private List<String> hajjAndUmrahImages= new ArrayList<>();
-    private PhotoGallaryAdapterCallback photoGallaryAdapterCallback;
+    private List<PackagesInclude> hajjAndUmrahPackagesInclude = new ArrayList<>();
 
-//    private ProfileItemAdapter homeSubHzItemAdapter;
-//    private SubHomeCategoryHzRvItem2Adapter subHomeCategoryHzRvItem2Adapter;
-//    List<ProductDataModel> rowListItem;
-//    private ClientData clientData;
-//    private ApiService apiService;
 
-    public HajjPhotoGallaryHzRvAdapter(Context context, Activity activity,
-                                       List<String> hajjAndUmrahImages,PhotoGallaryAdapterCallback photoGallaryAdapterCallback
-                                       ) {
+    public HajjPackagesIncludedHzRvAdapter(Context context, Activity activity,
+                                           List<PackagesInclude> hajjAndUmrahPackagesInclude
+    ) {
         this.context = context;
         this.activity = activity;
 //        this.clientRestaurantsDataList.clear();
-        this.hajjAndUmrahImages = hajjAndUmrahImages;
-        this.photoGallaryAdapterCallback=photoGallaryAdapterCallback;
+        this.hajjAndUmrahPackagesInclude = hajjAndUmrahPackagesInclude;
 //        this.dialogAdapterCallback = dialogAdapterCallback;
 //        showToast(activity, "list=" + getHomeDisscoverGetHotelsDataItemsListData.get(0).getCity());
 
@@ -61,7 +55,7 @@ public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoG
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.cardview_hz_hajj_details_photo_gallery_item,
+        View view = LayoutInflater.from(context).inflate(R.layout.cardview_hz_hajj_details_packages_included_item,
                 parent, false);
 
         return new ViewHolder(view);
@@ -81,11 +75,11 @@ public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoG
 //            final int itemType = getItemViewType(position);
             holder.position = position;
 
-//            GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackageData = getTopUmarAndTophajjPackages;
+            PackagesInclude packageData = hajjAndUmrahPackagesInclude.get(position);
 //            showToast(activity, String.valueOf(position));
-//            hajjAndUmrahImages = getTopUmarAndTophajjPackages.getUmarImages();
-            onLoadImageFromUrl(holder.cardviewHzHajjDetailsPhotoGalleryItemImg, hajjAndUmrahImages.get(position).trim(), context);
-
+            String packageIcon = "https://www.barakatravel.net/" + packageData.getIcon().trim();
+            onLoadImageFromUrl(holder.cardviewHzHajjDetailsPackagesIncludedItemImg, packageIcon.trim(), context);
+            holder.cardviewHzHajjDetailsPackagesIncludedItemNameTv.setText(packageData.getPackageName());
 
         } catch (Exception e) {
 
@@ -99,12 +93,7 @@ public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoG
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                showToast(activity, "here");
-                String photoPath =hajjAndUmrahImages.get(position).trim();
-                photoGallaryAdapterCallback.onMethodCallback(photoPath);
-//                ZoomInImageViewAttacher mIvAttacter = new ZoomInImageViewAttacher();
-//                mIvAttacter.attachImageView(holder.cardviewHzHajjDetailsPhotoGalleryItemImg);
-//                ZoomInImageViewAttacher mIvAttacter = new ZoomInImageViewAttacher(holder.cardviewHzHajjDetailsPhotoGalleryItemImg);
+                showToast(activity, "here");
 //                dialogAdapterCallback.onMethodCallback(getTopUmarAndTophajjPackages.get(position));
 
 //                HomeCycleActivity homeCycleActivity = (HomeCycleActivity) activity;
@@ -122,14 +111,17 @@ public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoG
     @Override
     public int getItemCount() {
 
-        return hajjAndUmrahImages.size();
+        return hajjAndUmrahPackagesInclude.size();
 
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.cardview_hz_hajj_details_photo_gallery_item_img)
-        ImageView cardviewHzHajjDetailsPhotoGalleryItemImg;
+        @BindView(R.id.cardview_hz_hajj_details_packages_included_item_img)
+        ImageView cardviewHzHajjDetailsPackagesIncludedItemImg;
+        @BindView(R.id.cardview_hz_hajj_details_packages_included_item_name_tv)
+        TextView cardviewHzHajjDetailsPackagesIncludedItemNameTv;
+
         private View view;
         private int position;
 

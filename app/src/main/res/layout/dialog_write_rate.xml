@@ -10,7 +10,7 @@
         android:layout_centerInParent="true"
         android:padding="@dimen/_20sdp"
 
-        app:cardCornerRadius="@dimen/_16sdp">
+        app:cardCornerRadius="@dimen/_10sdp">
         <!--        android:layout_marginStart="@dimen/_30sdp"-->
         <!--        android:layout_marginEnd="@dimen/_30sdp"-->
 
@@ -28,8 +28,8 @@
                 android:layout_gravity="start"
                 android:elevation="3dp"
                 android:src="@drawable/ic_close_black_24dp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 />
             <TextView
                 android:id="@+id/item_sign_out_dialog_btn_no"
@@ -51,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:theme="@style/rating"
                 android:background="#fff"
                 android:scaleX=".6"
                 android:scaleY=".6"

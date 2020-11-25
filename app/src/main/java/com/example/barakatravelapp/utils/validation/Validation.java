@@ -30,6 +30,13 @@ public class Validation {
 
     }
 
+//    public static void cleanEditTextError(List<EditText> editTexts) {
+//
+//        for (int i = 0; i < editTexts.size(); i++) {
+//            editTexts.get(i).setError(false);
+//        }
+
+//    }
     public static boolean validationLength(Activity activity, String text, String errorText) {
 
         if (text.length() <= 0) {

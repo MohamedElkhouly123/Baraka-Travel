@@ -176,6 +176,7 @@ public class HelperMethod {
 //                .into(imageView);
     }
 
+
     public static void onLoadCirImageFromUrl(CircleImageView cirImageView, String URl, Context context) {
         Glide.with(context)
                 .load(URl)

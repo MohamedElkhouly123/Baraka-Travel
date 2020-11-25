@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.barakatravelapp.data.model.userLoginResponce.UserData;
 import com.google.gson.Gson;
 
 public class SharedPreferencesManger {
@@ -64,24 +65,24 @@ public class SharedPreferencesManger {
     }
 
 //
-//    public static ClientData LoadUserData(Activity activity) {
-//        setSharedPreferences(activity);
-//
-//        ClientData loginData = null;
-//        Gson gson = new Gson();
-//        loginData = gson.fromJson(LoadData(activity, USER_DATA), ClientData.class);
-//
-//        return loginData;
-//    }
-//    public static ClientData LoadUserData2(Context activity) {
-//        setSharedPreferences((Activity) activity);
-//
-//        ClientData loginData = null;
-//        Gson gson = new Gson();
-//        loginData = gson.fromJson(LoadData((Activity) activity, USER_DATA), ClientData.class);
-//
-//        return loginData;
-//    }
+    public static UserData LoadUserData(Activity activity) {
+        setSharedPreferences(activity);
+
+        UserData loginData = null;
+        Gson gson = new Gson();
+        loginData = gson.fromJson(LoadData(activity, USER_DATA), UserData.class);
+
+        return loginData;
+    }
+    public static UserData LoadUserData2(Context activity) {
+        setSharedPreferences((Activity) activity);
+
+        UserData loginData = null;
+        Gson gson = new Gson();
+        loginData = gson.fromJson(LoadData((Activity) activity, USER_DATA), UserData.class);
+
+        return loginData;
+    }
     public static boolean LoadBoolean(Activity activity, String data_Key) {
         setSharedPreferences(activity);
 

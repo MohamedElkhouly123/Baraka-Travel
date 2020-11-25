@@ -76,4 +76,24 @@ public interface ApiServices {
     Call<GetDiscoverHomeResponce> getHomeDiscoverItemList(
     );
 
+    @POST("submitRate")
+    @FormUrlEncoded
+    Call<GetDiscoverHomeResponce> sendHujjAndUmrahRate(@Field("userId") int userId,
+                                                        @Field("name") String name,
+                                                        @Field("mobile") String mobile,
+                                                        @Field("message") String message,
+                                                        @Field("rate") int rate,
+                                                        @Field("packageId") int packageId
+    );
+
+    @POST("submitRate")
+    @FormUrlEncoded
+    Call<GetDiscoverHomeResponce> sendHotelRate(@Field("userId") int userId,
+                                                 @Field("name") String name,
+                                                 @Field("mobile") String mobile,
+                                                 @Field("message") String message,
+                                                 @Field("rate") int rate,
+                                                 @Field("hotel_id") int hotel_id
+    );
+
 }

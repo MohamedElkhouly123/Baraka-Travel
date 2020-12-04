@@ -13,7 +13,7 @@
     app:layout_behavior="@string/bottom_sheet_behavior">
 
     <com.ortiz.touchview.TouchImageView
-        android:id="@+id/cardview_hz_hajj_details_photo_gallery_item_img"
+        android:id="@+id/content_bottom_sheet_photo_gallery_item_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/haj"

@@ -5,11 +5,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,12 +25,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
-
 public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDiscoverVrRvAdapter.ViewHolder> {
 
 
     private final DialogAdapterCallback dialogAdapterCallback;
+    private final NavController navController;
     private Context context;
     private Activity activity;
     private List<ItemObjectModel> itemList = new ArrayList<>();
@@ -53,13 +52,14 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
 //    private ApiService apiService;
 
     public SubHomeDiscoverVrRvAdapter(Context context,
-                                      Activity activity, DialogAdapterCallback dialogAdapterCallback,
+                                      Activity activity, NavController navController, DialogAdapterCallback dialogAdapterCallback,
                                       List<ItemObjectModel> itemList,
                                       List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetHajjDataItemsListData, List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetUmrahDataItemsListData, List<HotelData> getHomeDisscoverGetHotelsDataItemsListData) {
         this.context = context;
         this.activity = activity;
 //        this.clientRestaurantsDataList.clear();
         this.itemList = itemList;
+        this.navController = navController;
         this.getHomeDisscoverGetHajjDataItemsListData = getHomeDisscoverGetHajjDataItemsListData;
         this.getHomeDisscoverGetUmrahDataItemsListData = getHomeDisscoverGetUmrahDataItemsListData;
         this.getHomeDisscoverGetHotelsDataItemsListData = getHomeDisscoverGetHotelsDataItemsListData;
@@ -211,14 +211,14 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
 //        clientGetRestaurantsFiltterList(0);
 
         if (itemNum ==3){
-            SubHomeDiscoverTopHzRvAdapter3 = new GetDiscoverTopHotelsItemsAdapter(context, activity,getHomeDisscoverGetHotelsDataItemsListData,itemNum);
+            SubHomeDiscoverTopHzRvAdapter3 = new GetDiscoverTopHotelsItemsAdapter(context, activity,navController,getHomeDisscoverGetHotelsDataItemsListData,itemNum);
             holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter3);
 //            showToast(activity, String.valueOf(itemNum));
 
         }
 
         if (itemNum ==4){
-            SubHomeDiscoverTopHzRvAdapter4 = new GetDiscoverTopHotelsItemsAdapter(context, activity,getHomeDisscoverGetHotelsDataItemsListData,itemNum);
+            SubHomeDiscoverTopHzRvAdapter4 = new GetDiscoverTopHotelsItemsAdapter(context, activity, navController, getHomeDisscoverGetHotelsDataItemsListData,itemNum);
             holder.homeDiscoverFragmentSubHomeRvItemHzRv.setAdapter(SubHomeDiscoverTopHzRvAdapter4);}
 
 

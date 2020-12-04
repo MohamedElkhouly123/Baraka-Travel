@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_4sdp"
         android:layout_marginStart="@dimen/_4sdp"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textColor="@color/success"
         android:textSize="@dimen/_15ssp" />
 

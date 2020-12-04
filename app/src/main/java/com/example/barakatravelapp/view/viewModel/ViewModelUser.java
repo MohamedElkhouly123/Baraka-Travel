@@ -3,15 +3,9 @@ package com.example.barakatravelapp.view.viewModel;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.userLoginResponce.UserLoginGeneralResponce;
@@ -24,11 +18,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.REMEMBER_ME;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.SaveData;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.USER_DATA;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.USER_PASSWORD;
+import static com.example.barakatravelapp.data.local.SharedPreferencesManger.clean;
 import static com.example.barakatravelapp.utils.HelperMethod.dismissProgressDialog;
 import static com.example.barakatravelapp.utils.HelperMethod.progressDialog;
 import static com.example.barakatravelapp.utils.HelperMethod.showLongToast;
@@ -40,18 +34,18 @@ import static com.example.barakatravelapp.utils.network.InternetState.isConnecte
 public class ViewModelUser extends ViewModel {
 
 //    private UserRepository userRepository;
-    private MutableLiveData<UserLoginGeneralResponce> generalLoginResponse = new MutableLiveData<>();
+    private MutableLiveData<UserLoginGeneralResponce> generalLoginAndUpdateProfileResponse = new MutableLiveData<>();
     private MutableLiveData<UserLoginGeneralResponce> generalRegisterationAndForgetPasswordResponse = new MutableLiveData<>();
 
 
     private String token;
     private String apiToken;
 
-    public MutableLiveData<UserLoginGeneralResponce> setGeneralLogin() {
-        return generalLoginResponse;
+    public MutableLiveData<UserLoginGeneralResponce> setGeneralLoginAndUpdateProfile() {
+        return generalLoginAndUpdateProfileResponse;
     }
 
-    public void setGeneralLogin(final Activity activity, final Call<UserLoginGeneralResponce> method, final String password, final boolean remember, final boolean auth) {
+    public void setGeneralLoginAndUpdateProfile(final Activity activity, final Call<UserLoginGeneralResponce> method, final String password, final boolean remember, final boolean auth) {
         if (isConnected(activity)) {
 
             if (progressDialog == null) {
@@ -74,11 +68,11 @@ public class ViewModelUser extends ViewModel {
 
                             if (response.body().getStatus().equals("success")) {
 //                                if (response.body().getMessage() != "the user is not vertified to login please visit your email") {
-
+                                clean(activity);
                                     SaveData(activity, USER_PASSWORD, password);
                                 SaveData(activity, USER_DATA, response.body().getUser());
+                                SaveData(activity, REMEMBER_ME, remember);
                                 if (auth) {
-                                    SaveData(activity, REMEMBER_ME, remember);
 //                                    Call<UserLoginGeneralResponce> tokenCall = null;
 //                                    token=new ClientFireBaseToken().getToken();
 //                                    apiToken=response.body().getData().getApiToken();
@@ -94,13 +88,13 @@ public class ViewModelUser extends ViewModel {
 //                                    getAndMakeRegisterToken(activity,tokenCall);
                                     Intent intent = new Intent(activity, HomeCycleActivity.class);
                                     activity.startActivity(intent);
-//                                    showToast(activity, response.body().getStatus());
+//                                    showToast(activity, t.getCause());
                                     activity.finish();
                                 }
 //                            }
 
                                 dismissProgressDialog();
-                                generalLoginResponse.postValue(response.body());
+                                generalLoginAndUpdateProfileResponse.postValue(response.body());
 //                                if (response.body().getMessage()!=null) {
                                 ToastCreator.onCreateSuccessToast(activity, response.body().getStatus());
 
@@ -121,7 +115,7 @@ public class ViewModelUser extends ViewModel {
                 public void onFailure(Call<UserLoginGeneralResponce> call, Throwable t) {
                     dismissProgressDialog();
                     onCreateErrorToast(activity, activity.getString(R.string.error));
-                    generalLoginResponse.postValue(null);
+                    generalLoginAndUpdateProfileResponse.postValue(null);
                 }
             });
         } else {
@@ -135,11 +129,11 @@ public class ViewModelUser extends ViewModel {
 
     }
 
-    public MutableLiveData<UserLoginGeneralResponce> makeResetAndNewPasswordResponseAndSignUp() {
+    public MutableLiveData<UserLoginGeneralResponce> makeResetAndNewPasswordResponseAndSignUpAndBooking() {
         return generalRegisterationAndForgetPasswordResponse;
     }
 
-    public void setAndMakeResetAndNewPasswordResponseAndSignUp(final Activity activity, final Call<UserLoginGeneralResponce> method, boolean dimiss) {
+    public void setAndMakeResetAndNewPasswordResponseAndSignUpAndBooking(final Activity activity, final Call<UserLoginGeneralResponce> method, boolean dimiss) {
         if (isConnected(activity)) {
 
             if (progressDialog == null) {
@@ -175,6 +169,7 @@ public class ViewModelUser extends ViewModel {
                 @Override
                 public void onFailure(Call<UserLoginGeneralResponce> call, Throwable t) {
                     dismissProgressDialog();
+                    showToast(activity, String.valueOf(t.getMessage()));
                     onCreateErrorToast(activity, activity.getString(R.string.error));
                     generalRegisterationAndForgetPasswordResponse.postValue(null);
                 }

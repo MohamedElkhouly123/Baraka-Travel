@@ -140,5 +140,30 @@
     <string name="name">Name</string>
     <string name="phone_number">Phone Number</string>
     <string name="message">Message</string>
+    <string name="select_image">Please Select your Photo First</string>
+    <string name="gender">Gender</string>
+    <string name="your_first_name_as_passport">Your First Name As Passport</string>
+    <string name="your_last_name_as_passport">Your Last Name As Passport</string>
+    <string name="address">Address</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="where_are_you_traveling_from">Where Are You Traveling From ?</string>
+    <string name="please_write_comment_if_you_need">Please write comment if you need</string>
+    <string name="are_you_traveling_alone">Are You Traveling Alone ?</string>
+    <string name="subbmit">Submit</string>
+    <string name="choose_passport_image">Choose Passport Image</string>
+    <string name="choose_personal_image">Choose Personal Image</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="select_gender">Please Select Gender Type First</string>
+    <string name="select_passport">Please Select Passport First</string>
+    <string name="select_travel">Please Select Traveling Alone First</string>
+    <string name="send">send</string>
+    <string name="About_HOTEL">About HOTEL</string>
+    <string name="ROOMS_AVAILABILITIES"><![CDATA[ROOMS & AVAILABILITIES]]></string>
+    <string name="Hotel_Amenities">Hotel Amenities</string>
+    <string name="book_now">Book Now</string>
+    <string name="Reserve_A_Room">Reserve A Room</string>
+    <string name="Check_in_date">Check in date*</string>
+    <string name="Check_out_date">Check out date*</string>
+    <string name="select_date">select date please</string>
 
 </resources>

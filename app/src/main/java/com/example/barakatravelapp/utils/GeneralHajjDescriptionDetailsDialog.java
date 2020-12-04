@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.text.Html;
 import android.view.View;
 import android.view.Window;
@@ -32,28 +33,70 @@ public class GeneralHajjDescriptionDetailsDialog {
         TextView descriptionTv = (TextView) dialog.findViewById(R.id.dialog_general_hajj_details_description_tv);
         ImageView detailsCloseBtn = (ImageView) dialog.findViewById(R.id.dialog_general_hajj_details_description_cancel_btn);
         if(btnName.equalsIgnoreCase("makka")){
-        descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getMakkahDesciption()).toString()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getMakkahDesciption(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getMakkahDesciption()));
+            }
+//        descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getMakkahDesciption()).toString()));
+//            descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getImportantNotes(), Html.FROM_HTML_MODE_LEGACY));
+
         }
         if(btnName.equalsIgnoreCase("madina")){
-            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getMadinaDesciption()).toString()));
+//            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getMadinaDesciption()).toString()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getMadinaDesciption(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getMadinaDesciption()));
+            }
         }
         if(btnName.equalsIgnoreCase("manasik")){
-            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getRituals()).toString()));
+//            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getRituals()).toString()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getRituals(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getRituals()));
+            }
         }
         if(btnName.equalsIgnoreCase("air")){
-            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getFlighting()).toString()));
+//            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getFlighting()).toString()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getFlighting(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmar().getFlighting()));
+            }
         }
         if(btnName.equalsIgnoreCase("included")){
-            descriptionTv.setText(Html.fromHtml(String.valueOf(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getIncluded()))));
+//            descriptionTv.setText(Html.fromHtml(String.valueOf(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getIncluded()))));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getIncluded(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getIncluded()));
+            }
         }
         if(btnName.equalsIgnoreCase("not_included")){
-            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getNotSelected()).toString()));
+//            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getNotSelected()).toString()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getNotSelected(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getNotSelected()));
+            }
         }
         if(btnName.equalsIgnoreCase("important_nots")){
-            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getImportantNotes()).toString()));
+//            descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getImportantNotes()).toString()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getImportantNotes(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getImportantNotes()));
+            }
         }
         if(btnName.equalsIgnoreCase("how_to_book")){
             descriptionTv.setText(Html.fromHtml(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getHowToBook()).toString()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getHowToBook(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                descriptionTv.setText(Html.fromHtml(getTopUmarAndTophajjPackage.getUmarhDetails().getHowToBook()));
+            }
         }
 
 

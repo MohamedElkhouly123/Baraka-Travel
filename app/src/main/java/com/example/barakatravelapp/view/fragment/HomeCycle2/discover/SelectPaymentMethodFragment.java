@@ -40,14 +40,14 @@ public class SelectPaymentMethodFragment extends BaSeFragment {
     @Override
     public void onBack() {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment,new ConfirmBookingFragment());
-        navController.navigate(R.id.action_selectPaymentMethodFragment_to_confirmBookingFragment);
+//        navController.navigate(R.id.action_selectPaymentMethodFragment_to_confirmBookingFragment);
 
     }
 
     @OnClick(R.id.fragment_select_payment_method_pay_btn)
     public void onViewClicked() {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment,new SuccessfulPaymentFragment());
-        navController.navigate(R.id.action_selectPaymentMethodFragment_to_successfulPaymentFragment);
+//        navController.navigate(R.id.action_selectPaymentMethodFragment_to_successfulPaymentFragment);
 
     }
 }

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
-import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
 import com.example.barakatravelapp.utils.PhotoGallaryAdapterCallback;
 
 import java.util.ArrayList;
@@ -22,9 +21,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
-public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoGallaryHzRvAdapter.ViewHolder> {
+public class HajjOrHotelPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjOrHotelPhotoGallaryHzRvAdapter.ViewHolder> {
 
 
 //    private final DialogAdapterCallback dialogAdapterCallback;
@@ -35,6 +33,7 @@ public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoG
     private int itemNum;
     private List<String> hajjAndUmrahImages= new ArrayList<>();
     private PhotoGallaryAdapterCallback photoGallaryAdapterCallback;
+    private final String hajjOrHotel;
 
 //    private ProfileItemAdapter homeSubHzItemAdapter;
 //    private SubHomeCategoryHzRvItem2Adapter subHomeCategoryHzRvItem2Adapter;
@@ -42,13 +41,14 @@ public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoG
 //    private ClientData clientData;
 //    private ApiService apiService;
 
-    public HajjPhotoGallaryHzRvAdapter(Context context, Activity activity,
-                                       List<String> hajjAndUmrahImages,PhotoGallaryAdapterCallback photoGallaryAdapterCallback
-                                       ) {
+    public HajjOrHotelPhotoGallaryHzRvAdapter(Context context, Activity activity,
+                                              String hajjOrHotel, List<String> hajjAndUmrahImages, PhotoGallaryAdapterCallback photoGallaryAdapterCallback
+    ) {
         this.context = context;
         this.activity = activity;
 //        this.clientRestaurantsDataList.clear();
         this.hajjAndUmrahImages = hajjAndUmrahImages;
+        this.hajjOrHotel = hajjOrHotel;
         this.photoGallaryAdapterCallback=photoGallaryAdapterCallback;
 //        this.dialogAdapterCallback = dialogAdapterCallback;
 //        showToast(activity, "list=" + getHomeDisscoverGetHotelsDataItemsListData.get(0).getCity());
@@ -84,8 +84,13 @@ public class HajjPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<HajjPhotoG
 //            GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackageData = getTopUmarAndTophajjPackages;
 //            showToast(activity, String.valueOf(position));
 //            hajjAndUmrahImages = getTopUmarAndTophajjPackages.getUmarImages();
-            onLoadImageFromUrl(holder.cardviewHzHajjDetailsPhotoGalleryItemImg, hajjAndUmrahImages.get(position).trim(), context);
+            if (hajjOrHotel.equalsIgnoreCase("hajj")){
+                onLoadImageFromUrl(holder.cardviewHzHajjDetailsPhotoGalleryItemImg, hajjAndUmrahImages.get(position).trim(), context);
 
+            }else {
+                String hotelImage = "https://www.barakatravel.net/"+hajjAndUmrahImages.get(position).trim();
+                onLoadImageFromUrl(holder.cardviewHzHajjDetailsPhotoGalleryItemImg, hotelImage.trim(), context);
+            }
 
         } catch (Exception e) {
 

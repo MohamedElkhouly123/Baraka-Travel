@@ -41,7 +41,7 @@ public class SuccessfulPaymentFragment extends BaSeFragment {
     @Override
     public void onBack() {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment,new SelectPaymentMethodFragment());
-        navController.navigate(R.id.action_successfulPaymentFragment_to_selectPaymentMethodFragment);
+//        navController.navigate(R.id.action_successfulPaymentFragment_to_selectPaymentMethodFragment);
 
     }
 
@@ -51,9 +51,11 @@ public class SuccessfulPaymentFragment extends BaSeFragment {
             case R.id.fragment_successful_payment_view_my_booking_btn:
 //                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment,new HottelViewFragment());
                 try {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("ISSUCCESSFUL", "successfullPayment");
-                    navController.navigate(R.id.action_successfulPaymentFragment_to_hottelViewFragment,bundle);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("ISSUCCESSFUL", "successfullPayment");
+//                    navController.navigate(R.id.action_successfulPaymentFragment_to_hottelViewFragment,bundle);
+                    navController.navigate(R.id.action_successfulPaymentFragment_to_navigation_account);
+                    homeCycleActivity.setNavigation("v");
                 }
                 catch(Exception e) {
                     //  Block of code to handle errors

@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.adapter.GetPricingtemsAdapter;
+import com.example.barakatravelapp.adapter.HajjOrHotelPhotoGallaryHzRvAdapter;
 import com.example.barakatravelapp.adapter.HajjPackagesIncludedHzRvAdapter;
-import com.example.barakatravelapp.adapter.HajjPhotoGallaryHzRvAdapter;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
 import com.example.barakatravelapp.utils.GeneralHajjDescriptionDetailsDialog;
 import com.example.barakatravelapp.utils.PhotoGallaryAdapterCallback;
@@ -30,6 +30,8 @@ import com.example.barakatravelapp.view.activity.HomeCycleActivity;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.ortiz.touchview.TouchImageView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,18 +68,19 @@ public class LuxuryUmrahPackageFragment extends BaSeFragment implements PhotoGal
     RecyclerView fragmentLuxuryUmrahPackagePackageIncludeRvItemHz2Rv;
     @BindView(R.id.fragment_luxury_umrah_package_pricing_rv_item_hz3_rv)
     RecyclerView fragmentLuxuryUmrahPackagePricingRvItemHz3Rv;
-    @BindView(R.id.cardview_hz_hajj_details_photo_gallery_item_img)
+    @BindView(R.id.content_bottom_sheet_photo_gallery_item_img)
     TouchImageView cardviewHzHajjDetailsPhotoGalleryItemImg2;
     @BindView(R.id.fragment_luxury_umrah_package_mv_map)
     WebView fragmentLuxuryUmrahPackageMvMap;
     private NavController navController;
     private GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackage;
     private LinearLayoutManager linearLayoutHorizental;
-    private HajjPhotoGallaryHzRvAdapter hajjPhotoGallaryHzRvAdapter;
+    private HajjOrHotelPhotoGallaryHzRvAdapter hajjPhotoGallaryHzRvAdapter;
     private HajjPackagesIncludedHzRvAdapter HajjPackagesIncludedHzRvAdapter;
     private GetPricingtemsAdapter getPricingtemsAdapter;
     private BottomSheetBehavior bottomSheetBehavior;
     private boolean openSheet = false;
+    private String isDiscoverOrHajjOrUmarah;
 
     public LuxuryUmrahPackageFragment() {
         // Required empty public constructor
@@ -87,6 +90,7 @@ public class LuxuryUmrahPackageFragment extends BaSeFragment implements PhotoGal
                              ViewGroup container, Bundle savedInstanceState) {
         if (this.getArguments() != null) {
             getTopUmarAndTophajjPackage = (GetTopUmarAndTophajjPackage) this.getArguments().getSerializable("Object");
+            isDiscoverOrHajjOrUmarah = this.getArguments().getString("DiscoverOrHajjOrUmrah");
         }
         View root = inflater.inflate(R.layout.bottom_sheets_abb_bar, container, false);
 
@@ -128,7 +132,9 @@ public class LuxuryUmrahPackageFragment extends BaSeFragment implements PhotoGal
 
 
     private void setData() {
-
+        fragmentLuxuryUmrahPackageNameTv.setText(getTopUmarAndTophajjPackage.getUmar().getName());
+        fragmentLuxuryUmrahPackageFromDateTv.setText(getTopUmarAndTophajjPackage.getUmar().getStartDateInformat());
+        fragmentLuxuryUmrahPackageToDateTv.setText(getTopUmarAndTophajjPackage.getUmar().getEndDateInformat());
         fragmentLuxuryUmrahPackageDurationTv.setText(getTopUmarAndTophajjPackage.getUmar().getDuration().toString());
         fragmentLuxuryUmrahPackagePriceTv.setText(getTopUmarAndTophajjPackage.getUmar().getMinPrice().toString());
         fragmentLuxuryUmrahPackageRateTv.setText(getTopUmarAndTophajjPackage.getUmar().getCalRate().toString());
@@ -189,7 +195,8 @@ public class LuxuryUmrahPackageFragment extends BaSeFragment implements PhotoGal
 //        clientGetRestaurantsFiltterList(0);
 
         if (itemNum == 1) {
-            hajjPhotoGallaryHzRvAdapter = new HajjPhotoGallaryHzRvAdapter(getContext(), getActivity(), getHomeDisscoverGetItemsListData.getUmarImages(), this::onMethodCallback);
+            String hajjOrHotel ="hajj";
+            hajjPhotoGallaryHzRvAdapter = new HajjOrHotelPhotoGallaryHzRvAdapter(getContext(), getActivity(), hajjOrHotel,getHomeDisscoverGetItemsListData.getUmarImages(), this::onMethodCallback);
             fragmentLuxuryUmrahPackageGeneralRvItemHzRv.setAdapter(hajjPhotoGallaryHzRvAdapter);
 //                    showToast(getActivity(), String.valueOf(getTopUmarAndTophajjPackage.getUmarImages().get(0)));
 
@@ -201,7 +208,7 @@ public class LuxuryUmrahPackageFragment extends BaSeFragment implements PhotoGal
         }
 
         if (itemNum == 3) {
-            getPricingtemsAdapter = new GetPricingtemsAdapter(getContext(), getActivity(), getHomeDisscoverGetItemsListData.getPricing());
+            getPricingtemsAdapter = new GetPricingtemsAdapter(getContext(), getActivity(),getHomeDisscoverGetItemsListData, getHomeDisscoverGetItemsListData.getPricing(),navController);
             fragmentLuxuryUmrahPackageGeneralRvItemHzRv.setAdapter(getPricingtemsAdapter);
         }
     }
@@ -214,7 +221,15 @@ public class LuxuryUmrahPackageFragment extends BaSeFragment implements PhotoGal
 //            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new ProfileFragment());
             openSheet = false;
         } else {
-            navController.navigate(R.id.action_luxuryUmrahPackageFragment_to_navigation_discover);
+            if (isDiscoverOrHajjOrUmarah.equalsIgnoreCase("discover")) {
+                navController.navigate(R.id.action_luxuryUmrahPackageFragment_to_navigation_discover);
+            }
+            if (isDiscoverOrHajjOrUmarah.equalsIgnoreCase("hajj")) {
+                navController.navigate(R.id.action_luxuryUmrahPackageFragment_to_navigation_hajj);
+            }
+            if (isDiscoverOrHajjOrUmarah.equalsIgnoreCase("umrah")) {
+                navController.navigate(R.id.action_luxuryUmrahPackageFragment_to_navigation_umrah);
+            }
             homeCycleActivity.setNavigation("v");
         }
 
@@ -225,8 +240,9 @@ public class LuxuryUmrahPackageFragment extends BaSeFragment implements PhotoGal
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fragment_luxury_umrah_package_back_btn:
-                navController.navigate(R.id.action_luxuryUmrahPackageFragment_to_navigation_discover);
-                homeCycleActivity.setNavigation("v");
+                onBack();
+//                navController.navigate(R.id.action_luxuryUmrahPackageFragment_to_navigation_discover);
+//                homeCycleActivity.setNavigation("v");
                 break;
             case R.id.fragment_luxury_umrah_package_makka_details_btn:
                 new GeneralHajjDescriptionDetailsDialog().showDialog(getActivity(), getTopUmarAndTophajjPackage, "makka");
@@ -257,7 +273,7 @@ public class LuxuryUmrahPackageFragment extends BaSeFragment implements PhotoGal
                 new GeneralHajjDescriptionDetailsDialog().showDialog(getActivity(), getTopUmarAndTophajjPackage, "how_to_book");
                 break;
             case R.id.fragment_luxury_umrah_package_write_your_rating_here_btn:
-                new WriteRateDialog().showDialog(getActivity(),getTopUmarAndTophajjPackage.getUmar().getId());
+                new WriteRateDialog().showDialog(getActivity(),getTopUmarAndTophajjPackage.getUmar().getId(), "package");
                 break;
         }
     }

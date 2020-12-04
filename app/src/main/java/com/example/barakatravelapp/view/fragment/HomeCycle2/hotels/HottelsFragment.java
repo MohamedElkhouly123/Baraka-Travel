@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -156,7 +155,7 @@ public class HottelsFragment extends BaSeFragment {
         };
         fragmentHomeHottelsRecyclerView.addOnScrollListener(onEndLess);
 
-        getHotelsItemsAdapter = new GetHotelsItemsAdapter(getActivity(), getContext(), getHotelsItemsListData);
+        getHotelsItemsAdapter = new GetHotelsItemsAdapter(getActivity(), getContext(), navController,getHotelsItemsListData);
         fragmentHomeHottelsRecyclerView.setAdapter(getHotelsItemsAdapter);
 //            showToast(getActivity(), "success adapter");
 
@@ -227,7 +226,7 @@ public class HottelsFragment extends BaSeFragment {
         onEndLess.current_page = 1;
         onEndLess.previous_page = 1;
         getHotelsItemsListData = new ArrayList<>();
-        getHotelsItemsAdapter = new GetHotelsItemsAdapter(getActivity(), getContext(), getHotelsItemsListData);
+        getHotelsItemsAdapter = new GetHotelsItemsAdapter(getActivity(), getContext(), navController, getHotelsItemsListData);
         fragmentHomeHottelsRecyclerView.setAdapter(getHotelsItemsAdapter);
 
     }

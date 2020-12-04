@@ -2,6 +2,7 @@ package com.example.barakatravelapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,11 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
-import com.example.barakatravelapp.data.model.getHotelsResponce.GetRoom;
-import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
+import com.example.barakatravelapp.utils.DialogAdapterCallback;
 import com.example.barakatravelapp.view.activity.BaseActivity;
+import com.example.barakatravelapp.view.activity.HomeCycleActivity;
+import com.example.barakatravelapp.view.fragment.HomeCycle2.hajj.HujjFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,17 +31,22 @@ import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
 
 public class GetHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<GetHajjAndUmrahItemsAdapter.ViewHolder> {
 
+    private final DialogAdapterCallback dialogAdapterCallback;
 
+    private final String hajjOrUmrah;
     private BaseActivity activity;
     private Context context;
     private List<GetTopUmarAndTophajjPackage> getHajjAndUmraItemsListData = new ArrayList<>();
     private List<String> hotelImages= new ArrayList<>();
     private NavController navController;
 
-    public GetHajjAndUmrahItemsAdapter(Activity activity, Context context, List<GetTopUmarAndTophajjPackage> getHajjAndUmraItemsListData) {
+    public GetHajjAndUmrahItemsAdapter(Activity activity, Context context, String hajjOrUmrah, DialogAdapterCallback dialogAdapterCallback, List<GetTopUmarAndTophajjPackage> getHajjAndUmraItemsListData) {
         this.activity = (BaseActivity) activity;
         this.context = context;
-        this.getHajjAndUmraItemsListData = getHajjAndUmraItemsListData;    }
+        this.dialogAdapterCallback = dialogAdapterCallback;
+        this.hajjOrUmrah = hajjOrUmrah;
+        this.getHajjAndUmraItemsListData = getHajjAndUmraItemsListData;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,6 +75,7 @@ public class GetHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<GetHajjAnd
         holder.cardviewGeneralVertHajjAndHotelsItemFromDateTv.setText(getTopUmarAndTophajjPackageData.getUmar().getStartDateInformat());
         holder.cardviewGeneralVertHajjAndHotelsItemToDateTv.setText(getTopUmarAndTophajjPackageData.getUmar().getEndDateInformat());
         List<String> umarOrHajjImages=getTopUmarAndTophajjPackageData.getUmarImages();
+        holder.cardviewGeneralVertHajjAndHotelsItemNightsTv.setVisibility(View.GONE);
         onLoadImageFromUrl(holder.cardviewGeneralVertHajjAndHotelsItemHotelImg, umarOrHajjImages.get(0).trim(), context);
         if(getTopUmarAndTophajjPackageData.getUmar().getIsOffer()!= null){
             holder.cardviewGeneralVertHajjAndHotelsItemOfferShadowImg.setVisibility(View.VISIBLE);
@@ -93,6 +101,17 @@ public class GetHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<GetHajjAnd
             @Override
             public void onClick(View view) {
 //                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
+//                navigationActivity.setNavigation("g");
+//                Bundle bundle = new Bundle();
+//                bundle.putString("DiscoverOrHajjOrUmrah", hajjOrUmrah);
+//                bundle.putSerializable("Object",  getHajjAndUmraItemsListData.get(position));
+//                if(hajjOrUmrah.equalsIgnoreCase("hajj")){
+//                navController.navigate(R.id.action_navigation_umrah_to_luxuryUmrahPackageFragment,bundle);
+//                }else {
+//                    navController.navigate(R.id.action_navigation_hajj_to_luxuryUmrahPackageFragment,bundle);
+//                }
+                dialogAdapterCallback.onMethodCallback(getHajjAndUmraItemsListData.get(position));
+
 //                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
 //                navigationActivity.setNavigation("g");
 //                FoodMenueFragment foodMenueFragment=new FoodMenueFragment();

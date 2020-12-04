@@ -278,7 +278,7 @@ public class Validation {
         String phone1 = phone.getEditText().getText().toString().replace("+1", "");
 
 //        if (phone1.length() >= country1.getLength_min() && phone.getEditText().getText().length() <= country1.getLength_max()) {
-        if (phone1.length() == 12){
+        if (phone.getEditText().getText().length() == 12){
             return true;
         } else {
             phone.setError(activity.getString(R.string.invalid_phone1));

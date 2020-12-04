@@ -4,8 +4,8 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/_20sdp"
-    android:paddingEnd="@dimen/_20sdp"
+    android:paddingStart="@dimen/_10sdp"
+    android:paddingEnd="@dimen/_10sdp"
     android:paddingTop="@dimen/_4sdp"
     android:paddingBottom="@dimen/_4sdp"
     android:gravity="center"
@@ -19,7 +19,8 @@
          />
     <TextView
         android:id="@+id/cardview_hz_hajj_details_packages_included_item_name_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_100sdp"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:text="@string/password"

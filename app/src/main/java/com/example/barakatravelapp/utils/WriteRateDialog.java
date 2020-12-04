@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -21,12 +22,10 @@ import retrofit2.Call;
 
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadUserData;
-import static com.example.barakatravelapp.utils.GeneralRequest.sentUserRateCallBack;
-import static com.example.barakatravelapp.utils.validation.Validation.cleanError;
+import static com.example.barakatravelapp.utils.GeneralRequest.sentUserRateAndBookHotelCallBack;
 import static com.example.barakatravelapp.utils.validation.Validation.validationEditTextsEmpty;
 import static com.example.barakatravelapp.utils.validation.Validation.validationLength;
 import static com.example.barakatravelapp.utils.validation.Validation.validationPhone;
-import static com.example.barakatravelapp.utils.validation.Validation.validationTextInputLayoutListEmpty;
 
 
 public class WriteRateDialog {
@@ -36,8 +35,8 @@ public class WriteRateDialog {
     private RatingBar ratingBar;
     List<EditText> editTexts = new ArrayList<>();
     private UserData userData;
-    private int idPackage;
-    public void showDialog(final Activity activity, Integer id) {
+    private int idPackage,idHotel;
+    public void showDialog(final Activity activity, Integer id, String hotelOrPackage) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -46,8 +45,11 @@ public class WriteRateDialog {
         dialog.setContentView(R.layout.dialog_write_rate);
         dialog.setCanceledOnTouchOutside(true);
         userData= LoadUserData(activity);
+        if (hotelOrPackage.equalsIgnoreCase("hotel")){
+            idHotel=id;
+        }else {
         idPackage=id;
-
+        }
          rateNameTv = (EditText) dialog.findViewById(R.id.dialog_write_rate_name_et);
          ratePhoneTv = (EditText) dialog.findViewById(R.id.dialog_write_rate_phone_et);
          rateMessageTv = (EditText) dialog.findViewById(R.id.dialog_write_rate_message_et);
@@ -56,7 +58,7 @@ public class WriteRateDialog {
          ratingBar = (RatingBar) dialog.findViewById(R.id.dialog_write_rate_simple_rating_bar);
 
 
-//        Button saveBtn = (Button) dialog.findViewById(R.id.dialog_choose_persons_rooms_save_btn);
+        Button saveBtn = (Button) dialog.findViewById(R.id.dialog_write_rate_save_changes_btn);
 
 
 
@@ -64,18 +66,24 @@ public class WriteRateDialog {
             @Override
             public void onClick(View v) {
 //                dialogAdapterCallback.onMethodCallback(getHomeDisscoverGetItemsListData.get(position));
-                onValidate(activity);
                 dialog.cancel();
             }
         });
 
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                dialogAdapterCallback.onMethodCallback(getHomeDisscoverGetItemsListData.get(position));
+                onValidate(activity,dialog,hotelOrPackage);
 
+            }
+        });
 
                 dialog.show();
 
             }
 
-    private void onValidate(Activity activity) {
+    private void onValidate(Activity activity, Dialog dialog, String hotelOrPackage) {
 //        cleanError(editTexts);
         editTexts.add(rateNameTv);
         editTexts.add(ratePhoneTv);
@@ -83,28 +91,35 @@ public class WriteRateDialog {
         if (!validationEditTextsEmpty(editTexts, activity.getString(R.string.empty))) {
             return;
         }
-        if (!validationLength(rateNameTv, activity.getString(R.string.invalid_user_name), 3)) {
+        if (!validationLength(rateNameTv, activity.getString(R.string.invalid_user_name), 2)) {
             return;
         }
         if (!validationPhone(activity, ratePhoneTv)) {
-//            ToastCreator.onCreateErrorToast(getActivity(), "Enter Phone");
+            ToastCreator.onCreateErrorToast(activity, "Enter Phone");
             return;
         }
-        if (!validationLength(rateMessageTv, activity.getString(R.string.invalid_user_name), 3)) {
+        if (!validationLength(rateMessageTv, activity.getString(R.string.invalid_user_name), 2)) {
             return;
         }
-        onCall(activity);
+        onCall(activity,dialog,hotelOrPackage);
     }
 
-    private void onCall(Activity activity) {
+    private void onCall(Activity activity, Dialog dialog, String hotelOrPackage) {
         String name = rateNameTv.getText().toString();
         String message = rateMessageTv.getText().toString();
         String phone = ratePhoneTv.getText().toString();
         int userId = userData.getId();
         int rate = (int) ratingBar.getRating();
         int packageId = idPackage;
-        Call<GetDiscoverHomeResponce> updateItemCal = getApiClient().sendHujjAndUmrahRate(userId,name,phone,message,rate,packageId);
-        sentUserRateCallBack(activity,updateItemCal);
+        Call<GetDiscoverHomeResponce> updateItemCal= null;
+        if (hotelOrPackage.equalsIgnoreCase("hotel")) {
+            updateItemCal = getApiClient().sendHujjAndUmrahRate(userId, name, phone, message, rate, packageId);
+        }else {
+            updateItemCal = getApiClient().sendHotelRate(userId, name, phone, message, rate, idHotel);
+
+        }
+        sentUserRateAndBookHotelCallBack(activity,updateItemCal, "Success rate send");
+        dialog.cancel();
 
     }
 

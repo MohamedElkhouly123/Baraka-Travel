@@ -93,7 +93,7 @@ public class HajjPackagesIncludedHzRvAdapter extends RecyclerView.Adapter<HajjPa
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast(activity, "here");
+//                showToast(activity, "here");
 //                dialogAdapterCallback.onMethodCallback(getTopUmarAndTophajjPackages.get(position));
 
 //                HomeCycleActivity homeCycleActivity = (HomeCycleActivity) activity;

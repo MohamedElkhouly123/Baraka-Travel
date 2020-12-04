@@ -33,8 +33,7 @@ import retrofit2.Call;
 
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
 import static com.example.barakatravelapp.utils.HelperMethod.disappearKeypad;
-import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragmentWithAnimation;
 import static com.example.barakatravelapp.utils.validation.Validation.cleanError;
 import static com.example.barakatravelapp.utils.validation.Validation.validationAllEmpty;
 import static com.example.barakatravelapp.utils.validation.Validation.validationConfirmPassword;
@@ -86,15 +85,16 @@ public class SignUpFragment extends BaSeFragment {
     @SuppressLint("FragmentLiveDataObserve")
     private void initListener() {
         viewModelUser = ViewModelProviders.of(this).get(ViewModelUser.class);
-        viewModelUser.makeResetAndNewPasswordResponseAndSignUp().observe(this, new Observer<UserLoginGeneralResponce>() {
+        viewModelUser.makeResetAndNewPasswordResponseAndSignUpAndBooking().observe(this, new Observer<UserLoginGeneralResponce>() {
             @Override
             public void onChanged(@Nullable UserLoginGeneralResponce response) {
                 if (response != null) {
-                    if (response.getStatus().equals("success")) {
-                        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
+                    if (response.getStatus().equals("success")||response.getMessage().equals("The mobile has already been taken.")) {
 //                        showToast(getActivity(), "success");
+                        replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment(),"b");
 
                     }
+
                 }
             }
         });
@@ -102,14 +102,14 @@ public class SignUpFragment extends BaSeFragment {
 
     @Override
     public void onBack() {
-        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
+        replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment(),"b");
     }
 
     @OnClick({R.id.fragment_sign_up_tv, R.id.fragment_sign_up_cb_remember, R.id.fragment_sign_up_btn_begin})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fragment_sign_up_tv:
-                replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
+                replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment(),"b");
                 break;
             case R.id.fragment_sign_up_cb_remember:
                 break;
@@ -188,7 +188,7 @@ private void onValidation() {
 
 
             clientCall = getApiClient().onSignUp(firstName,lastName,phone , email, password);
-            viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUp(getActivity(), clientCall,true);
+            viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUpAndBooking(getActivity(), clientCall,true);
 
 
 

@@ -20,4 +20,8 @@ public class AboutAppActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

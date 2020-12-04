@@ -28,7 +28,7 @@ import retrofit2.Call;
 
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
 import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragmentWithAnimation;
 import static com.example.barakatravelapp.utils.validation.Validation.cleanError;
 import static com.example.barakatravelapp.utils.validation.Validation.validationEmail;
 import static com.example.barakatravelapp.utils.validation.Validation.validationPassword;
@@ -69,7 +69,7 @@ public class LoginFragment extends BaSeFragment {
 
     private void initListener() {
         viewModelUser = ViewModelProviders.of(this).get(ViewModelUser.class);
-        viewModelUser.setGeneralLogin().observe(getViewLifecycleOwner(), new Observer<UserLoginGeneralResponce>() {
+        viewModelUser.setGeneralLoginAndUpdateProfile().observe(getViewLifecycleOwner(), new Observer<UserLoginGeneralResponce>() {
             @Override
             public void onChanged(@Nullable UserLoginGeneralResponce response) {
                 if(response!=null){
@@ -91,7 +91,7 @@ public class LoginFragment extends BaSeFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fragment_login_for_sign_up_tv:
-                replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new SignUpFragment());
+                replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new SignUpFragment(),"b");
                 break;
             case R.id.fragment_login_for_btn_login:
                 onValidData();
@@ -100,7 +100,7 @@ public class LoginFragment extends BaSeFragment {
 //                getActivity().finish();
                 break;
             case R.id.fragment_login_forget_password_tv:
-                replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new SetNewPasswordFragment());
+                replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new SetNewPasswordFragment(),"b");
                 break;
         }
     }
@@ -139,7 +139,7 @@ public class LoginFragment extends BaSeFragment {
 
             loginCall = getApiClient().userLogin(email, password);
 
-        viewModelUser.setGeneralLogin(getActivity(),loginCall, password, remember, true);
+        viewModelUser.setGeneralLoginAndUpdateProfile(getActivity(),loginCall, password, remember, true);
 
 
     }

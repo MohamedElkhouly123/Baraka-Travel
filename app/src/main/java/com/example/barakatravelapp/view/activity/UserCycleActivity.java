@@ -34,4 +34,8 @@ public class UserCycleActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

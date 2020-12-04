@@ -7,9 +7,9 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Build;
 import android.text.Html;
-import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -31,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.barakatravelapp.R;
+import com.example.barakatravelapp.data.model.DateTxt;
 import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumConfig;
@@ -43,6 +45,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -91,35 +94,87 @@ public class HelperMethod {
         recyclerView.setLayoutManager(gridLayoutManager);
     }
 
-//    public static void showCalender(Context context, String title, final TextView text_view_data, final DateTxt data1) {
-//        DatePickerDialog mDatePicker = new DatePickerDialog(context, AlertDialog.THEME_HOLO_DARK, new DatePickerDialog.OnDateSetListener() {
-//            public void onDateSet(DatePicker datepicker, int selectedYear, int selectedMonth, int selectedDay) {
-//                DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
-//                DecimalFormat mFormat = new DecimalFormat("00", symbols);
-//                String data = selectedYear + "-" + mFormat.format(Double.valueOf((selectedMonth + 1))) + "-" + mFormat.format(Double.valueOf(selectedDay));
-//                data1.setDate_txt(data);
-//                data1.setDay(mFormat.format(Double.valueOf(selectedDay)));
-//                data1.setMonth(mFormat.format(Double.valueOf(selectedMonth + 1)));
-//                data1.setYear(String.valueOf(selectedYear));
-//                text_view_data.setText(data);
-//            }
-//        }, Integer.parseInt(data1.getYear()), Integer.parseInt(data1.getMonth()) - 1, Integer.parseInt(data1.getDay()));
-//        mDatePicker.setTitle(title);
-//        mDatePicker.show();
-//    }
+    public static void showCalender(Context context, String title, final TextView text_view_data, final DateTxt data1) {
+        DatePickerDialog mDatePicker = new DatePickerDialog(context, AlertDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
+            public void onDateSet(DatePicker datepicker, int selectedYear, int selectedMonth, int selectedDay) {
+                DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+                DecimalFormat mFormat = new DecimalFormat("00", symbols);
+                String data = selectedYear + "-" + mFormat.format(Double.valueOf((selectedMonth + 1))) + "-" + mFormat.format(Double.valueOf(selectedDay));
+                data1.setDate_txt(data);
+                data1.setDay(mFormat.format(Double.valueOf(selectedDay)));
+                data1.setMonth(mFormat.format(Double.valueOf(selectedMonth + 1)));
+                data1.setYear(String.valueOf(selectedYear));
+                text_view_data.setText(data);
+            }
+        }, Integer.parseInt(data1.getYear()), Integer.parseInt(data1.getMonth()) - 1, Integer.parseInt(data1.getDay()));
+        mDatePicker.setTitle(title);
+        mDatePicker.show();
+    }
 
-    public static MultipartBody.Part convertFileToMultipart(String pathImageFile, String Key) {
+    public static MultipartBody.Part convertFileToMultipart(String pathImageFile, String Key, FragmentActivity activity) {
+
+
         if (pathImageFile != null) {
             File file = new File(pathImageFile);
-//            RequestBody reqFileselect = RequestBody.create(MediaType.parse("image/*"), file);
-            RequestBody reqFileselect = RequestBody.create(MediaType.parse("*/*"), file);
-//            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData(Key, file.getName(), reqFileselect);
-            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData("photo", file.getName(), reqFileselect);
+//            RequestBody reqFileselect = RequestBody.create(MediaType.parse("*/*"), file);
+//            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("photo", file.getName(), reqFileselect);
+
+            RequestBody reqFileselect = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData(Key, file.getName(), reqFileselect);
+//            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData("photo3", file.getName(), reqFileselect);
+//            showToast(activity, String.valueOf(Imagebody));
+
             return Imagebody;
         } else {
             return null;
         }
     }
+
+//    public static MultipartBody.Part convertFileToMultipart(String pathImageFile, String Key) {
+//        if (pathImageFile != null) {
+//            File file = new File(pathImageFile);
+////            RequestBody reqFileselect = RequestBody.create(MediaType.parse("image/*"), file);
+//            RequestBody reqFileselect = RequestBody.create(MediaType.parse("*/*"), file);
+////            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData(Key, file.getName(), reqFileselect);
+//            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData(Key, file.getName(), reqFileselect);
+//            return Imagebody;
+//        } else {
+//            return null;
+//        }
+//    }
+
+    public static MultipartBody.Part convertFileToMultipart2(String pathImageFile, String Key) {
+
+        if (pathImageFile != null) {
+            File file = new File(pathImageFile);
+            RequestBody reqFileselect = RequestBody.create(MediaType.parse("*/*"), file);
+//            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("photo", file.getName(), reqFileselect);
+
+//            RequestBody reqFileselect = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData(Key, file.getName(), reqFileselect);
+//            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData("photo3", file.getName(), reqFileselect);
+//            showToast(activity, String.valueOf(Imagebody));
+
+            return Imagebody;
+        } else {
+            return null;}
+    }
+    public static MultipartBody.Part prepareFilePart(String partName, Uri images){
+
+        List<MultipartBody.Part> listOfImages = new ArrayList<>();
+
+
+        ArrayList<Object> upFileList;
+        for (int i = 0; i < listOfImages.size(); i++){
+//            listOfImages.add(prepareFilePart("image[$i]", images[i]));
+//            parts.add(prepareFilePart("my_file["+i+"]", (Uri) upFileList.get(i)));
+        }
+
+        File file = new File(partName);
+//
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+            return MultipartBody.Part.createFormData(partName, file.getName(),requestBody);
+        }
 
     public static RequestBody convertToRequestBody(String part) {
         try {

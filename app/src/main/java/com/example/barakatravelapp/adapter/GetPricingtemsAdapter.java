@@ -2,9 +2,11 @@ package com.example.barakatravelapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
+import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.Pricing;
 import com.example.barakatravelapp.view.activity.BaseActivity;
 
@@ -20,12 +23,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+
+import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
 public class GetPricingtemsAdapter extends RecyclerView.Adapter<GetPricingtemsAdapter.ViewHolder> {
 
 
-
+    private final GetTopUmarAndTophajjPackage getHomeDisscoverGetItemsListData;
     private BaseActivity activity;
     private Context context;
     private List<Pricing> getPricingItemsListData = new ArrayList<>();
@@ -33,11 +37,15 @@ public class GetPricingtemsAdapter extends RecyclerView.Adapter<GetPricingtemsAd
     private NavController navController;
     private static boolean show = false;
 
-    public GetPricingtemsAdapter(Context context, Activity activity, List<Pricing> getHomeDisscoverGetHotelsDataItemsListData) {
+    public GetPricingtemsAdapter(Context context, Activity activity, GetTopUmarAndTophajjPackage getHomeDisscoverGetItemsListData, List<Pricing> getHomeDisscoverGetHotelsDataItemsListData, NavController navController) {
         getPricingItemsListData.clear();
         this.activity = (BaseActivity) activity;
         this.context = context;
         this.getPricingItemsListData = getHomeDisscoverGetHotelsDataItemsListData;
+        this.getHomeDisscoverGetItemsListData = getHomeDisscoverGetItemsListData;
+
+        this.navController = navController;
+
 //                showToast(activity, String.valueOf(itemNum));
 //        showToast(activity, String.valueOf(getDisscoverGetHotelsItemsListData.size()));
     }
@@ -62,17 +70,22 @@ public class GetPricingtemsAdapter extends RecyclerView.Adapter<GetPricingtemsAd
         Pricing pricingData = getPricingItemsListData.get(position);
         holder.cardviewHzHajjDetailsPackagesPricingItemNameTv.setText(pricingData.getName());
         holder.cardviewHzHajjDetailsPackagesPricingItemCostTv.setText("$ " + pricingData.getPrice());
-        holder.cardviewHzHajjDetailsPackagesPricingItemNumBerRoomTv.setText(pricingData.getNumberPerRoom()+" People per room");
+        holder.cardviewHzHajjDetailsPackagesPricingItemNumBerRoomTv.setText(pricingData.getNumberPerRoom() + " People per room");
 
     }
 
     private void setAction(ViewHolder holder, int position) {
 
-        holder.view.setOnClickListener(new View.OnClickListener() {
+        holder.cardviewHzHajjDetailsPackagesPricingItemSendInquiryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                showToast(activity, "here");
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Object",  getHomeDisscoverGetItemsListData);
+                bundle.putSerializable("Object2",  getPricingItemsListData.get(position));
+
+                navController.navigate(R.id.action_luxuryUmrahPackageFragment_to_hajjAndUmrahBookingFragment,bundle);
 //                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
-//                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
 //                navigationActivity.setNavigation("g");
 //                FoodMenueFragment foodMenueFragment=new FoodMenueFragment();
 //                foodMenueFragment.restaurantsListData = clientRestaurantsDataList.get(position);
@@ -87,9 +100,7 @@ public class GetPricingtemsAdapter extends RecyclerView.Adapter<GetPricingtemsAd
         return getPricingItemsListData.size();
     }
 
-    @OnClick(R.id.cardview_hz_hajj_details_packages_pricing_item_send_inquiry_btn)
-    public void onViewClicked() {
-    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.cardview_hz_hajj_details_packages_pricing_item_name_tv)
@@ -98,6 +109,8 @@ public class GetPricingtemsAdapter extends RecyclerView.Adapter<GetPricingtemsAd
         TextView cardviewHzHajjDetailsPackagesPricingItemCostTv;
         @BindView(R.id.cardview_hz_hajj_details_packages_pricing_item_num_ber_room_tv)
         TextView cardviewHzHajjDetailsPackagesPricingItemNumBerRoomTv;
+        @BindView(R.id.cardview_hz_hajj_details_packages_pricing_item_send_inquiry_btn)
+        Button cardviewHzHajjDetailsPackagesPricingItemSendInquiryBtn;
         private View view;
 
         public ViewHolder(View itemView) {

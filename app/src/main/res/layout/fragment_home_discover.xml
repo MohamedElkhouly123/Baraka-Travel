@@ -50,7 +50,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_3sdp"
         >
 
         <com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -79,6 +79,7 @@
             android:id="@+id/discover_fragment_sr_refresh_discove_items"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
 
             >
 

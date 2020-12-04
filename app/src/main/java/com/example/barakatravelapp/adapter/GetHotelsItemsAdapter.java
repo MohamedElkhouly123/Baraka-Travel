@@ -2,6 +2,7 @@ package com.example.barakatravelapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.getHotelsResponce.GetRoom;
 import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.view.activity.BaseActivity;
+import com.example.barakatravelapp.view.activity.HomeCycleActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
 public class GetHotelsItemsAdapter extends RecyclerView.Adapter<GetHotelsItemsAdapter.ViewHolder> {
 
@@ -37,10 +38,11 @@ public class GetHotelsItemsAdapter extends RecyclerView.Adapter<GetHotelsItemsAd
     private NavController navController;
     private static boolean show =false;
 
-    public GetHotelsItemsAdapter(Activity activity, Context context, List<HotelData> hotelDataList) {
+    public GetHotelsItemsAdapter(Activity activity, Context context, NavController navController, List<HotelData> hotelDataList) {
         hotelDataList.clear();
         this.activity = (BaseActivity) activity;
         this.context = context;
+        this.navController = navController;
         this.hotelDataList = hotelDataList;    }
 
     @Override
@@ -87,7 +89,12 @@ public class GetHotelsItemsAdapter extends RecyclerView.Adapter<GetHotelsItemsAd
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
+                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
+                navigationActivity.setNavigation("g");
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Object",  hotelDataList.get(position));
+                bundle.putString("DiscoverOrHotel", "hotel");
+                navController.navigate(R.id.action_navigation_hotels_to_hottelViewFragment,bundle);
 //                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
 //                navigationActivity.setNavigation("g");
 //                FoodMenueFragment foodMenueFragment=new FoodMenueFragment();

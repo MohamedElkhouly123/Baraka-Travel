@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_discover_to_luxuryUmrahPackageFragment"
             app:destination="@id/luxuryUmrahPackageFragment" />
+        <action
+            android:id="@+id/action_navigation_discover_to_hottelViewFragment"
+            app:destination="@id/hottelViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_hajj"
@@ -25,6 +28,9 @@
         <action
             android:id="@+id/action_navigation_hajj_to_navigation_umrah"
             app:destination="@id/navigation_umrah" />
+        <action
+            android:id="@+id/action_navigation_hajj_to_luxuryUmrahPackageFragment"
+            app:destination="@id/luxuryUmrahPackageFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_umrah"
@@ -34,6 +40,9 @@
         <action
             android:id="@+id/action_navigation_umrah_to_navigation_hajj"
             app:destination="@id/navigation_hajj" />
+        <action
+            android:id="@+id/action_navigation_umrah_to_luxuryUmrahPackageFragment"
+            app:destination="@id/luxuryUmrahPackageFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_flight"
@@ -55,6 +64,9 @@
         <action
             android:id="@+id/action_navigation_hotels_to_navigation_discover"
             app:destination="@id/navigation_discover" />
+        <action
+            android:id="@+id/action_navigation_hotels_to_hottelViewFragment"
+            app:destination="@id/hottelViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_account"
@@ -95,9 +107,6 @@
             android:id="@+id/action_confirmWithTheSupportFragment_to_flightDetailsFragment"
             app:destination="@id/flightDetailsFragment" />
         <action
-            android:id="@+id/action_confirmWithTheSupportFragment_to_hottelViewFragment"
-            app:destination="@id/hottelViewFragment" />
-        <action
             android:id="@+id/action_confirmWithTheSupportFragment_to_navigation_discover"
             app:destination="@id/navigation_discover" />
     </fragment>
@@ -110,32 +119,14 @@
             android:id="@+id/action_luxuryUmrahPackageFragment_to_navigation_discover"
             app:destination="@id/navigation_discover" />
         <action
-            android:id="@+id/action_luxuryUmrahPackageFragment_to_confirmBookingFragment"
-            app:destination="@id/confirmBookingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/confirmBookingFragment"
-        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.discover.ConfirmBookingFragment"
-        android:label="fragment_confirm_booking"
-        tools:layout="@layout/fragment_confirm_booking" >
+            android:id="@+id/action_luxuryUmrahPackageFragment_to_hajjAndUmrahBookingFragment"
+            app:destination="@id/hajjAndUmrahBookingFragment" />
         <action
-            android:id="@+id/action_confirmBookingFragment_to_luxuryUmrahPackageFragment"
-            app:destination="@id/luxuryUmrahPackageFragment" />
+            android:id="@+id/action_luxuryUmrahPackageFragment_to_navigation_umrah"
+            app:destination="@id/navigation_umrah" />
         <action
-            android:id="@+id/action_confirmBookingFragment_to_selectPaymentMethodFragment"
-            app:destination="@id/selectPaymentMethodFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/selectPaymentMethodFragment"
-        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.discover.SelectPaymentMethodFragment"
-        android:label="fragment_select_payment_method"
-        tools:layout="@layout/fragment_select_payment_method" >
-        <action
-            android:id="@+id/action_selectPaymentMethodFragment_to_confirmBookingFragment"
-            app:destination="@id/confirmBookingFragment" />
-        <action
-            android:id="@+id/action_selectPaymentMethodFragment_to_successfulPaymentFragment"
-            app:destination="@id/successfulPaymentFragment" />
+            android:id="@+id/action_luxuryUmrahPackageFragment_to_navigation_hajj"
+            app:destination="@id/navigation_hajj" />
     </fragment>
     <fragment
         android:id="@+id/successfulPaymentFragment"
@@ -143,14 +134,14 @@
         android:label="fragment_successful_payment"
         tools:layout="@layout/fragment_successful_payment" >
         <action
-            android:id="@+id/action_successfulPaymentFragment_to_selectPaymentMethodFragment"
-            app:destination="@id/selectPaymentMethodFragment" />
-        <action
             android:id="@+id/action_successfulPaymentFragment_to_navigation_discover"
             app:destination="@id/navigation_discover" />
         <action
-            android:id="@+id/action_successfulPaymentFragment_to_hottelViewFragment"
-            app:destination="@id/hottelViewFragment" />
+            android:id="@+id/action_successfulPaymentFragment_to_hajjAndUmrahBookingFragment"
+            app:destination="@id/hajjAndUmrahBookingFragment" />
+        <action
+            android:id="@+id/action_successfulPaymentFragment_to_navigation_account"
+            app:destination="@id/navigation_account" />
     </fragment>
     <fragment
         android:id="@+id/hottelViewFragment"
@@ -158,11 +149,14 @@
         android:label="fragment_home_hottel_view"
         tools:layout="@layout/fragment_home_hottel_view" >
         <action
-            android:id="@+id/action_hottelViewFragment_to_successfulPaymentFragment"
-            app:destination="@id/successfulPaymentFragment" />
-        <action
             android:id="@+id/action_hottelViewFragment_to_confirmWithTheSupportFragment"
             app:destination="@id/confirmWithTheSupportFragment" />
+        <action
+            android:id="@+id/action_hottelViewFragment_to_navigation_discover"
+            app:destination="@id/navigation_discover" />
+        <action
+            android:id="@+id/action_hottelViewFragment_to_navigation_hotels"
+            app:destination="@id/navigation_hotels" />
     </fragment>
     <fragment
         android:id="@+id/changeDetailsFragment"
@@ -214,6 +208,18 @@
         <action
             android:id="@+id/action_paymentsFragment_to_changeDetailsFragment"
             app:destination="@id/changeDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hajjAndUmrahBookingFragment"
+        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.discover.HajjAndUmrahBookingFragment"
+        android:label="fragment_hajj_and_umrah_booking"
+        tools:layout="@layout/fragment_hajj_and_umrah_booking" >
+        <action
+            android:id="@+id/action_hajjAndUmrahBookingFragment_to_luxuryUmrahPackageFragment"
+            app:destination="@id/luxuryUmrahPackageFragment" />
+        <action
+            android:id="@+id/action_hajjAndUmrahBookingFragment_to_successfulPaymentFragment"
+            app:destination="@id/successfulPaymentFragment" />
     </fragment>
 
 

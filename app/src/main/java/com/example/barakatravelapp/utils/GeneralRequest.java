@@ -15,7 +15,7 @@ import static com.example.barakatravelapp.utils.ToastCreator.onCreateErrorToast;
 
 public class GeneralRequest {
 
-    public static void sentUserRateCallBack(final Activity activity,final Call<GetDiscoverHomeResponce> method) {
+    public static void sentUserRateAndBookHotelCallBack(final Activity activity, final Call<GetDiscoverHomeResponce> method, String success) {
         if (progressDialog == null) {
             HelperMethod.showProgressDialog(activity, activity.getString(R.string.wait));
         } else {
@@ -34,7 +34,7 @@ public class GeneralRequest {
 
                         if (response.body().getStatus().equals("success")) {
 
-                            ToastCreator.onCreateSuccessToast(activity, response.body().getMessage());
+                            ToastCreator.onCreateSuccessToast(activity,success);
                         } else {
                             onCreateErrorToast(activity, response.body().getMessage());
                         }

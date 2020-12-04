@@ -1,7 +1,6 @@
 package com.example.barakatravelapp.view.fragment.HomeCycle2.discover;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -149,7 +148,7 @@ public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallb
         if(getHomeDisscoverGetUmrahDataItemsListData.size()!=0 || getHomeDisscoverGetHajjDataItemsListData.size()!=0 || getHomeDisscoverGetHotelsDataItemsListData.size()!=0) {
             rowListItem = getAllItemList();
         }
-        subHomeDiscoverVrRvAdapter = new SubHomeDiscoverVrRvAdapter(getContext(), getActivity(),this ,rowListItem,getHomeDisscoverGetHajjDataItemsListData,getHomeDisscoverGetUmrahDataItemsListData,getHomeDisscoverGetHotelsDataItemsListData);
+        subHomeDiscoverVrRvAdapter = new SubHomeDiscoverVrRvAdapter(getContext(), getActivity(),navController,this ,rowListItem,getHomeDisscoverGetHajjDataItemsListData,getHomeDisscoverGetUmrahDataItemsListData,getHomeDisscoverGetHotelsDataItemsListData);
         homeDiscoverFragmentRecyclerView.setAdapter(subHomeDiscoverVrRvAdapter);
 
 
@@ -189,7 +188,7 @@ public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallb
         getHomeDisscoverGetHajjDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
         getHomeDisscoverGetUmrahDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
         getHomeDisscoverGetHotelsDataItemsListData = new ArrayList<HotelData>();
-        subHomeDiscoverVrRvAdapter = new SubHomeDiscoverVrRvAdapter(getContext(), getActivity(),this, rowListItem,getHomeDisscoverGetHajjDataItemsListData,getHomeDisscoverGetUmrahDataItemsListData,getHomeDisscoverGetHotelsDataItemsListData);
+        subHomeDiscoverVrRvAdapter = new SubHomeDiscoverVrRvAdapter(getContext(), getActivity(), navController, this, rowListItem,getHomeDisscoverGetHajjDataItemsListData,getHomeDisscoverGetUmrahDataItemsListData,getHomeDisscoverGetHotelsDataItemsListData);
         homeDiscoverFragmentRecyclerView.setAdapter(subHomeDiscoverVrRvAdapter);
 
 
@@ -226,12 +225,12 @@ public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallb
     @Override
     public void onMethodCallback(GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackageData) {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new LuxuryUmrahPackageFragment());
-        homeCycleActivity.setNavigation("g");
 //        LuxuryUmrahPackageFragment luxuryUmrahPackageFragment = new LuxuryUmrahPackageFragment();
 //        luxuryUmrahPackageFragment.getTopUmarAndTophajjPackage=getTopUmarAndTophajjPackageData;
+        homeCycleActivity.setNavigation("g");
         Bundle bundle = new Bundle();
+        bundle.putString("DiscoverOrHajjOrUmrah", "discover");
         bundle.putSerializable("Object",  getTopUmarAndTophajjPackageData);
-
         navController.navigate(R.id.action_navigation_discover_to_luxuryUmrahPackageFragment,bundle);
 
     }

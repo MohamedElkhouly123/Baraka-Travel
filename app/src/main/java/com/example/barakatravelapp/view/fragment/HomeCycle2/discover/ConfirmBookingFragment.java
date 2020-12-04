@@ -39,14 +39,14 @@ public class ConfirmBookingFragment extends BaSeFragment {
     @Override
     public void onBack() {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment,new LuxuryUmrahPackageFragment());
-        navController.navigate(R.id.action_confirmBookingFragment_to_luxuryUmrahPackageFragment);
+//        navController.navigate(R.id.action_confirmBookingFragment_to_luxuryUmrahPackageFragment);
     }
 
     @OnClick(R.id.fragment_confirm_booking_confirm_pay_btn)
     public void onViewClicked() {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment,new SelectPaymentMethodFragment());
         try {
-            navController.navigate(R.id.action_confirmBookingFragment_to_selectPaymentMethodFragment);
+//            navController.navigate(R.id.action_confirmBookingFragment_to_selectPaymentMethodFragment);
         }
         catch(Exception e) {
             //  Block of code to handle errors

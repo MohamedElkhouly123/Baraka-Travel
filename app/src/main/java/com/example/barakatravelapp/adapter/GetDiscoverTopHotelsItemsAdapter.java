@@ -2,6 +2,7 @@ package com.example.barakatravelapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.view.activity.BaseActivity;
+import com.example.barakatravelapp.view.activity.HomeCycleActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
 public class GetDiscoverTopHotelsItemsAdapter extends RecyclerView.Adapter<GetDiscoverTopHotelsItemsAdapter.ViewHolder> {
 
@@ -36,10 +38,11 @@ public class GetDiscoverTopHotelsItemsAdapter extends RecyclerView.Adapter<GetDi
     private NavController navController;
     private static boolean show =false;
 
-    public GetDiscoverTopHotelsItemsAdapter(Context context, Activity activity, List<HotelData> getHomeDisscoverGetHotelsDataItemsListData, int itemNum) {
+    public GetDiscoverTopHotelsItemsAdapter(Context context, Activity activity, NavController navController, List<HotelData> getHomeDisscoverGetHotelsDataItemsListData, int itemNum) {
         getDisscoverGetHotelsItemsListData.clear();
         this.activity = (BaseActivity) activity;
         this.context = context;
+        this.navController = navController;
         this.getDisscoverGetHotelsItemsListData = getHomeDisscoverGetHotelsDataItemsListData;
         this.itemNum = itemNum;
 //                showToast(activity, String.valueOf(itemNum));
@@ -102,13 +105,12 @@ public class GetDiscoverTopHotelsItemsAdapter extends RecyclerView.Adapter<GetDi
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
-//                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
-//                navigationActivity.setNavigation("g");
-//                FoodMenueFragment foodMenueFragment=new FoodMenueFragment();
-//                foodMenueFragment.restaurantsListData = clientRestaurantsDataList.get(position);
-//                HelperMethod.replaceFragment(navigationActivity.getSupportFragmentManager(), R.id.home_activity_fram, new RestaurantCategoryTabsFragment());
-
+                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
+                navigationActivity.setNavigation("g");
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Object",  getDisscoverGetHotelsItemsListData.get(position));
+                bundle.putString("DiscoverOrHotel", "discover");
+                navController.navigate(R.id.action_navigation_discover_to_hottelViewFragment,bundle);
             }
         });
     }

@@ -4,7 +4,9 @@ package com.example.barakatravelapp.data.model.getHotelsResponce;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GetRoom {
+import java.io.Serializable;
+
+public class GetRoom implements Serializable {
 
     @SerializedName("id")
     @Expose

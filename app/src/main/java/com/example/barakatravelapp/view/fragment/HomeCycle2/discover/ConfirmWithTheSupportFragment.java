@@ -75,7 +75,7 @@ public class ConfirmWithTheSupportFragment extends BaSeFragment {
 //            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new HottelViewFragment());
             Bundle bundle = new Bundle();
             bundle.putString("ISSUCCESSFUL", "successfullPayment");
-            navController.navigate(R.id.action_confirmWithTheSupportFragment_to_hottelViewFragment,bundle);
+//            navController.navigate(R.id.action_confirmWithTheSupportFragment_to_hottelViewFragment,bundle);
 
         }else {
 
@@ -98,7 +98,7 @@ public class ConfirmWithTheSupportFragment extends BaSeFragment {
                     bundle.putString("ISSUCCESSFUL", "flight");
 
                 }
-                navController.navigate(R.id.action_confirmWithTheSupportFragment_to_hottelViewFragment,bundle);
+//                navController.navigate(R.id.action_confirmWithTheSupportFragment_to_hottelViewFragment,bundle);
 
                 break;
             case R.id.fragment_confirm_with_the_support_return_home:

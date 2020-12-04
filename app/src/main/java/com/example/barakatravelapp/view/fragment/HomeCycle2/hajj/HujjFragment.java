@@ -20,12 +20,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.adapter.GetHajjAndUmrahItemsAdapter;
-import com.example.barakatravelapp.adapter.GetHotelsItemsAdapter;
-import com.example.barakatravelapp.data.model.getHotelsResponce.GetHotelsResponce;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetUmrahAndHujjResponce;
 import com.example.barakatravelapp.data.model.userLoginResponce.UserData;
+import com.example.barakatravelapp.utils.DialogAdapterCallback;
 import com.example.barakatravelapp.utils.OnEndLess;
+import com.example.barakatravelapp.view.activity.HomeCycleActivity;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
 import com.example.barakatravelapp.view.viewModel.ViewModelGetLists;
 import com.google.android.material.textfield.TextInputLayout;
@@ -43,7 +43,7 @@ import static com.example.barakatravelapp.utils.ToastCreator.onCreateErrorToast;
 import static com.example.barakatravelapp.utils.validation.Validation.validationLength;
 
 
-public class HujjFragment extends BaSeFragment {
+public class HujjFragment extends BaSeFragment implements DialogAdapterCallback {
     @BindView(R.id.top_part_in_nav_genral_part_search_til)
     TextInputLayout topPartInNavGenralPartSearchTil;
     @BindView(R.id.top_part_in_nav_genral_part_hajj_and_umrah_toggle_btn)
@@ -71,6 +71,7 @@ public class HujjFragment extends BaSeFragment {
     private UserData clientData;
     //    private int citiesSelectedId = 0;
     private String keyword;
+    private String hajjOrUmrah = "hajj";
 
     public HujjFragment() {
         // Required empty public constructor
@@ -161,7 +162,7 @@ public class HujjFragment extends BaSeFragment {
         };
         fragmentHomeHujjRecyclerView.addOnScrollListener(onEndLess);
 
-        getHajjAndUmrahItemsAdapter = new GetHajjAndUmrahItemsAdapter(getActivity(), getContext(), getTopUmarAndTophajjPackagesData);
+        getHajjAndUmrahItemsAdapter = new GetHajjAndUmrahItemsAdapter(getActivity(), getContext(), hajjOrUmrah, this, getTopUmarAndTophajjPackagesData);
         fragmentHomeHujjRecyclerView.setAdapter(getHajjAndUmrahItemsAdapter);
 //            showToast(getActivity(), "success adapter");
 
@@ -230,7 +231,7 @@ public class HujjFragment extends BaSeFragment {
         onEndLess.current_page = 1;
         onEndLess.previous_page = 1;
         getTopUmarAndTophajjPackagesData = new ArrayList<>();
-        getHajjAndUmrahItemsAdapter = new GetHajjAndUmrahItemsAdapter(getActivity(), getContext(), getTopUmarAndTophajjPackagesData);
+        getHajjAndUmrahItemsAdapter = new GetHajjAndUmrahItemsAdapter(getActivity(), getContext(), hajjOrUmrah, this, getTopUmarAndTophajjPackagesData);
         fragmentHomeHujjRecyclerView.setAdapter(getHajjAndUmrahItemsAdapter);
 
     }
@@ -287,5 +288,15 @@ public class HujjFragment extends BaSeFragment {
                 navController.navigate(R.id.action_navigation_hajj_to_navigation_umrah);
                 break;
         }
+    }
+
+    @Override
+    public void onMethodCallback(GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackage) {
+        homeCycleActivity.setNavigation("g");
+        Bundle bundle = new Bundle();
+        bundle.putString("DiscoverOrHajjOrUmrah", hajjOrUmrah);
+        bundle.putSerializable("Object",  getTopUmarAndTophajjPackage);
+        navController.navigate(R.id.action_navigation_hajj_to_luxuryUmrahPackageFragment,bundle);
+
     }
 }

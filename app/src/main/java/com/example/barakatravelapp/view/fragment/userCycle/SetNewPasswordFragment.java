@@ -26,8 +26,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
-import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
+import static com.example.barakatravelapp.utils.HelperMethod.replaceFragmentWithAnimation;
 import static com.example.barakatravelapp.utils.validation.Validation.cleanError;
 import static com.example.barakatravelapp.utils.validation.Validation.validationEmail;
 import static com.example.barakatravelapp.utils.validation.Validation.validationTextInputLayoutListEmpty;
@@ -58,12 +57,12 @@ public class SetNewPasswordFragment extends BaSeFragment {
     @SuppressLint("FragmentLiveDataObserve")
     private void initListener() {
         viewModelUser = ViewModelProviders.of(this).get(ViewModelUser.class);
-        viewModelUser.makeResetAndNewPasswordResponseAndSignUp().observe(this, new Observer<UserLoginGeneralResponce>() {
+        viewModelUser.makeResetAndNewPasswordResponseAndSignUpAndBooking().observe(this, new Observer<UserLoginGeneralResponce>() {
             @Override
             public void onChanged(@Nullable UserLoginGeneralResponce response) {
                 if(response!=null) {
                     if (response.getStatus().equals("success")) {
-                        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
+                        replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment(),"b");
 //                        showToast(getActivity(), "success");
 
                     }
@@ -73,7 +72,7 @@ public class SetNewPasswordFragment extends BaSeFragment {
     }
     @Override
     public void onBack() {
-        replaceFragment(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment());
+        replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), R.id.user_activity_fram, new LoginFragment(),"b");
     }
 
     @OnClick(R.id.fragment_set_new_password_btn_reset_pass)
@@ -107,7 +106,7 @@ public class SetNewPasswordFragment extends BaSeFragment {
 
             resetPasswordCall = getApiClient().userResetPassword(email);
 
-        viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUp(getActivity(),resetPasswordCall,true);
+        viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUpAndBooking(getActivity(),resetPasswordCall,true);
 
 
     }

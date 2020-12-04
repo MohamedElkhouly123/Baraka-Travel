@@ -45,7 +45,8 @@ public class SplashCycleActivity extends BaseActivity {
 
     }
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

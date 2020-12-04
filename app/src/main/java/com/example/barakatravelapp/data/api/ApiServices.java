@@ -7,9 +7,14 @@ import com.example.barakatravelapp.data.model.getHotelsResponce.GetHotelsResponc
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetUmrahAndHujjResponce;
 import com.example.barakatravelapp.data.model.userLoginResponce.UserLoginGeneralResponce;
 
+import java.util.List;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 
@@ -31,6 +36,36 @@ public interface ApiServices {
     @POST("forgetPassword")
     @FormUrlEncoded
     Call<UserLoginGeneralResponce> userResetPassword(@Field("email") String email);
+
+
+//    @POST("updateProfile")
+//    @FormUrlEncoded
+//    Call<UserLoginGeneralResponce> userChangeProfileDetails(
+//            @Field("userId") String userId,
+//            @Field("email") String email,
+//            @Field("first_name") String first_name,
+//            @Field("last_name") String last_name,
+//            @Field("mobile") String mobile,
+//            @Field("password") String password,
+//            @Field("image") String image
+//
+//    );
+
+    @Multipart
+    @POST("updateProfile")
+    Call<UserLoginGeneralResponce> userChangeProfileDetails(
+            @Part("userId") RequestBody userId,
+            @Part("email") RequestBody email,
+            @Part("first_name") RequestBody first_name,
+            @Part("last_name") RequestBody last_name,
+            @Part("mobile") RequestBody mobile,
+            @Part("password") RequestBody password,
+            @Part() MultipartBody.Part profileImage
+    );
+
+//    @Multipart
+//    @POST("person/img")
+//    Call<ResponseBody> upImageMany(@Part List<MultipartBody.Part> file);
 
     @POST("getHotels")
     @FormUrlEncoded
@@ -94,6 +129,41 @@ public interface ApiServices {
                                                  @Field("message") String message,
                                                  @Field("rate") int rate,
                                                  @Field("hotel_id") int hotel_id
+    );
+
+    @POST("bookHotel")
+    @FormUrlEncoded
+    Call<GetDiscoverHomeResponce> bookHotel(@Field("reserveFrom") String reserveFrom,
+                                                @Field("reserveTo") String reserveTo,
+                                                @Field("userId") int userId,
+                                                @Field("hotelId") int hotelId,
+                                                @Field("roomId") int roomId
+    );
+
+    @Multipart
+    @POST("bookPackage")
+    Call<UserLoginGeneralResponce> umrahAndHajjBooking(
+            @Part("userId") RequestBody userId,
+            @Part("pricingId") RequestBody pricingId,
+            @Part("pricing") RequestBody pricing,
+            @Part("address") RequestBody address,
+            @Part("contact_number") RequestBody contact_number,
+            @Part("email") RequestBody email,
+            @Part("travlFrm") RequestBody travlFrm,
+            @Part("prief_travel") RequestBody prief_travel,
+            @Part("travel_alone") RequestBody travel_alone,
+            @Part("payment_type") RequestBody payment_type,
+            @Part("paid") RequestBody paid,
+            @Part("remaining") RequestBody remaining,
+            @Part("first_name") RequestBody first_name,
+            @Part("last_name") RequestBody last_name,
+            @Part("zip_code") RequestBody zip_code,
+            @Part("gender") RequestBody gender,
+            @Part("passport") RequestBody passport,
+//            @Part("check_number") RequestBody check_number,
+            @Part() MultipartBody.Part passport_image,
+            @Part() MultipartBody.Part personal_image
+//            @Part List<MultipartBody.Part> files
     );
 
 }

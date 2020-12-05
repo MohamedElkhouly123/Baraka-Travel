@@ -93,6 +93,15 @@ public class Validation {
         }
     }
 
+    public static boolean validationLengthZero(TextInputLayout text, String errorText, int length) {
+        if (text.getEditText().length() == length) {
+//            text.setError(errorText);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public static boolean validationStringIsCharAndNumber(Activity activity, String text, String errorText) {
 
         if (!text.matches(STRING_PATTERN)) {

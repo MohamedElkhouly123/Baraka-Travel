@@ -40,6 +40,7 @@ import retrofit2.Call;
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
 import static com.example.barakatravelapp.utils.ToastCreator.onCreateErrorToast;
 import static com.example.barakatravelapp.utils.validation.Validation.validationLength;
+import static com.example.barakatravelapp.utils.validation.Validation.validationLengthZero;
 
 
 public class UmrahFragment extends BaSeFragment implements DialogAdapterCallback {
@@ -268,11 +269,11 @@ public class UmrahFragment extends BaSeFragment implements DialogAdapterCallback
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.top_part_in_nav_genral_part_filter_til:
-                if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 1)) {
+                topPartInNavGenralPartSearchTil.setErrorEnabled(false);
+                if (!validationLengthZero(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 0)) {
 //                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
-                    topPartInNavGenralPartSearchTil.setErrorEnabled(false);
                     getHajjAndUmrahHomeList(0);
-//                    return;
+                    return;
                 }
                 if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 3)) {
                     onCreateErrorToast(getActivity(), getString(R.string.invalid_search));

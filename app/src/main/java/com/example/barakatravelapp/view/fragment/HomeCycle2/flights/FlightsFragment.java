@@ -28,6 +28,7 @@ import com.example.barakatravelapp.data.model.userLoginResponce.UserData;
 import com.example.barakatravelapp.utils.OnEndLess;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
 import com.example.barakatravelapp.view.viewModel.ViewModelGetLists;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,9 @@ import butterknife.OnClick;
 import retrofit2.Call;
 
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
+import static com.example.barakatravelapp.utils.ToastCreator.onCreateErrorToast;
+import static com.example.barakatravelapp.utils.validation.Validation.validationLength;
+import static com.example.barakatravelapp.utils.validation.Validation.validationLengthZero;
 
 
 public class FlightsFragment extends BaSeFragment {
@@ -60,6 +64,8 @@ public class FlightsFragment extends BaSeFragment {
     SwipeRefreshLayout fragmentHomeFlightsSrRefresh;
     @BindView(R.id.no_result_error_title)
     TextView noResultErrorTitle;
+    @BindView(R.id.top_part_in_nav_genral_part_search_til)
+    TextInputLayout topPartInNavGenralPartSearchTil;
     private NavController navController;
 
     //    private SpinnerAdapter cityFilterAdapter;
@@ -85,8 +91,9 @@ public class FlightsFragment extends BaSeFragment {
         View root = inflater.inflate(R.layout.fragment_home_flights, container, false);
 
         ButterKnife.bind(this, root);
-        topPartInNavFlightPart.setVisibility(View.VISIBLE);
+//        topPartInNavFlightPart.setVisibility(View.VISIBLE);
         navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
+        topPartInNavGenralPartSearchTil.setVisibility(View.VISIBLE);
         setUpActivity();
         initListener();
 //        clientData = LoadUserData(getActivity());
@@ -107,7 +114,7 @@ public class FlightsFragment extends BaSeFragment {
 //                            maxPage = response.getData().getLastPage();
 //                                showToast(getActivity(), "max="+maxPage);
 
-                            if (response.getFlights() != null ) {
+                            if (response.getFlights() != null) {
                                 getFlightsItemsListData.clear();
                                 getFlightsItemsListData.addAll(response.getFlights());
 //                                showToast(getActivity(), "list="+clientrestaurantsListData.get(1));
@@ -160,11 +167,9 @@ public class FlightsFragment extends BaSeFragment {
         };
         fragmentHomeFlightsRecyclerView.addOnScrollListener(onEndLess);
 
-        getFlightsItemsAdapter = new GetFlightsItemsAdapter(getActivity(), getContext(), getFlightsItemsListData);
+        getFlightsItemsAdapter = new GetFlightsItemsAdapter(getActivity(), getContext(), getFlightsItemsListData, navController);
         fragmentHomeFlightsRecyclerView.setAdapter(getFlightsItemsAdapter);
 //            showToast(getActivity(), "success adapter");
-
-
 
 
         if (getFlightsItemsListData.size() == 0) {
@@ -178,7 +183,7 @@ public class FlightsFragment extends BaSeFragment {
         fragmentHomeFlightsSrRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                 maxPage=0;
+                maxPage = 0;
                 if (Filter) {
                     getFlightsListByFilter(0);
                 } else {
@@ -192,44 +197,45 @@ public class FlightsFragment extends BaSeFragment {
     private void getFlightsListByFilter(int page) {
 
         Filter = true;
-        if(page == 0){ maxPage=0;}
-//        keyword = clientHomeFillterSearchKeyWordEtxt.getText().toString().trim();
-        keyword="jfk";
+        if (page == 0) {
+            maxPage = 0;
+        }
+        keyword = topPartInNavGenralPartSearchTil.getEditText().getText().toString().trim();
+//        keyword = "jfk";
         Call<GetFlightResponce> getFlightResponceCall;
         getFlightResponceCall = getApiClient().getFlightItemListByFilter(keyword, page);
 //        startShimmer(page);
-        viewModel.getFlightsDataList(getActivity(), errorSubView, getFlightResponceCall,fragmentHomeFlightsSrRefresh, loadMore);
+        viewModel.getFlightsDataList(getActivity(), errorSubView, getFlightResponceCall, fragmentHomeFlightsSrRefresh, loadMore);
 
 
     }
 
     private void getFlightsList(int page) {
         Call<GetFlightResponce> getFlightResponceCall;
-        if(page == 0){ maxPage=0;}
+        if (page == 0) {
+            maxPage = 0;
+        }
 
 //        startShimmer(page);
 
-            reInit();
-            getFlightResponceCall = getApiClient().getFlightItemList(page);
+        reInit();
+        getFlightResponceCall = getApiClient().getFlightItemList(page);
 
 //            clientRestaurantsCall = getApiClient().getRestaurantsWithoutFiltter(page);
-            viewModel.getFlightsDataList(getActivity(), errorSubView, getFlightResponceCall,fragmentHomeFlightsSrRefresh, loadMore);
+        viewModel.getFlightsDataList(getActivity(), errorSubView, getFlightResponceCall, fragmentHomeFlightsSrRefresh, loadMore);
 //            showToast(getActivity(), "success without fillter");
 
 
-
-        }
-
-
+    }
 
 
     private void reInit() {
         onEndLess.previousTotal = 0;
         onEndLess.current_page = 0;
         onEndLess.previous_page = 0;
-            getFlightsItemsListData = new ArrayList<>();
-            getFlightsItemsAdapter = new GetFlightsItemsAdapter(getActivity(), getContext(), getFlightsItemsListData);
-            fragmentHomeFlightsRecyclerView.setAdapter(getFlightsItemsAdapter);
+        getFlightsItemsListData = new ArrayList<>();
+        getFlightsItemsAdapter = new GetFlightsItemsAdapter(getActivity(), getContext(), getFlightsItemsListData, navController);
+        fragmentHomeFlightsRecyclerView.setAdapter(getFlightsItemsAdapter);
 
     }
 
@@ -260,9 +266,21 @@ public class FlightsFragment extends BaSeFragment {
     }
 
 
-
     @OnClick(R.id.top_part_in_nav_genral_part_filter_til)
     public void onViewClicked() {
+        topPartInNavGenralPartSearchTil.setErrorEnabled(false);
+        if (!validationLengthZero(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 0)) {
+//                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
+            getFlightsList(0);
+                    return;
+        }
+        if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 3)) {
+            onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
+
+            return;
+        }else {
+            getFlightsListByFilter(0);
+        }
 
     }
 }

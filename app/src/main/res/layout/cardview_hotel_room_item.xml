@@ -27,7 +27,7 @@
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="8dp"
         android:layout_width="@dimen/_175sdp"
-        android:layout_height="@dimen/_140sdp"
+        android:layout_height="@dimen/_130sdp"
         android:foreground="?selectableItemBackground"
 
         >
@@ -68,7 +68,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_9sdp"
                 >
             <TextView
                 android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 >
                 <TextView
                     android:id="@+id/cardview_hotel_room_item_max_num_ber_room_tv_cost_tv"
@@ -109,12 +109,14 @@
                     android:textSize="@dimen/_10ssp" />
 
             </LinearLayout>
-            <Button
+            <TextView
                 android:id="@+id/cardview_hz_hajj_details_packages_pricing_item_send_inquiry_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:textSize="@dimen/_9ssp"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="@drawable/yeloo_btn"

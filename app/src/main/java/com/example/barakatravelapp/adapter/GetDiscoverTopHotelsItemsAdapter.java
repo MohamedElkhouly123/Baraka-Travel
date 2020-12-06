@@ -105,12 +105,12 @@ public class GetDiscoverTopHotelsItemsAdapter extends RecyclerView.Adapter<GetDi
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
-                navigationActivity.setNavigation("g");
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("Object",  getDisscoverGetHotelsItemsListData.get(position));
                 bundle.putString("DiscoverOrHotel", "discover");
                 navController.navigate(R.id.action_navigation_discover_to_hottelViewFragment,bundle);
+                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
+                navigationActivity.setNavigation("g");
             }
         });
     }

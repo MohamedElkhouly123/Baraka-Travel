@@ -208,7 +208,7 @@ public class LuxuryUmrahPackageFragment extends BaSeFragment implements PhotoGal
         }
 
         if (itemNum == 3) {
-            getPricingtemsAdapter = new GetPricingtemsAdapter(getContext(), getActivity(),getHomeDisscoverGetItemsListData, getHomeDisscoverGetItemsListData.getPricing(),navController);
+            getPricingtemsAdapter = new GetPricingtemsAdapter(getContext(), getActivity(),isDiscoverOrHajjOrUmarah,getHomeDisscoverGetItemsListData, getHomeDisscoverGetItemsListData.getPricing(),navController);
             fragmentLuxuryUmrahPackageGeneralRvItemHzRv.setAdapter(getPricingtemsAdapter);
         }
     }

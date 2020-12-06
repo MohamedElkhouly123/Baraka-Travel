@@ -28,6 +28,9 @@ public class GeneralResposeData {
         this.name = name;
     }
 
+    public GeneralResposeData(int id, int i) {
+    }
+
     public Integer getId() {
         return id;
     }

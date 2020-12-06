@@ -270,6 +270,7 @@ public class HujjFragment extends BaSeFragment implements DialogAdapterCallback 
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.top_part_in_nav_genral_part_filter_til:
+                getTopUmarAndTophajjPackagesData.clear();
                 topPartInNavGenralPartSearchTil.setErrorEnabled(false);
                 if (!validationLengthZero(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 0)) {
 //                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
@@ -292,11 +293,11 @@ public class HujjFragment extends BaSeFragment implements DialogAdapterCallback 
 
     @Override
     public void onMethodCallback(GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackage) {
-        homeCycleActivity.setNavigation("g");
         Bundle bundle = new Bundle();
         bundle.putString("DiscoverOrHajjOrUmrah", hajjOrUmrah);
         bundle.putSerializable("Object",  getTopUmarAndTophajjPackage);
         navController.navigate(R.id.action_navigation_hajj_to_luxuryUmrahPackageFragment,bundle);
+        homeCycleActivity.setNavigation("g");
 
     }
 }

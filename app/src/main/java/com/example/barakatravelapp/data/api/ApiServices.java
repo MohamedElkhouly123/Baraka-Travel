@@ -140,6 +140,14 @@ public interface ApiServices {
                                                 @Field("roomId") int roomId
     );
 
+    @POST("bookFlight")
+    @FormUrlEncoded
+    Call<GetDiscoverHomeResponce> bookFlight(@Field("flightId") int flightId,
+                                            @Field("numForAdult") int numForAdult,
+                                            @Field("numForChild") int numForChild,
+                                            @Field("userId") int userId
+    );
+
     @Multipart
     @POST("bookPackage")
     Call<UserLoginGeneralResponce> umrahAndHajjBooking(

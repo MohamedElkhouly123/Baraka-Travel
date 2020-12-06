@@ -113,10 +113,9 @@ public class WriteRateDialog {
         int packageId = idPackage;
         Call<GetDiscoverHomeResponce> updateItemCal= null;
         if (hotelOrPackage.equalsIgnoreCase("hotel")) {
-            updateItemCal = getApiClient().sendHujjAndUmrahRate(userId, name, phone, message, rate, packageId);
-        }else {
             updateItemCal = getApiClient().sendHotelRate(userId, name, phone, message, rate, idHotel);
-
+        }else {
+            updateItemCal = getApiClient().sendHujjAndUmrahRate(userId, name, phone, message, rate, packageId);
         }
         sentUserRateAndBookHotelCallBack(activity,updateItemCal, "Success rate send");
         dialog.cancel();

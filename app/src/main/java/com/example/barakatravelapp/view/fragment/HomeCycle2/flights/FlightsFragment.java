@@ -268,6 +268,7 @@ public class FlightsFragment extends BaSeFragment {
 
     @OnClick(R.id.top_part_in_nav_genral_part_filter_til)
     public void onViewClicked() {
+        getFlightsItemsListData.clear();
         topPartInNavGenralPartSearchTil.setErrorEnabled(false);
         if (!validationLengthZero(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 0)) {
 //                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));

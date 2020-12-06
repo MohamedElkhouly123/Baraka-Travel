@@ -11,6 +11,9 @@ import com.example.barakatravelapp.view.fragment.splashCycle.SplashFragment;
 
 import butterknife.BindView;
 
+import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadBoolean;
+import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadUserData;
+import static com.example.barakatravelapp.data.local.SharedPreferencesManger.REMEMBER_ME;
 import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 import static com.example.barakatravelapp.utils.HelperMethod.replaceFragmentWithAnimation;
 
@@ -30,15 +33,17 @@ public class SplashCycleActivity extends BaseActivity {
         Handler handler = new Handler();
         Runnable r = new Runnable() {
             public void run() {
-//                if (LoadUserData(SplashCycleActivity.this) != null && LoadBoolean(SplashCycleActivity.this, REMEMBER_ME)) {
-//                    startActivity(new Intent(SplashCycleActivity.this, HomeCycleActivity.class));
-//                    finish();
-//                }else {
+                if (LoadUserData(SplashCycleActivity.this) != null && LoadBoolean(SplashCycleActivity.this, REMEMBER_ME)) {
+                    startActivity(new Intent(SplashCycleActivity.this, HomeCycleActivity.class));
+                    finish();
+                }else {
 //                            replaceFragment(getActivity().getSupportFragmentManager(), R.id.splash_activity_fram, new AboutAppAndIntroFragment());
 //                }
 //                replaceFragmentWithAnimation(getSupportFragmentManager(), R.id.splash_activity_fram, new AboutAppAndIntroFragment(), "b");
-                startActivity(new Intent(SplashCycleActivity.this, AboutAppActivity.class));
-//                    finish();
+                    startActivity(new Intent(SplashCycleActivity.this, AboutAppActivity.class));
+
+                    finish();
+                }
             }
         };
         handler.postDelayed(r, 3000);

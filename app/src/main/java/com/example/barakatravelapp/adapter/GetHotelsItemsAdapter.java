@@ -89,12 +89,13 @@ public class GetHotelsItemsAdapter extends RecyclerView.Adapter<GetHotelsItemsAd
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
-                navigationActivity.setNavigation("g");
+
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("Object",  hotelDataList.get(position));
                 bundle.putString("DiscoverOrHotel", "hotel");
                 navController.navigate(R.id.action_navigation_hotels_to_hottelViewFragment,bundle);
+                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
+                navigationActivity.setNavigation("g");
 //                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
 //                navigationActivity.setNavigation("g");
 //                FoodMenueFragment foodMenueFragment=new FoodMenueFragment();

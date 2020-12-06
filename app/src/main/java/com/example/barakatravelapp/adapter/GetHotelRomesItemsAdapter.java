@@ -106,7 +106,7 @@ public class GetHotelRomesItemsAdapter extends RecyclerView.Adapter<GetHotelRome
         @BindView(R.id.cardview_hotel_room_item_max_num_ber_room_tv_cost_tv)
         TextView cardviewHotelRoomItemMaxNumBerRoomTvCostTv;
         @BindView(R.id.cardview_hz_hajj_details_packages_pricing_item_send_inquiry_btn)
-        Button cardviewHzHajjDetailsPackagesPricingItemSendInquiryBtn;
+        TextView cardviewHzHajjDetailsPackagesPricingItemSendInquiryBtn;
         private View view;
 
         public ViewHolder(View itemView) {

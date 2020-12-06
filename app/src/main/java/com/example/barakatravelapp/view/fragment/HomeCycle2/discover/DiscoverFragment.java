@@ -227,11 +227,11 @@ public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallb
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new LuxuryUmrahPackageFragment());
 //        LuxuryUmrahPackageFragment luxuryUmrahPackageFragment = new LuxuryUmrahPackageFragment();
 //        luxuryUmrahPackageFragment.getTopUmarAndTophajjPackage=getTopUmarAndTophajjPackageData;
-        homeCycleActivity.setNavigation("g");
         Bundle bundle = new Bundle();
         bundle.putString("DiscoverOrHajjOrUmrah", "discover");
         bundle.putSerializable("Object",  getTopUmarAndTophajjPackageData);
         navController.navigate(R.id.action_navigation_discover_to_luxuryUmrahPackageFragment,bundle);
+        homeCycleActivity.setNavigation("g");
 
     }
 }

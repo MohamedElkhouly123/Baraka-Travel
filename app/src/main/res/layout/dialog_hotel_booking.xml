@@ -92,7 +92,7 @@
                     android:elevation="3dp"
                     android:textSize="@dimen/_12sdp"
                     android:textColor="@color/black"
-                    android:text="in hotel  "
+                    android:text="in hotel "
                     />
                 <TextView
                     android:id="@+id/dialog_hotel_booking_hotel_name_tv"
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:elevation="3dp"
                     android:gravity="center"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_11sdp"
                     android:textColor="@color/black"
                     android:text="Elaf Kinda Hotel"
                     />

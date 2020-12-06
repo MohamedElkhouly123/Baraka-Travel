@@ -252,7 +252,7 @@ public class ChangeDetailsFragment extends BaSeFragment {
         RequestBody phone = convertToRequestBody(fragmentChangeDetailsTilPhone.getEditText().getText().toString());
         RequestBody password = convertToRequestBody(fragmentChangeDetailsTilPassword.getEditText().getText().toString());
         MultipartBody.Part clientProfilePhoto = convertFileToMultipart(mPath, CLIENTPROFILEIMAGE,getActivity());
-        showToast(getActivity(), String.valueOf(clientProfilePhoto));
+//        showToast(getActivity(), String.valueOf(clientProfilePhoto));
 
         boolean remember = true;
         String passwordSave = fragmentChangeDetailsTilPassword.getEditText().getText().toString();

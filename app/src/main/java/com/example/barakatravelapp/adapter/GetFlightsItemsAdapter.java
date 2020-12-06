@@ -2,6 +2,7 @@ package com.example.barakatravelapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +81,10 @@ public class GetFlightsItemsAdapter extends RecyclerView.Adapter<GetFlightsItems
 //                AddOrderFragment addOrderFragment = new AddOrderFragment();
 //                addOrderFragment.item = foodListData.get(position);
 //                replaceFragment(activity.getSupportFragmentManager(), R.id.home_activity_fram, new ContactWithUsFragment(),"t");
-                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
+                Bundle bundle = new Bundle();
+//                bundle.putString("DiscoverOrHajjOrUmrah", hajjOrUmrah);
+                bundle.putSerializable("Object",  flightsListData.get(position));
+                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment,bundle);
                 HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
                 navigationActivity.setNavigation("g");
             }

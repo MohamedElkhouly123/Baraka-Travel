@@ -110,6 +110,7 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
     private AdapterView.OnItemSelectedListener listener;
     private AdapterView.OnItemSelectedListener listener2;
     private AdapterView.OnItemSelectedListener listener3;
+    private String isDiscoverOrHajjOrUmarah;
 
 //    private List<String> passportList = new ArrayList<String>();
 //    private List<String> travelAloneList = new ArrayList<String>();
@@ -123,6 +124,8 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
         if (this.getArguments() != null) {
             getTopUmarAndTophajjPackage = (GetTopUmarAndTophajjPackage) this.getArguments().getSerializable("Object");
             pricing = (Pricing) this.getArguments().getSerializable("Object2");
+            isDiscoverOrHajjOrUmarah = this.getArguments().getString("DiscoverOrHajjOrUmrah");
+
 //            showToast(getActivity(), pricing.getName());
         }
         View root = inflater.inflate(R.layout.fragment_hajj_and_umrah_booking, container, false);
@@ -218,6 +221,7 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new ChangeDetailsFragment());
         Bundle bundle = new Bundle();
         bundle.putSerializable("Object",  getTopUmarAndTophajjPackage);
+        bundle.putString("DiscoverOrHajjOrUmrah", isDiscoverOrHajjOrUmarah);
         navController.navigate(R.id.action_hajjAndUmrahBookingFragment_to_luxuryUmrahPackageFragment,bundle);
     }
 

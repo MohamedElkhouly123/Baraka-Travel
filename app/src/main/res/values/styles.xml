@@ -92,12 +92,12 @@
         <item name="android:layout_marginEnd">@dimen/_15sdp</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="backgroundTint">@color/white</item>
-
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
     <style name="EditTextSearch">
         <item name="android:textColorHint">@color/white</item>
         <item name="android:padding">@dimen/_1ssp</item>
-        <item name="android:textSize">@dimen/_6ssp</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
     </style>
     <style name="view_style">
         <item name="android:background">@color/gray_text_color</item>

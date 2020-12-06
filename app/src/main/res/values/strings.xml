@@ -25,8 +25,8 @@
     <string name="filter">Filter</string>
     <string name="search">Search</string>
     <string name="load_more">Load More</string>
-    <string name="from">From</string>
-    <string name="to">To</string>
+    <string name="from">From Location</string>
+    <string name="to">To Location</string>
     <string name="top_hotels_packages">Top Hotels Packages</string>
     <string name="night">/Night</string>
     <string name="my_account">My Account</string>
@@ -165,5 +165,13 @@
     <string name="Check_in_date">Check in date*</string>
     <string name="Check_out_date">Check out date*</string>
     <string name="select_date">select date please</string>
+    <string name="from_reservation">From Reservation</string>
+    <string name="to_reservation">To Reservation</string>
+    <string name="about_flight">About Flight</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="enter_your_phone">Enter Your Phone</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="Choose_number_of_Adults">Choose number of Adults</string>
+    <string name="Choose_number_of_childs">Choose number of Childs</string>
 
 </resources>

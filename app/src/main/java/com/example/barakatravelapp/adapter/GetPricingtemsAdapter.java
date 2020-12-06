@@ -30,6 +30,7 @@ public class GetPricingtemsAdapter extends RecyclerView.Adapter<GetPricingtemsAd
 
 
     private final GetTopUmarAndTophajjPackage getHomeDisscoverGetItemsListData;
+    private final String isDiscoverOrHajjOrUmarah;
     private BaseActivity activity;
     private Context context;
     private List<Pricing> getPricingItemsListData = new ArrayList<>();
@@ -37,10 +38,11 @@ public class GetPricingtemsAdapter extends RecyclerView.Adapter<GetPricingtemsAd
     private NavController navController;
     private static boolean show = false;
 
-    public GetPricingtemsAdapter(Context context, Activity activity, GetTopUmarAndTophajjPackage getHomeDisscoverGetItemsListData, List<Pricing> getHomeDisscoverGetHotelsDataItemsListData, NavController navController) {
+    public GetPricingtemsAdapter(Context context, Activity activity, String isDiscoverOrHajjOrUmarah, GetTopUmarAndTophajjPackage getHomeDisscoverGetItemsListData, List<Pricing> getHomeDisscoverGetHotelsDataItemsListData, NavController navController) {
         getPricingItemsListData.clear();
         this.activity = (BaseActivity) activity;
         this.context = context;
+        this.isDiscoverOrHajjOrUmarah = isDiscoverOrHajjOrUmarah;
         this.getPricingItemsListData = getHomeDisscoverGetHotelsDataItemsListData;
         this.getHomeDisscoverGetItemsListData = getHomeDisscoverGetItemsListData;
 
@@ -83,6 +85,7 @@ public class GetPricingtemsAdapter extends RecyclerView.Adapter<GetPricingtemsAd
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("Object",  getHomeDisscoverGetItemsListData);
                 bundle.putSerializable("Object2",  getPricingItemsListData.get(position));
+                bundle.putString("DiscoverOrHajjOrUmrah", isDiscoverOrHajjOrUmarah);
 
                 navController.navigate(R.id.action_luxuryUmrahPackageFragment_to_hajjAndUmrahBookingFragment,bundle);
 //                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;

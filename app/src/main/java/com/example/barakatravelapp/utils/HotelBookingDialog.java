@@ -137,7 +137,7 @@ public class HotelBookingDialog {
             updateItemCal = getApiClient().bookHotel(reserfedFrom, reserfedTo, userId, hotelId, roomId);
 
 
-        sentUserRateAndBookHotelCallBack(activity,updateItemCal,"Success Hotel Booking");
+        sentUserRateAndBookHotelCallBack(activity,updateItemCal,"Success BookingsHotel Booking");
         dialog.cancel();
 
     }

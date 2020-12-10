@@ -1,22 +1,9 @@
 package com.example.barakatravelapp.view.activity;
 
 import android.os.Bundle;
-import android.widget.Toast;
+
 import com.example.barakatravelapp.R;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.ChangeDetailsFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.ChangeDetailsMoreFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.GetEVisaFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.MyUmrahBookingFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.PaymentsFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.ConfirmBookingFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.ConfirmWithTheSupportFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.LuxuryUmrahPackageFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.SelectPaymentMethodFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.discover.SuccessfulPaymentFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.flights.FlightDetailsFragment;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.hotels.HottelViewFragment;
 import com.example.barakatravelapp.view.fragment.userCycle.LoginFragment;
-import com.example.barakatravelapp.view.fragment.userCycle.SignUpFragment;
 
 import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 

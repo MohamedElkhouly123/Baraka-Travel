@@ -37,12 +37,12 @@
             <ImageView
                 android:id="@+id/cardview_flight_offers_item_flight_airport_logo_img"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/_125sdp"
                 android:scaleType="fitXY"
-                android:src="@drawable/inside_hotels" />
+                android:src="@drawable/inside_my_hotels_booking" />
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/_125sdp"
                 android:background="@drawable/gradient_transparant_gray_shape"
                 />
 <!--        </androidx.cardview.widget.CardView>-->

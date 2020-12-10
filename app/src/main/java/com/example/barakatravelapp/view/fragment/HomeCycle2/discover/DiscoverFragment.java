@@ -20,7 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.adapter.SubHomeDiscoverVrRvAdapter;
-import com.example.barakatravelapp.data.model.ItemObjectModel;
+import com.example.barakatravelapp.data.model.ItemGeneralObjectModel;
 import com.example.barakatravelapp.data.model.getDiscoverHomeResponce.GetDiscoverHomeResponce;
 import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
@@ -61,7 +61,7 @@ public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallb
     private List<HotelData> getHomeDisscoverGetHotelsDataItemsListData = new ArrayList<HotelData>();
     private ViewModelGetLists viewModel;
     private SubHomeDiscoverVrRvAdapter subHomeDiscoverVrRvAdapter;
-    private List<ItemObjectModel> rowListItem;
+    private List<ItemGeneralObjectModel> rowListItem;
     public DiscoverFragment() {
         // Required empty public constructor
     }
@@ -79,7 +79,8 @@ public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallb
         initListener();
 //        clientData = LoadUserData(getActivity());
         if (isConnected(getActivity())) {
-        init();}
+        init();
+        }
         getHotelsHomeList();
 
         return root;
@@ -128,13 +129,13 @@ public class DiscoverFragment extends BaSeFragment implements DialogAdapterCallb
 
     }
 
-    private List<ItemObjectModel> getAllItemList() {
+    private List<ItemGeneralObjectModel> getAllItemList() {
 
-        List<ItemObjectModel> allItems = new ArrayList<ItemObjectModel>();
-        allItems.add(new ItemObjectModel(getString(R.string.top_umrah_packages)));
-        allItems.add(new ItemObjectModel(getString(R.string.top_hajj_packages)));
-        allItems.add(new ItemObjectModel(getString(R.string.top_hotels_packages)));
-        allItems.add(new ItemObjectModel(getString(R.string.top_hotels_packages)));
+        List<ItemGeneralObjectModel> allItems = new ArrayList<ItemGeneralObjectModel>();
+        allItems.add(new ItemGeneralObjectModel(getString(R.string.top_umrah_packages)));
+        allItems.add(new ItemGeneralObjectModel(getString(R.string.top_hajj_packages)));
+        allItems.add(new ItemGeneralObjectModel(getString(R.string.top_hotels_packages)));
+        allItems.add(new ItemGeneralObjectModel(getString(R.string.top_hotels_packages)));
 
 
         return allItems;

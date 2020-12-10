@@ -173,5 +173,26 @@
     <string name="enter_your_name">Enter Your Name</string>
     <string name="Choose_number_of_Adults">Choose number of Adults</string>
     <string name="Choose_number_of_childs">Choose number of Childs</string>
+    <string name="My_Umrah_Bookings">My Umrah Bookings</string>
+    <string name="My_Hajj_Bookings">My Hajj Bookings</string>
+    <string name="My_Hotel_Bookings">My Hotel Bookings</string>
+    <string name="My_Flight_Bookings">My Flight Bookings</string>
+    <string name="USA_Canadian_Passport">USA / Canadian Passport</string>
+    <string name="canda_price">$150/- Per Passport</string>
+    <string name="canda_year_validaty">1 Year Validity - Multiple Entry - Stay up-to 90 Days</string>
+    <string name="canda_visa_time">Visa processing time : 2 hrs. to 48 hrs.</string>
+    <string name="indian_Passport">Indian / Pakistani Passport</string>
+    <string name="indian_price">$250/- Per Passport</string>
+    <string name="indian_year_validaty">30 Days Validity – One Time Entry - Stay up-to 30 Days.</string>
+    <string name="india_visa_time">Visa processing time : 3 to 10 Days.</string>
+    <string name="bngiladish_Passport">Bangladeshi Passport</string>
+    <string name="bngladish_price">$300/- Per Passport</string>
+    <string name="bngladish_year_validaty">30 Days Validity – One Time Entry - Stay up-to 30 Days.</string>
+    <string name="bngladish_visa_time">Visa processing time : 10 Days.</string>
+    <string name="How_many_Passport">How many Passport?</string>
+    <string name="select_pasport_num">Please Select How many Passport</string>
+    <string name="evisa_success">Thank you for E-visa booking, Please wait our call within 24 hours to confirm your package.</string>
+    <string name="merchant_service_fees_3">Merchant service fees 3 %  :</string>
+    <string name="total_amount_due">Total Amount Due  :</string>
 
 </resources>

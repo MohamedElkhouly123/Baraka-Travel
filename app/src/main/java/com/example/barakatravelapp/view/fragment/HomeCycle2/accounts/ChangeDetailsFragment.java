@@ -145,7 +145,7 @@ public class ChangeDetailsFragment extends BaSeFragment {
         switch (view.getId()) {
             case R.id.fragment_change_details_my_profile_photo_circularImageView:
 //                new MakeChangesDialog().showDialog(getActivity());
-//                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new PaymentsFragment());
+//                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new ChooseStaticEVisaFragment());
 //                navController.navigate(R.id.action_changeDetailsFragment_to_paymentsFragment);
                 openGalleryِAlpom(getActivity(), alpom, new Action<ArrayList<AlbumFile>>() {
                     @Override

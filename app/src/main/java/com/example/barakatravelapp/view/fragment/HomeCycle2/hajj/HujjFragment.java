@@ -45,8 +45,8 @@ import static com.example.barakatravelapp.utils.validation.Validation.validation
 
 
 public class HujjFragment extends BaSeFragment implements DialogAdapterCallback {
-    @BindView(R.id.top_part_in_nav_genral_part_search_til)
-    TextInputLayout topPartInNavGenralPartSearchTil;
+//    @BindView(R.id.top_part_in_nav_genral_part_search_til)
+//    TextInputLayout topPartInNavGenralPartSearchTil;
     @BindView(R.id.top_part_in_nav_genral_part_hajj_and_umrah_toggle_btn)
     TextView topPartInNavGenralPartHajjAndUmrahToggleBtn;
     @BindView(R.id.fragment_home_hujj_recycler_view)
@@ -84,7 +84,7 @@ public class HujjFragment extends BaSeFragment implements DialogAdapterCallback 
         View root = inflater.inflate(R.layout.fragment_home_hujj, container, false);
 
         ButterKnife.bind(this, root);
-        topPartInNavGenralPartSearchTil.setVisibility(View.VISIBLE);
+//        topPartInNavGenralPartSearchTil.setVisibility(View.VISIBLE);
         topPartInNavGenralPartHajjAndUmrahToggleBtn.setVisibility(View.VISIBLE);
         topPartInNavGenralPartHajjAndUmrahToggleBtn.setText(getString(R.string.umrah));
         navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
@@ -196,10 +196,11 @@ public class HujjFragment extends BaSeFragment implements DialogAdapterCallback 
 
         Filter = true;
         if(page == 0){ maxPage=0;}
-        keyword = topPartInNavGenralPartSearchTil.getEditText().getText().toString().trim();
+//        keyword = topPartInNavGenralPartSearchTil.getEditText().getText().toString().trim();
 //        keyword="jfk";
         Call<GetUmrahAndHujjResponce> getUmrahAndHujjResponceCall;
-        getUmrahAndHujjResponceCall = getApiClient().getHajjAndUmrahItemListByFilter("hajj", page,keyword);
+        getUmrahAndHujjResponceCall = getApiClient().getHajjAndUmrahItemList("hajj", page);
+//        getUmrahAndHujjResponceCall = getApiClient().getHajjAndUmrahItemListByFilter("hajj", page,keyword);
 //        startShimmer(page);
         viewModel.getHajjAndUmrahDataList(getActivity(), errorSubView, getUmrahAndHujjResponceCall,fragmentHomeHujjSrRefresh, loadMore);
 
@@ -266,25 +267,25 @@ public class HujjFragment extends BaSeFragment implements DialogAdapterCallback 
 //        homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);      }
     }
 
-    @OnClick({R.id.top_part_in_nav_genral_part_filter_til, R.id.top_part_in_nav_genral_part_hajj_and_umrah_toggle_btn})
+    @OnClick({ R.id.top_part_in_nav_genral_part_hajj_and_umrah_toggle_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.top_part_in_nav_genral_part_filter_til:
-                getTopUmarAndTophajjPackagesData.clear();
-                topPartInNavGenralPartSearchTil.setErrorEnabled(false);
-                if (!validationLengthZero(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 0)) {
+//            case R.id.top_part_in_nav_genral_part_filter_til:
+//                getTopUmarAndTophajjPackagesData.clear();
+//                topPartInNavGenralPartSearchTil.setErrorEnabled(false);
+//                if (!validationLengthZero(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 0)) {
+////                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
+//                    getHajjAndUmrahHomeList(0);
+//                    return;
+//                }
+//                if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 3)) {
 //                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
-                    getHajjAndUmrahHomeList(0);
-                    return;
-                }
-                if (!validationLength(topPartInNavGenralPartSearchTil, getString(R.string.invalid_search), 3)) {
-                    onCreateErrorToast(getActivity(), getString(R.string.invalid_search));
-
-                    return;
-                }else {
-                    getHajjAndUmrahListByFilter(0);
-                }
-                break;
+//
+//                    return;
+//                }else {
+//                    getHajjAndUmrahListByFilter(0);
+//                }
+//                break;
             case R.id.top_part_in_nav_genral_part_hajj_and_umrah_toggle_btn:
                 navController.navigate(R.id.action_navigation_hajj_to_navigation_umrah);
                 break;

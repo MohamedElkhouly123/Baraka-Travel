@@ -116,10 +116,10 @@ public class HelperMethod {
 
         if (pathImageFile != null) {
             File file = new File(pathImageFile);
-//            RequestBody reqFileselect = RequestBody.create(MediaType.parse("*/*"), file);
+            RequestBody reqFileselect = RequestBody.create(MediaType.parse("*/*"), file);
 //            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("photo", file.getName(), reqFileselect);
 
-            RequestBody reqFileselect = RequestBody.create(MediaType.parse("image/*"), file);
+//            RequestBody reqFileselect = RequestBody.create(MediaType.parse("image/*"), file);
             MultipartBody.Part Imagebody = MultipartBody.Part.createFormData(Key, file.getName(), reqFileselect);
 //            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData("photo3", file.getName(), reqFileselect);
 //            showToast(activity, String.valueOf(Imagebody));
@@ -143,38 +143,22 @@ public class HelperMethod {
 //        }
 //    }
 
-    public static MultipartBody.Part convertFileToMultipart2(String pathImageFile, String Key) {
-
-        if (pathImageFile != null) {
-            File file = new File(pathImageFile);
-            RequestBody reqFileselect = RequestBody.create(MediaType.parse("*/*"), file);
-//            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("photo", file.getName(), reqFileselect);
-
-//            RequestBody reqFileselect = RequestBody.create(MediaType.parse("image/*"), file);
-            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData(Key, file.getName(), reqFileselect);
-//            MultipartBody.Part Imagebody = MultipartBody.Part.createFormData("photo3", file.getName(), reqFileselect);
-//            showToast(activity, String.valueOf(Imagebody));
-
-            return Imagebody;
-        } else {
-            return null;}
-    }
-    public static MultipartBody.Part prepareFilePart(String partName, Uri images){
-
-        List<MultipartBody.Part> listOfImages = new ArrayList<>();
-
-
-        ArrayList<Object> upFileList;
-        for (int i = 0; i < listOfImages.size(); i++){
-//            listOfImages.add(prepareFilePart("image[$i]", images[i]));
-//            parts.add(prepareFilePart("my_file["+i+"]", (Uri) upFileList.get(i)));
-        }
-
-        File file = new File(partName);
+//    public static MultipartBody.Part prepareFilePart(String partName, Uri images){
 //
-        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
-            return MultipartBody.Part.createFormData(partName, file.getName(),requestBody);
-        }
+//        List<MultipartBody.Part> listOfImages = new ArrayList<>();
+//
+//
+//        ArrayList<Object> upFileList;
+//        for (int i = 0; i < listOfImages.size(); i++){
+////            listOfImages.add(prepareFilePart("image[$i]", images[i]));
+////            parts.add(prepareFilePart("my_file["+i+"]", (Uri) upFileList.get(i)));
+//        }
+//
+//        File file = new File(partName);
+////
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+//            return MultipartBody.Part.createFormData(partName, file.getName(),requestBody);
+//        }
 
     public static RequestBody convertToRequestBody(String part) {
         try {

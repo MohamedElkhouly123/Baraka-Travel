@@ -4,21 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_10sdp"
-    android:layout_marginBottom="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_1sdp"
+    android:layout_marginBottom="@dimen/_3sdp"
     >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/manage_bookings"
-        android:textSize="@dimen/_16ssp"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:textStyle="normal"
-        android:visibility="visible"
-        android:layout_marginBottom="@dimen/_15sdp"
-        style="@style/LoginAndSignUpTextView"
-        />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/fragment_home_account_profile_cardview_my_account_item_ly"
         android:layout_width="match_parent"
@@ -37,15 +26,17 @@
                 android:orientation="horizontal"
                 >
                 <ImageView
+                    android:id="@+id/cardview_my_account_item_booking_img"
                     android:layout_width="@dimen/_63sdp"
                     android:layout_height="@dimen/_55sdp"
 
-                    android:src="@drawable/haj"
+                    android:src="@drawable/inside_my_hotels_booking"
                     android:scaleType="centerCrop"
 
 
                     />
                 <TextView
+                    android:id="@+id/cardview_my_account_item_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -65,16 +56,16 @@
                 android:orientation="horizontal"
                 android:layout_gravity="right|center"
                 >
-            <TextView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center_vertical"
-                android:text="1"
-                android:textSize="@dimen/_12ssp"
-                android:gravity="center"
-                android:background="@drawable/gradient_btn_red_shape_for_num"
-                android:textColor="@color/white"
-                />
+<!--            <TextView-->
+<!--                android:layout_width="@dimen/_20sdp"-->
+<!--                android:layout_height="@dimen/_20sdp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:text="1"-->
+<!--                android:textSize="@dimen/_12ssp"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@drawable/gradient_btn_red_shape_for_num"-->
+<!--                android:textColor="@color/white"-->
+<!--                />-->
             <ImageButton
                 android:id="@+id/fragment_home_account_profile_cardview_my_account_item_next_btn"
                 android:layout_width="@dimen/_27sdp"

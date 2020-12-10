@@ -40,6 +40,7 @@
             app:layout_constraintTop_toTopOf="parent"
             />
         <ImageButton
+            android:id="@+id/fragment_get_e_visa_back_btn"
             android:layout_width="@dimen/_27sdp"
             android:layout_height="@dimen/_27sdp"
             android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
@@ -70,7 +71,7 @@
             android:textColor="@color/gray66"
             />
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/client_and_restaurant_login_fragment_til_full_name"
+            android:id="@+id/fragment_get_e_visa_til_first_name"
             style="@style/text_input_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,7 +80,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/register_efull_name_etxt"
+                android:id="@+id/fragment_get_e_visa_first_name_etxt"
                 style="@style/EditTextLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -88,7 +89,46 @@
                 android:inputType="textAutoComplete" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/client_and_restaurant_login_fragment_til_email"
+            android:id="@+id/fragment_get_e_visa_til_last_name"
+            style="@style/text_input_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorTextAppearance="@style/error_appearance"
+            android:layout_marginTop="@dimen/_12sdp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_get_e_visa_last_name_etxt"
+                style="@style/EditTextLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/last_name"
+                android:ems="10"
+                android:inputType="textAutoComplete" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fragment_get_e_visa_til_phone"
+            style="@style/text_input_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorTextAppearance="@style/error_appearance"
+            android:layout_marginTop="@dimen/_12sdp"
+            >
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_get_e_visa_phone_etxt"
+                style="@style/EditTextLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="@string/contact_number"
+                android:text="+1"
+                android:inputType="phone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fragment_get_e_visa_til_email"
             style="@style/text_input_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,7 +136,7 @@
             android:layout_marginTop="@dimen/_12sdp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/register_email_etxt"
+                android:id="@+id/fragment_get_e_visa_email_etxt"
                 style="@style/EditTextLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -106,36 +146,18 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/client_and_restaurant_login_fragment_til_password"
+            android:id="@+id/fragment_get_e_visa_til_country"
             style="@style/text_input_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:errorTextAppearance="@style/error_appearance"
             android:layout_marginTop="@dimen/_12sdp"
             >
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/register_password_etxt"
-                style="@style/EditTextLogin"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:hint="@string/phone"
-                android:inputType="phone"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/client_and_restaurant_login_fragment_til_country"
-            style="@style/text_input_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:errorTextAppearance="@style/error_appearance"
-            android:layout_marginTop="@dimen/_12sdp"
-            >
+<!--            -->
             <Spinner
-                android:id="@+id/restaurant_and_client_edit_profile_fragment_sp_city"
+                android:id="@+id/fragment_get_e_visa_sp_passporn_num"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_47sdp"
                 android:background="@android:color/transparent"
@@ -144,8 +166,9 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
   <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cons4"
+        android:id="@+id/fragment_get_e_visa_get_passport_photos_btn"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="@dimen/_90sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
@@ -154,6 +177,7 @@
     >
 
     <ImageView
+        android:id="@+id/fragment_get_e_visa_get_passport_photos_img"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"
         android:src="@drawable/sky_arrow"
@@ -164,6 +188,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/fragment_get_e_visa_get_passport_photos_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Passport_Photo"
@@ -176,8 +201,9 @@
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cons1"
+            android:id="@+id/fragment_get_e_visa_get_personal_photos_btn"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="@dimen/_90sdp"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
@@ -186,6 +212,8 @@
             >
 
             <ImageView
+                android:id="@+id/fragment_get_e_visa_get_personal_photos_img"
+
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:src="@drawable/sky_arrow"
@@ -196,6 +224,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/fragment_get_e_visa_get_personal_photos_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Personal_Photo"
@@ -208,7 +237,7 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <Button
-            android:id="@+id/btn_next"
+            android:id="@+id/fragment_get_e_visa_sav_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

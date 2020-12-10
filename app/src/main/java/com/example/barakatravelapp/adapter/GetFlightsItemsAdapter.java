@@ -68,7 +68,7 @@ public class GetFlightsItemsAdapter extends RecyclerView.Adapter<GetFlightsItems
         holder.cardviewFlightOffersItemReservationFromToDateTv.setText("Reservation " + flightList.getReservationFrom() + " To " + flightList.getReservationTo());
         holder.cardviewFlightOffersItemOferPresedgeTv.setText(flightList.getIsOffer() + " %");
 //        if (flightList.getIsOffer()!=null)
-        holder.cardviewFlightOffersItemOfferNumTv.setText(flightList.getIsOffer() + " %  OFF");
+        holder.cardviewFlightOffersItemOfferNumTv.setText(flightList.getIsOffer() + " %");
 //        Glide.with(context).load(foodList.getPhotoUrl()).asBitmap().override(1080, 600).into(holder.cardviewItemClientFoodOrderMenuImg);
         onLoadImageFromUrl(holder.cardviewFlightOffersItemFlightAirportLogoImg, flightList.getImage(), context);
     }

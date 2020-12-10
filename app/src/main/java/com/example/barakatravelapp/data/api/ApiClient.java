@@ -18,9 +18,9 @@ public class ApiClient {
         if(retrofit == null){
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
 //                    .callTimeout(2, TimeUnit.MINUTES)
-                    .connectTimeout(20, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
-                    .writeTimeout(30, TimeUnit.SECONDS);
+                    .connectTimeout(100, TimeUnit.SECONDS)
+                    .readTimeout(70, TimeUnit.SECONDS)
+                    .writeTimeout(70, TimeUnit.SECONDS);
             Retrofit.Builder builder = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())

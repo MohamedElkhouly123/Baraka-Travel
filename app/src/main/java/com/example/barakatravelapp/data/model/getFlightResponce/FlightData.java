@@ -43,7 +43,7 @@ public class FlightData implements Serializable {
     private Double priceChild;
     @SerializedName("isOffer")
     @Expose
-    private Integer isOffer;
+    private Boolean isOffer;
 
     public Integer getId() {
         return id;
@@ -133,11 +133,11 @@ public class FlightData implements Serializable {
         this.priceChild = priceChild;
     }
 
-    public Integer getIsOffer() {
+    public Boolean getIsOffer() {
         return isOffer;
     }
 
-    public void setIsOffer(Integer isOffer) {
+    public void setIsOffer(Boolean isOffer) {
         this.isOffer = isOffer;
     }
 

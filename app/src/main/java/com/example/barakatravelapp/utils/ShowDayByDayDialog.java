@@ -103,7 +103,7 @@ public class ShowDayByDayDialog extends DialogFragment {
 //        try {
 //            Toast.makeText(getContext(), "ok", Toast.LENGTH_SHORT)
 //                    .show();
-//            List<ItemObjectModel> dialogCategoryListItem = getAllItemList();
+//            List<ItemGeneralObjectModel> dialogCategoryListItem = getAllItemList();
 //
 ////            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 //            final View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_categories_rv, null);

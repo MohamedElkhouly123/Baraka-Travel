@@ -46,7 +46,6 @@ import retrofit2.Call;
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadUserData;
 import static com.example.barakatravelapp.utils.HelperMethod.convertFileToMultipart;
-import static com.example.barakatravelapp.utils.HelperMethod.convertFileToMultipart2;
 import static com.example.barakatravelapp.utils.HelperMethod.convertToRequestBody;
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
 import static com.example.barakatravelapp.utils.HelperMethod.openGalleryِAlpom;

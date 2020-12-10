@@ -1,12 +1,10 @@
 package com.example.barakatravelapp.view.fragment.HomeCycle2.flights;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +13,6 @@ import androidx.navigation.Navigation;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.getFlightResponce.FlightData;
-import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.utils.FlightBookingDialog;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
 
@@ -28,7 +25,7 @@ public class FlightDetailsFragment extends BaSeFragment {
 
     @BindView(R.id.fragment_home_flight_details_name_tv)
     TextView fragmentHomeFlightDetailsNameTv;
-//    @BindView(R.id.fragment_home_flight_details_flight_img)
+    //    @BindView(R.id.fragment_home_flight_details_flight_img)
 //    ImageView fragmentHomeFlightDetailsFlightImg;
     @BindView(R.id.client_home_fillter_search_keyword_etxt)
     TextView clientHomeFillterSearchKeywordEtxt;
@@ -44,7 +41,10 @@ public class FlightDetailsFragment extends BaSeFragment {
     TextView fragmentHomeFlightDetailsAboutFlightTv;
     @BindView(R.id.fragment_home_flight_details_price_tv)
     TextView fragmentHomeFlightDetailsPriceTv;
+    @BindView(R.id.fragment_home_flight_details_book_btn)
+    TextView fragmentHomeFlightDetailsBookBtn;
     private FlightData flightData;
+    private String flightOrBook;
 
     public FlightDetailsFragment() {
         // Required empty public constructor
@@ -56,6 +56,7 @@ public class FlightDetailsFragment extends BaSeFragment {
                              ViewGroup container, Bundle savedInstanceState) {
         if (this.getArguments() != null) {
             flightData = (FlightData) this.getArguments().getSerializable("Object");
+            flightOrBook = this.getArguments().getString("BookingFlight");
 
         }
         View root = inflater.inflate(R.layout.fragment_home_flight_details, container, false);
@@ -67,6 +68,9 @@ public class FlightDetailsFragment extends BaSeFragment {
     }
 
     private void setData() {
+        if (flightOrBook.equalsIgnoreCase("bookingFlight")) {
+         fragmentHomeFlightDetailsBookBtn.setVisibility(View.GONE);
+        }
         fragmentHomeFlightDetailsNameTv.setText(flightData.getFlightName());
         fragmentHomeFlightDetailsFromLocationTv.setText(flightData.getFrom());
         fragmentHomeFlightDetailsToLocationTv.setText(flightData.getTo());
@@ -76,9 +80,9 @@ public class FlightDetailsFragment extends BaSeFragment {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //            fragmentHomeFlightDetailsAboutFlightTv.setText(Html.fromHtml(flightData.getDescription(), Html.FROM_HTML_MODE_COMPACT));
 //        } else {
-            fragmentHomeFlightDetailsAboutFlightTv.setText(Html.fromHtml(flightData.getDescription()));
+        fragmentHomeFlightDetailsAboutFlightTv.setText(Html.fromHtml(flightData.getDescription()));
 //        }
-        fragmentHomeFlightDetailsPriceTv.setText("$ " +flightData.getPriceAdult().toString() + " Price Per Adult");
+        fragmentHomeFlightDetailsPriceTv.setText("$ " + flightData.getPriceAdult().toString() + " Price Per Adult");
     }
 
     @Override

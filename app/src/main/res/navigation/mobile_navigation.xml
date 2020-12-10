@@ -80,11 +80,11 @@
             android:id="@+id/action_navigation_account_to_changeDetailsFragment"
             app:destination="@id/changeDetailsFragment" />
         <action
-            android:id="@+id/action_navigation_account_to_getEVisaFragment"
-            app:destination="@id/getEVisaFragment" />
-        <action
             android:id="@+id/action_navigation_account_to_myUmrahBookingFragment"
             app:destination="@id/myUmrahBookingFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_fragment_choose_static_evisa"
+            app:destination="@id/fragment_choose_static_evisa" />
     </fragment>
     <fragment
         android:id="@+id/flightDetailsFragment"
@@ -97,6 +97,9 @@
         <action
             android:id="@+id/action_flightDetailsFragment_to_confirmWithTheSupportFragment3"
             app:destination="@id/confirmWithTheSupportFragment" />
+        <action
+            android:id="@+id/action_flightDetailsFragment_to_myUmrahBookingFragment"
+            app:destination="@id/myUmrahBookingFragment" />
     </fragment>
     <fragment
         android:id="@+id/confirmWithTheSupportFragment"
@@ -127,6 +130,9 @@
         <action
             android:id="@+id/action_luxuryUmrahPackageFragment_to_navigation_hajj"
             app:destination="@id/navigation_hajj" />
+        <action
+            android:id="@+id/action_luxuryUmrahPackageFragment_to_myUmrahBookingFragment"
+            app:destination="@id/myUmrahBookingFragment" />
     </fragment>
     <fragment
         android:id="@+id/successfulPaymentFragment"
@@ -157,6 +163,9 @@
         <action
             android:id="@+id/action_hottelViewFragment_to_navigation_hotels"
             app:destination="@id/navigation_hotels" />
+        <action
+            android:id="@+id/action_hottelViewFragment_to_myUmrahBookingFragment"
+            app:destination="@id/myUmrahBookingFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeDetailsFragment"
@@ -167,9 +176,6 @@
             android:id="@+id/action_changeDetailsFragment_to_navigation_account"
             app:destination="@id/navigation_account" />
         <action
-            android:id="@+id/action_changeDetailsFragment_to_paymentsFragment"
-            app:destination="@id/paymentsFragment" />
-        <action
             android:id="@+id/action_changeDetailsFragment_to_changeDetailsMoreFragment"
             app:destination="@id/changeDetailsMoreFragment" />
     </fragment>
@@ -179,17 +185,26 @@
         android:label="fragment_get_e_visa"
         tools:layout="@layout/fragment_get_e_visa" >
         <action
-            android:id="@+id/action_getEVisaFragment_to_navigation_account"
-            app:destination="@id/navigation_account" />
+            android:id="@+id/action_getEVisaFragment_to_fragment_choose_static_evisa"
+            app:destination="@id/fragment_choose_static_evisa" />
     </fragment>
     <fragment
         android:id="@+id/myUmrahBookingFragment"
-        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.MyUmrahBookingFragment"
+        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.MyAllBookingFragment"
         android:label="fragment_my_umrah_booking"
-        tools:layout="@layout/fragment_my_umrah_booking" >
+        tools:layout="@layout/fragment_my_all_booking" >
         <action
             android:id="@+id/action_myUmrahBookingFragment_to_navigation_account"
             app:destination="@id/navigation_account" />
+        <action
+            android:id="@+id/action_myUmrahBookingFragment_to_flightDetailsFragment"
+            app:destination="@id/flightDetailsFragment" />
+        <action
+            android:id="@+id/action_myUmrahBookingFragment_to_hottelViewFragment"
+            app:destination="@id/hottelViewFragment" />
+        <action
+            android:id="@+id/action_myUmrahBookingFragment_to_luxuryUmrahPackageFragment"
+            app:destination="@id/luxuryUmrahPackageFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeDetailsMoreFragment"
@@ -201,13 +216,16 @@
             app:destination="@id/changeDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/paymentsFragment"
-        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.PaymentsFragment"
+        android:id="@+id/fragment_choose_static_evisa"
+        android:name="com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.ChooseStaticEVisaFragment"
         android:label="fragment_payments"
-        tools:layout="@layout/fragment_payments" >
+        tools:layout="@layout/fragment_choose_static_evisa" >
         <action
-            android:id="@+id/action_paymentsFragment_to_changeDetailsFragment"
-            app:destination="@id/changeDetailsFragment" />
+            android:id="@+id/action_fragment_choose_static_evisa_to_getEVisaFragment"
+            app:destination="@id/getEVisaFragment" />
+        <action
+            android:id="@+id/action_fragment_choose_static_evisa_to_navigation_account"
+            app:destination="@id/navigation_account" />
     </fragment>
     <fragment
         android:id="@+id/hajjAndUmrahBookingFragment"

@@ -3,11 +3,13 @@ package com.example.barakatravelapp.view.viewModel;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.barakatravelapp.R;
+import com.example.barakatravelapp.data.model.bookEvisaResponce.BookEvisaResponce;
 import com.example.barakatravelapp.data.model.userLoginResponce.UserLoginGeneralResponce;
 import com.example.barakatravelapp.utils.HelperMethod;
 import com.example.barakatravelapp.utils.ToastCreator;
@@ -18,6 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.REMEMBER_ME;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.SaveData;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.USER_DATA;
@@ -36,6 +39,7 @@ public class ViewModelUser extends ViewModel {
 //    private UserRepository userRepository;
     private MutableLiveData<UserLoginGeneralResponce> generalLoginAndUpdateProfileResponse = new MutableLiveData<>();
     private MutableLiveData<UserLoginGeneralResponce> generalRegisterationAndForgetPasswordResponse = new MutableLiveData<>();
+    private MutableLiveData<BookEvisaResponce> eVisaBookingResponse = new MutableLiveData<>();
 
 
     private String token;
@@ -172,6 +176,65 @@ public class ViewModelUser extends ViewModel {
                     showToast(activity, String.valueOf(t.getMessage()));
                     onCreateErrorToast(activity, activity.getString(R.string.error));
                     generalRegisterationAndForgetPasswordResponse.postValue(null);
+                }
+            });
+        } else {
+            try {
+                onCreateErrorToast(activity, activity.getString(R.string.error_inter_net));
+            } catch (Exception e) {
+
+            }
+
+        }
+
+    }
+
+    public MutableLiveData<BookEvisaResponce> makeeVisaBooking() {
+        return eVisaBookingResponse;
+    }
+
+    public void setVisaBooking(final Activity activity, final Call<BookEvisaResponce> method, boolean dimiss) {
+        if (isConnected(activity)) {
+
+            if (progressDialog == null) {
+                HelperMethod.showProgressDialog(activity, activity.getString(R.string.wait));
+            } else {
+                if (!progressDialog.isShowing()) {
+                    HelperMethod.showProgressDialog(activity, activity.getString(R.string.wait));
+                }
+            }
+
+            method.enqueue(new Callback<BookEvisaResponce>() {
+                @Override
+                public void onResponse(Call<BookEvisaResponce> call, Response<BookEvisaResponce> response) {
+
+                    if (response.body() != null) {
+                        try {
+
+                            if (response.body().getStatus().equals("success")) {
+                                dismissProgressDialog();
+                                eVisaBookingResponse.postValue(response.body());
+                                ToastCreator.onCreateSuccessToast(activity, "Success E-Visa Booking");
+                            } else {
+                                dismissProgressDialog();
+                                onCreateErrorToast(activity, response.body().getMessage());
+
+                            }
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<BookEvisaResponce> call, Throwable t) {
+                    dismissProgressDialog();
+//                    Log.e(TAG, t.getLocalizedMessage());
+//                    Log.e(TAG, t.getMessage());
+//                    t.printStackTrace();
+                    showToast(activity, String.valueOf(t.getCause()));
+                    onCreateErrorToast(activity, activity.getString(R.string.error));
+                    eVisaBookingResponse.postValue(null);
                 }
             });
         } else {

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
-import com.example.barakatravelapp.data.model.ItemObjectModel;
+import com.example.barakatravelapp.data.model.ItemGeneralObjectModel;
 import com.example.barakatravelapp.data.model.getHotelsResponce.HotelData;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
 import com.example.barakatravelapp.utils.DialogAdapterCallback;
@@ -32,7 +32,7 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
     private final NavController navController;
     private Context context;
     private Activity activity;
-    private List<ItemObjectModel> itemList = new ArrayList<>();
+    private List<ItemGeneralObjectModel> itemList = new ArrayList<>();
     private LinearLayoutManager lLayout;
     private List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetHajjDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
     private List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetUmrahDataItemsListData = new ArrayList<GetTopUmarAndTophajjPackage>();
@@ -53,7 +53,7 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
 
     public SubHomeDiscoverVrRvAdapter(Context context,
                                       Activity activity, NavController navController, DialogAdapterCallback dialogAdapterCallback,
-                                      List<ItemObjectModel> itemList,
+                                      List<ItemGeneralObjectModel> itemList,
                                       List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetHajjDataItemsListData, List<GetTopUmarAndTophajjPackage> getHomeDisscoverGetUmrahDataItemsListData, List<HotelData> getHomeDisscoverGetHotelsDataItemsListData) {
         this.context = context;
         this.activity = activity;
@@ -111,7 +111,7 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
                 holder.subHomeVervItem2CategoryNameTv.setText(activity.getString(R.string.makkah));
                 initHozental2(holder,null,getHomeDisscoverGetHotelsMakahDataItemsListData,3);
 //                holder.homeDiscoverFragmentSubHomeRvItemVrRv.setVisibility(View.VISIBLE);
-//                List<ItemObjectModel> rowListItem = getAllItemList();
+//                List<ItemGeneralObjectModel> rowListItem = getAllItemList();
 //                lLayout = new LinearLayoutManager(activity);
 //
 //                holder.homeDiscoverFragmentSubHomeRvItemVrRv.setLayoutManager(lLayout);
@@ -139,7 +139,7 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
     private void splitTopHotelToMakkaAndMadina() {
         for (int ind = 0; ind < getHomeDisscoverGetHotelsDataItemsListData.size(); ind++) {
             HotelData hotelData = getHomeDisscoverGetHotelsDataItemsListData.get(ind);
-            if (hotelData.getCity().equals("Makkah")) {
+            if (hotelData.getCity().equals("Makkah")||hotelData.getCity().equals("Makkah")) {
                 getHomeDisscoverGetHotelsMakahDataItemsListData.add(hotelData);
 //                showToast(activity, "list=" + getHomeDisscoverGetHotelsMakahDataItemsListData.get(1).getCity());
             } else {
@@ -167,11 +167,11 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
 
     }
 
-    private List<ItemObjectModel> getAllItemList() {
+    private List<ItemGeneralObjectModel> getAllItemList() {
 
-        List<ItemObjectModel> allItems = new ArrayList<ItemObjectModel>();
-        allItems.add(new ItemObjectModel(activity.getString(R.string.makkah)));
-        allItems.add(new ItemObjectModel(activity.getString(R.string.madinah)));
+        List<ItemGeneralObjectModel> allItems = new ArrayList<ItemGeneralObjectModel>();
+        allItems.add(new ItemGeneralObjectModel(activity.getString(R.string.makkah)));
+        allItems.add(new ItemGeneralObjectModel(activity.getString(R.string.madinah)));
 
 
         return allItems;

@@ -1,6 +1,10 @@
 package com.example.barakatravelapp.data.api;
 
 
+import com.example.barakatravelapp.data.model.bookEvisaResponce.BookEvisaResponce;
+import com.example.barakatravelapp.data.model.getBookingFlightsResponce.GetBookingFlightsResponce;
+import com.example.barakatravelapp.data.model.getBookingHotelsResponce.GetBookingHotelsResponce;
+import com.example.barakatravelapp.data.model.getBookingPackageResponce.GetBookingPackageResponce;
 import com.example.barakatravelapp.data.model.getDiscoverHomeResponce.GetDiscoverHomeResponce;
 import com.example.barakatravelapp.data.model.getFlightResponce.GetFlightResponce;
 import com.example.barakatravelapp.data.model.getHotelsResponce.GetHotelsResponce;
@@ -80,6 +84,13 @@ public interface ApiServices {
             @Field("page") int page
     );
 
+    @POST("getBookingHotels")
+    @FormUrlEncoded
+    Call<GetBookingHotelsResponce> getBookingHotelsItemList(
+            @Field("userId") int userId,
+            @Field("page") int page
+    );
+
     @POST("getFlights")
     @FormUrlEncoded
     Call<GetFlightResponce> getFlightItemListByFilter(
@@ -90,6 +101,13 @@ public interface ApiServices {
     @POST("getFlights")
     @FormUrlEncoded
     Call<GetFlightResponce> getFlightItemList(
+            @Field("page") int page
+    );
+
+    @POST("getBookingFlights")
+    @FormUrlEncoded
+    Call<GetBookingFlightsResponce> getBookingFlightItemList(
+            @Field("userId") int userId,
             @Field("page") int page
     );
 
@@ -104,6 +122,13 @@ public interface ApiServices {
     @POST("getPackage")
     @FormUrlEncoded
     Call<GetUmrahAndHujjResponce> getHajjAndUmrahItemList(
+            @Field("type") String type,
+            @Field("page") int page    );
+
+    @POST("getBookingPackage")
+    @FormUrlEncoded
+    Call<GetBookingPackageResponce> getBookingHajjAndUmrahItemList(
+            @Field("userId") int userId,
             @Field("type") String type,
             @Field("page") int page    );
 
@@ -171,7 +196,19 @@ public interface ApiServices {
 //            @Part("check_number") RequestBody check_number,
             @Part() MultipartBody.Part passport_image,
             @Part() MultipartBody.Part personal_image
-//            @Part List<MultipartBody.Part> files
     );
 
+    @Multipart
+    @POST("bookEvisa")
+    Call<BookEvisaResponce> evisaBooking(
+            @Part("userId") RequestBody userId,
+            @Part("firstName") RequestBody firstName,
+            @Part("lastName") RequestBody lastName,
+            @Part("contactNumber") RequestBody contactNumber,
+            @Part("email") RequestBody email,
+            @Part("countryType") RequestBody countryType,
+            @Part List<MultipartBody.Part> passportFiles,
+            @Part List<MultipartBody.Part> personalFiles
+
+    );
 }

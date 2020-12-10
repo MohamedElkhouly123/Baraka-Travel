@@ -42,7 +42,7 @@
             android:layout_centerInParent="true"
             android:contentDescription="action_settings"
             android:scaleType="centerCrop"
-            android:src="@drawable/inside_hotels"
+            android:src="@drawable/inside_my_hotels_booking"
            />
         <ImageView
             android:layout_width="match_parent"

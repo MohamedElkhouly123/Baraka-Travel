@@ -13,6 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.getDiscoverHomeResponce.GetDiscoverHomeResponce;
+import com.example.barakatravelapp.data.model.getFaqResponce.GetFaqResponce;
 import com.example.barakatravelapp.data.model.getFlightResponce.GetFlightResponce;
 import com.example.barakatravelapp.data.model.getHotelsResponce.GetHotelsResponce;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
@@ -46,6 +47,7 @@ public class ViewModelGetLists extends ViewModel {
     private MutableLiveData<GetHotelsResponce> getHotelsResponce = new MutableLiveData<>();
     private MutableLiveData<GetDiscoverHomeResponce> getHomeDiscoverResponce = new MutableLiveData<>();
     private MutableLiveData<GetUmrahAndHujjResponce> getHomeHajjAndUmrahResponce = new MutableLiveData<>();
+    private MutableLiveData<GetFaqResponce> getFaqResponce = new MutableLiveData<>();
 
 
 
@@ -303,6 +305,74 @@ public class ViewModelGetLists extends ViewModel {
                         discoverHomeFragmentSrRefreshRv.setRefreshing(false);
 //                        new HomeFragment().setError(String.valueOf(R.string.error_list));
                         getHomeDiscoverResponce.postValue(null);
+                    } catch (Exception e) {
+
+                    }
+                }
+            });
+        } else {
+            try {
+//                clientAndRestaurantHomeFragmentSFlShimmer.stopShimmer();
+//                clientAndRestaurantHomeFragmentSFlShimmer.setVisibility(View.GONE);
+                loadMore.setVisibility(View.GONE);
+                discoverHomeFragmentSrRefreshRv.setRefreshing(false);
+//                errorSubView.setVisibility(View.VISIBLE);
+//                new HomeFragment().setError(String.valueOf(R.string.error_inter_net));
+                onCreateErrorToast(activity, activity.getString(R.string.error_inter_net));
+            } catch (Exception e) {
+
+            }
+
+        }
+    }
+
+    public MutableLiveData<GetFaqResponce> makeGetFaqDataList() {
+        return getFaqResponce;
+    }
+    public void getFaqDataList(final Activity activity, final LinearLayout errorSubView, final Call<GetFaqResponce> method, final SwipeRefreshLayout discoverHomeFragmentSrRefreshRv, final RelativeLayout loadMore) {
+        if (isConnected(activity)) {
+
+            discoverHomeFragmentSrRefreshRv.setRefreshing(true);
+//            errorSubView.setVisibility(View.GONE);
+
+
+            method.enqueue(new Callback<GetFaqResponce>() {
+                @Override
+                public void onResponse(Call<GetFaqResponce> call, Response<GetFaqResponce> response) {
+
+                    if (response.body() != null) {
+                        try {
+//                            clientAndRestaurantHomeFragmentSFlShimmer.stopShimmer();
+//                            clientAndRestaurantHomeFragmentSFlShimmer.setVisibility(View.GONE);
+                            loadMore.setVisibility(View.GONE);
+                            discoverHomeFragmentSrRefreshRv.setRefreshing(false);
+                            if (response.body().getStatus().equals("success")) {
+//
+                                getFaqResponce.postValue(response.body());
+
+                                ToastCreator.onCreateSuccessToast(activity, "Success");
+                            } else {
+                                onCreateErrorToast(activity, response.body().getMessage());
+//                                new HomeFragment().setError(String.valueOf(R.string.error_list));
+
+                            }
+
+                        } catch(Exception e){
+
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<GetFaqResponce> call, Throwable t) {
+                    try {
+//                        clientAndRestaurantHomeFragmentSFlShimmer.stopShimmer();
+//                        clientAndRestaurantHomeFragmentSFlShimmer.setVisibility(View.GONE);
+                        loadMore.setVisibility(View.GONE);
+                        discoverHomeFragmentSrRefreshRv.setRefreshing(false);
+//                        new HomeFragment().setError(String.valueOf(R.string.error_list));
+                        getFaqResponce.postValue(null);
                     } catch (Exception e) {
 
                     }

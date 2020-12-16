@@ -1,11 +1,14 @@
 package com.example.barakatravelapp.data.api;
 
 
+import com.example.barakatravelapp.data.model.appSettingResponce.AppSettingResponce;
 import com.example.barakatravelapp.data.model.bookEvisaResponce.BookEvisaResponce;
+import com.example.barakatravelapp.data.model.getBookingEvisaResponce.GetBookingEvisaResponce;
 import com.example.barakatravelapp.data.model.getBookingFlightsResponce.GetBookingFlightsResponce;
 import com.example.barakatravelapp.data.model.getBookingHotelsResponce.GetBookingHotelsResponce;
 import com.example.barakatravelapp.data.model.getBookingPackageResponce.GetBookingPackageResponce;
 import com.example.barakatravelapp.data.model.getDiscoverHomeResponce.GetDiscoverHomeResponce;
+import com.example.barakatravelapp.data.model.getFaqResponce.GetFaqResponce;
 import com.example.barakatravelapp.data.model.getFlightResponce.GetFlightResponce;
 import com.example.barakatravelapp.data.model.getHotelsResponce.GetHotelsResponce;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetUmrahAndHujjResponce;
@@ -211,4 +214,30 @@ public interface ApiServices {
             @Part List<MultipartBody.Part> personalFiles
 
     );
+
+    @POST("getBookingEvisa")
+    @FormUrlEncoded
+    Call<GetBookingEvisaResponce> getBookingEVisaItemList(
+            @Field("page") int page,
+            @Field("userId") int userId
+    );
+
+    @POST("contactUS")
+    @FormUrlEncoded
+    Call<UserLoginGeneralResponce> contactUs(@Field("userId") int userId,
+                                            @Field("name") String name,
+                                            @Field("mobile") String mobile,
+                                            @Field("email") String email,
+                                            @Field("message") String message);
+
+    @POST("appSetting")
+    Call<AppSettingResponce> appSettings(
+
+    );
+
+    @POST("getFaq")
+    @FormUrlEncoded
+    Call<GetFaqResponce> getFaq(
+            @Field("page") int page    );
+
 }

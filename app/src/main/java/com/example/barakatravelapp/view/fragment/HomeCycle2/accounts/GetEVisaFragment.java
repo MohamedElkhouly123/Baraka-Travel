@@ -3,28 +3,30 @@ package com.example.barakatravelapp.view.fragment.HomeCycle2.accounts;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
+import com.example.barakatravelapp.adapter.EVisaPhotoGallaryHzRvAdapter;
 import com.example.barakatravelapp.adapter.SpinnerAdapter;
 import com.example.barakatravelapp.data.model.GeneralResposeData;
 import com.example.barakatravelapp.data.model.bookEvisaResponce.BookEvisaResponce;
 import com.example.barakatravelapp.data.model.userLoginResponce.UserData;
-import com.example.barakatravelapp.data.model.userLoginResponce.UserLoginGeneralResponce;
 import com.example.barakatravelapp.utils.EVisaBookingDialog;
 import com.example.barakatravelapp.utils.ToastCreator;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
@@ -47,7 +49,6 @@ import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadUserData;
 import static com.example.barakatravelapp.utils.HelperMethod.convertFileToMultipart;
 import static com.example.barakatravelapp.utils.HelperMethod.convertToRequestBody;
-import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
 import static com.example.barakatravelapp.utils.HelperMethod.openGalleryِAlpom;
 import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 import static com.example.barakatravelapp.utils.validation.Validation.cleanError;
@@ -69,18 +70,20 @@ public class GetEVisaFragment extends BaSeFragment {
     TextInputLayout fragmentGetEVisaTilEmail;
     @BindView(R.id.fragment_get_e_visa_sp_passporn_num)
     Spinner fragmentGetEVisaSpPassportNum;
-    @BindView(R.id.fragment_get_e_visa_get_passport_photos_img)
-    ImageView fragmentGetEVisaGetPassportPhotosImg;
-    @BindView(R.id.fragment_get_e_visa_get_passport_photos_tv)
-    TextView fragmentGetEVisaGetPassportPhotosTv;
-    @BindView(R.id.fragment_get_e_visa_get_personal_photos_img)
-    ImageView fragmentGetEVisaGetPersonalPhotosImg;
-    @BindView(R.id.fragment_get_e_visa_get_personal_photos_tv)
-    TextView fragmentGetEVisaGetPersonalPhotosTv;
     @BindView(R.id.fragment_get_e_visa_get_passport_photos_btn)
-    ConstraintLayout fragmentGetEVisaGetPassportPhotosBtn;
+    LinearLayout fragmentGetEVisaGetPassportPhotosBtn;
     @BindView(R.id.fragment_get_e_visa_get_personal_photos_btn)
-    ConstraintLayout fragmentGetEVisaGetPersonalPhotosBtn;
+    LinearLayout fragmentGetEVisaGetPersonalPhotosBtn;
+    @BindView(R.id.home_discover_fragment_sub_home_rv_item_hz_sr_vw)
+    HorizontalScrollView homeDiscoverFragmentSubHomeRvItemHzSrVw;
+    @BindView(R.id.hfragment_get_e_visa_srv_item_hz_sr_vw)
+    HorizontalScrollView hfragmentGetEVisaSrvItemHzSrVw;
+    @BindView(R.id.fragment_get_e_visa_passport_photo_rv_item_hz_rv)
+    RecyclerView fragmentGetEVisaPassportPhotoRvItemHzRv;
+    @BindView(R.id.fragment_get_e_visa_personal_photo_rv_item_hz_rv)
+    RecyclerView fragmentGetEVisaPersonalPhotoRvItemHzRv;
+    @BindView(R.id.fragment_get_e_visa_hiden_part_ly)
+    LinearLayout fragmentGetEVisaHidenPartLy;
     private NavController navController;
     private UserData userData;
     private String countryType;
@@ -88,12 +91,15 @@ public class GetEVisaFragment extends BaSeFragment {
     private List<GeneralResposeData> choosePassportNum = new ArrayList<GeneralResposeData>();
     private int choosePassportNumSelectedId1 = 0;
     private AdapterView.OnItemSelectedListener listener;
-    private List<String> mPassportPath = new ArrayList<String>();
-    private List<String> mPersonalPath = new ArrayList<String>();
-//    public static ArrayList<String> phoneList = new ArrayList<>();
+    public List<String> mPassportPath = new ArrayList<String>();
+    public List<String> mPersonalPath = new ArrayList<String>();
+    //    public static ArrayList<String> phoneList = new ArrayList<>();
     private static ArrayList<AlbumFile> alpom = new ArrayList<>();
     private ViewModelUser viewModelUser;
     private BookEvisaResponce bookEvisaResponce;
+    private LinearLayoutManager linearLayoutHorizental;
+    private EVisaPhotoGallaryHzRvAdapter eVisaPhotoGallaryHzRvAdapter, eVisaPhotoGallaryHzRvAdapter2;
+
     public GetEVisaFragment() {
         // Required empty public constructor
     }
@@ -126,8 +132,9 @@ public class GetEVisaFragment extends BaSeFragment {
                 if (response != null) {
                     if (response.getStatus().equals("success")) {
 //                        showToast(getActivity(), "success");
-                         bookEvisaResponce=response;
-                         new EVisaBookingDialog().showDialog(getActivity(),bookEvisaResponce);
+                        bookEvisaResponce = response;
+                        new EVisaBookingDialog().showDialog(getActivity(), bookEvisaResponce);
+
                     }
                 }
             }
@@ -154,10 +161,9 @@ public class GetEVisaFragment extends BaSeFragment {
         listener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0) {
+                if (i != 0) {
                     choosePassportNumSelectedId1 = i;
-                    fragmentGetEVisaGetPassportPhotosBtn.setVisibility(View.VISIBLE);
-                    fragmentGetEVisaGetPersonalPhotosBtn.setVisibility(View.VISIBLE);
+                    fragmentGetEVisaHidenPartLy.setVisibility(View.VISIBLE);
                     ToastCreator.onCreateSuccessToast(getActivity(), "Please Must Select " + choosePassportNumSelectedId1 + " Passport photos and " + choosePassportNumSelectedId1 + " Personal photos");
 
                 }
@@ -169,6 +175,36 @@ public class GetEVisaFragment extends BaSeFragment {
             }
         };
         fragmentGetEVisaSpPassportNum.setOnItemSelectedListener(listener);
+
+        initHozental(mPassportPath, fragmentGetEVisaPassportPhotoRvItemHzRv, 1);
+
+        initHozental(mPersonalPath, fragmentGetEVisaPersonalPhotoRvItemHzRv, 2);
+
+    }
+
+    private void initHozental(List<String> mListPath, RecyclerView fragmentEVisaGeneralRvItemHzRv, int itemNum) {
+        linearLayoutHorizental = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false);
+        fragmentEVisaGeneralRvItemHzRv.setLayoutManager(linearLayoutHorizental);
+        fragmentEVisaGeneralRvItemHzRv.setHasFixedSize(true);
+//        clientGetRestaurantsFiltterList(0);
+        fragmentEVisaGeneralRvItemHzRv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+        if (itemNum == 1) {
+            eVisaPhotoGallaryHzRvAdapter = new EVisaPhotoGallaryHzRvAdapter(getContext(), getActivity(), "passport", mListPath);
+            fragmentEVisaGeneralRvItemHzRv.setAdapter(eVisaPhotoGallaryHzRvAdapter);
+//                    showToast(getActivity(), String.valueOf(getTopUmarAndTophajjPackage.getUmarImages().get(0)));
+
+        }
+        if (itemNum == 2) {
+            eVisaPhotoGallaryHzRvAdapter2 = new EVisaPhotoGallaryHzRvAdapter(getContext(), getActivity(), "personal", mListPath);
+            fragmentEVisaGeneralRvItemHzRv.setAdapter(eVisaPhotoGallaryHzRvAdapter2);
+//                    showToast(getActivity(), String.valueOf(getTopUmarAndTophajjPackage.getUmarImages().get(0)));
+
+        }
     }
 
     @Override
@@ -193,14 +229,23 @@ public class GetEVisaFragment extends BaSeFragment {
                         for (int i = 0; i < result.size(); i++) {
 
                             mPassportPath.add(result.get(i).getPath());
-                            showToast(getActivity(), mPassportPath.get(i));
+//                            showToast(getActivity(), mPassportPath.get(i));
 
 //                        if(mPassportPath!=null){
 //                            onLoadImageFromUrl(fragmentHajjAndUmrahBookingGetPassportImageImg,mPassportPath, getContext());}
                         }
-                        fragmentGetEVisaGetPassportPhotosTv.setText("Success photo Load");
+//                        fragmentGetEVisaGetPassportPhotosTv.setText("Success photo Load");
+                        if(result.size()!=choosePassportNumSelectedId1){
+                            showToast(getActivity(),"You must Choose "+choosePassportNumSelectedId1+" Images");
+                            return;
+                        }else {
+
+                        eVisaPhotoGallaryHzRvAdapter.notifyDataSetChanged();}
+
                     }
+
                 }, choosePassportNumSelectedId1);
+
                 break;
             case R.id.fragment_get_e_visa_get_personal_photos_btn:
                 mPersonalPath.clear();
@@ -213,7 +258,12 @@ public class GetEVisaFragment extends BaSeFragment {
 //                        if(mPassportPath!=null){
 //                            onLoadImageFromUrl(fragmentHajjAndUmrahBookingGetPassportImageImg,mPassportPath, getContext());}
                         }
-                        fragmentGetEVisaGetPersonalPhotosTv.setText("Success photo Load");
+                        if(result.size()!=choosePassportNumSelectedId1){
+                            showToast(getActivity(),"You must Choose "+choosePassportNumSelectedId1+" Images");
+                            return;
+                        }else {
+                            eVisaPhotoGallaryHzRvAdapter2.notifyDataSetChanged();
+                        }
                     }
                 }, choosePassportNumSelectedId1);
                 break;
@@ -242,11 +292,11 @@ public class GetEVisaFragment extends BaSeFragment {
             return;
         }
 
-        if (!validationLength(fragmentGetEVisaTilFirstName, getString(R.string.invalid_user_name), 3)) {
+        if (!validationLength(fragmentGetEVisaTilFirstName, getString(R.string.invalid_first_name), 3)) {
             return;
         }
 
-        if (!validationLength(fragmentGetEVisaTilLastName, getString(R.string.invalid_user_name), 3)) {
+        if (!validationLength(fragmentGetEVisaTilLastName, getString(R.string.invalid_last_name), 3)) {
             return;
         }
 
@@ -256,20 +306,20 @@ public class GetEVisaFragment extends BaSeFragment {
         }
 
 
-//        if (!validationPhone(getActivity(), fragmentGetEVisaTilPhone)) {
-//            ToastCreator.onCreateErrorToast(getActivity(), "Enter Phone");
-//            return;
-//        }
+        if (!validationPhone(getActivity(), fragmentGetEVisaTilPhone)) {
+            ToastCreator.onCreateErrorToast(getActivity(), "Enter Phone");
+            return;
+        }
 
         if (fragmentGetEVisaSpPassportNum.getSelectedItemPosition() == 0) {
             ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_pasport_num));
             return;
         }
 
-        if (mPassportPath.size()!=0&& mPersonalPath.size()!=0) {
-            if (mPassportPath.size()!=mPersonalPath.size()) {
-                ToastCreator.onCreateSuccessToast(getActivity(), "Please Must Select " + choosePassportNumSelectedId1 + " Passport photos and " + choosePassportNumSelectedId1 + " Personal photos");
-            }else{
+        if (mPassportPath.size() != 0 && mPersonalPath.size() != 0) {
+            if (mPassportPath.size() != mPersonalPath.size()) {
+                ToastCreator.onCreateErrorToast(getActivity(), "Please Must Select " + choosePassportNumSelectedId1 + " Passport photos and " + choosePassportNumSelectedId1 + " Personal photos");
+            } else {
                 onCall();
 
             }
@@ -292,7 +342,7 @@ public class GetEVisaFragment extends BaSeFragment {
 //        if (mPassportPath != null) {
 
         for (int i = 0; i < mPassportPath.size(); i++) {
-            passportFiles.add(convertFileToMultipart(mPassportPath.get(i),"passport_photo["+i+"]",getActivity()));
+            passportFiles.add(convertFileToMultipart(mPassportPath.get(i), "passport_photo[" + i + "]", getActivity()));
             //Where selectedFiles is selected file URI list
 
         }
@@ -301,7 +351,7 @@ public class GetEVisaFragment extends BaSeFragment {
 
         for (int i = 0; i < mPersonalPath.size(); i++) {
 
-            personalFiles.add(convertFileToMultipart(mPersonalPath.get(i),"photo["+i+"]",getActivity()));
+            personalFiles.add(convertFileToMultipart(mPersonalPath.get(i), "photo[" + i + "]", getActivity()));
 //            showToast(getActivity(), "photo[" + (i)+"]");
 
             //Where selectedFiles is selected file URI list

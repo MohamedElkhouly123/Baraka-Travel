@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Baraka Travel</string>
     <string name="invalid_email">Email must be like this \"example@example.com\"</string>
-    <string name="invalid_phone1">Phone number must be +1 and 10 numbers\ </string>
+    <string name="invalid_phone1">Phone number must be +1 and 8 or 10 numbers</string>
     <string name="invalid_phone2"> number</string>
     <string name="invalid_confirm_password">Confirm password not match</string>
     <string name="title_account">Account</string>
@@ -33,7 +33,7 @@
     <string name="manage_bookings">Manage Bookings</string>
     <string name="top_flight_offers">Top Flight Offers</string>
     <string name="top_umrah_packages">Top Umrah Packages</string>
-    <string name="about_baraka_uSA">About Baraka USA</string>
+    <string name="about_baraka_uSA">About Us</string>
     <string name="login_out">LogOut</string>
     <string name="report_a_problem">Report a problem</string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
@@ -114,13 +114,16 @@
     <string name="wait">Please wait....</string>
     <string name="error">Something went wrong</string>
     <string name="error_inter_net">No internet connection Please check your internet and try again later</string>
-    <string name="empty">Please Enter your Data first</string>
-    <string name="invalid_password">Password must be more than 7 of char and number</string>
-    <string name="invalid_user_name">Username must be more than 2 char</string>
-    <string name="invalid_message">Message must be more than 2 char</string>
+    <string name="empty">Please Enter and Complete your Data First</string>
+    <string name="invalid_password">Password must be more than 7 of chars and numbers</string>
+    <string name="invalid_user_name">Username must be more than 2 chars</string>
+    <string name="invalid_first_name">First Name must be more than 2 chars</string>
+    <string name="invalid_last_name">First Name must be more than 2 chars</string>
+    <string name="invalid_message">Message must be more than 1 chars</string>
+    <string name="invalid_required_field">Required Field</string>
     <string name="umrah">Umrah</string>
     <string name="hajj_and_umrah"><![CDATA[Hajj & Umrah]]></string>
-    <string name="invalid_search">Search keyword mast be more than 2 char</string>
+    <string name="invalid_search">Search keyword mast be more than 2 chars</string>
     <string name="price">Price</string>
     <string name="discription">Description</string>
     <string name="manasik">Manasik</string>
@@ -152,6 +155,8 @@
     <string name="subbmit">Submit</string>
     <string name="choose_passport_image">Choose Passport Image</string>
     <string name="choose_personal_image">Choose Personal Image</string>
+    <string name="choose_passport_images">Choose Passport Images</string>
+    <string name="choose_personal_images">Choose Personal Images</string>
     <string name="zip_code">Zip Code</string>
     <string name="select_gender">Please Select Gender Type First</string>
     <string name="select_passport">Please Select Passport First</string>
@@ -194,5 +199,39 @@
     <string name="evisa_success">Thank you for E-visa booking, Please wait our call within 24 hours to confirm your package.</string>
     <string name="merchant_service_fees_3">Merchant service fees 3 %  :</string>
     <string name="total_amount_due">Total Amount Due  :</string>
+    <string name="select_pay_type">Please Select Payment Type First</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="FAQ">FAQ</string>
+    <string name="ques1">Q1 :HOW DO I BOOK A HAJJ OR UMRAH PACKAGE WITH BARAKA TRAVEL ?</string>
+    <string name="ans1">A. Browse through our several Hajj or Umrah packages, and choose the package that best suits your needs. Afterward, you can reserve your Hajj or Umrah package online through (payment methods). Once you’ve completed the payment process, you have officially reserved your Hajj or Umrah package with our company. You will also receive a confirmation of your reservation and a Hajj or Umrah visa application to fill out.</string>
+    <string name="ques2">Q2 :WHAT HAPPENS IF I WANT TO CHANGE MY PACKAGE AFTER I’VE BOOKED IT?</string>
+    <string name="ans2">Although you can make minor modifications to your travel package, the major aspects of your package, such as the hotels and airlines you’ve booked, cannot be modified.</string>
+    <string name="ques3">Q3 :WHAT KIND OF HAJJ WILL I BE CARRYING OUT?</string>
+    <string name="ans3">We will carry out Hajj according to the teachings of Saydena Mohamed , God blessings and peace upon him, and his Sunni approach</string>
+    <string name="ques4">Q4 :CAN I TRAVEL TO ANOTHER DESTINATION AS A STOPOVER BEFORE OR AFTER HAJJ OR UMRAH?</string>
+    <string name="ans4">Yes, of course. We also organize the best Islamic Tours for Muslims in Egypt, Turkey, Jordan, Dubai, and many other countries. Guests can also stop and visit their homeland before or after Hajj or Umrah.</string>
+    <string name="ques5">Q5 :WHAT IS THE NEXT STEP AFTER RECEIVING THE CONFIRMATION AND SUBMITTING THE DOCUMENTATION FOR MY VISA TO SAUDI ARABIA?</string>
+    <string name="ans5">We will begin applying for your visa as soon as we receive the required documentation and application form. The process takes 3 to 4 weeks. Once the Ministry of Hajj in Saudi Arabia issues the visa, you will receive your final confirmation email that serves as a contract between you and Baraka Travel. You will need a printout of the confirmation email during your trip to Saudi Arabia. You will also receive your detailed itinerary, your passport with the visa, the airline tickets, luggage tags from Baraka Travel, and ID cards.</string>
+    <string name="ques6">Q6 :WHEN IS THE DEADLINE FOR BOOKING A HAJJ PACKAGE?</string>
+    <string name="ans6">The sooner the better! There is no deadline, but everything is booked on a first-come, first-served basis. Many of our Hajj packages are booked during the holy month of Ramadan. The remaining packages or accommodations are booked right after Eid.</string>
+    <string name="ques7">Q7 :WHAT HAPPENS IF I CANCEL MY BOOKING FOR HAJJ OR UMRAH?</string>
+    <string name="ans7">A. You must complete the payment process before you fill out the visa application for Hajj or Umrah due to the regulations of the Ministry of Hajj in Saudi Arabia. The payment for the accommodation and the ground services in Saudi Arabia cannot be refunded. However, your airplane tickets, based on the kind of ticket and the cancellation date, can be refunded (minus the airline’s cancellation fee).</string>
+    <string name="ques8">Q8 :IS IT POSSIBLE TO OBTAIN THE VISA WITHOUT BOOKING A PACKAGE OR ACCOMMODATION?</string>
+    <string name="ans8">This is not permitted, according to the regulations and rules of Saudi Arabia. The cost of the hotel accommodation must be paid before issuing the visa.</string>
+    <string name="ques9">Q9 :IS IT POSSIBLE FOR GUESTS WHO DON’T HAVE AN ISLAMIC NAME OR WHO RECENTLY CONVERTED TO ISLAM TO TRAVEL FOR HAJJ OR UMRAH?</string>
+    <string name="ans9">Yes, this is possible under one condition: You must send us proof of your conversion to Islam. This may include the certificate of your conversion or a certified letter from your domestic Islamic center testifying that you have converted to Islam.</string>
+    <string name="ques10">Q10 :HOW DO I KNOW WHO IS AUTHORIZED AND WHO IS NOT?</string>
+    <string name="ans10">A. Through the closest Saudi Embassy to you, Our case in embassy of Saudi Arabia in New York. Each authorized company has a Hajj License Number “Munazem Number”, using this number you can deal with the authorities at the Passport Office in Saudi Arabia.</string>
+    <string name="send_message">send message</string>
+    <string name="hi_about_us"><![CDATA[Hi! Welcome to Baraka & Travels]]></string>
+    <string name="BARAKA_TRAVEL_AGENCY">BARAKA TRAVEL AGENCY</string>
+    <string name="ADDRESS_CONTACT_INFO"><![CDATA[ADDRESS & CONTACT INFO]]></string>
+    <string name="add_photos">Add Photos</string>
+    <string name="My_E_Visa_Bookings">My E-Visa Bookings</string>
+    <string name="my_umrah_booking"><![CDATA[https://s3-alpha-sig.figma.com/img/9dfc/2bb0/55f488a73d3847c7c8683c58810deeff?Expires=1609113600&Signature=gsAh21gFiuZUEJ~EmRevrPQbG64a9jgV8DxaQtmjPZnvixI13x3mEIOgr6dsEjw1Z6jtzNJrPZqCh8styQrYVsSzdRibP7feWqmK8PvjlH1EKju67vPYv4UPfmi3HZ1WIK0gToTSCaF~IqzQYp-Y4N25x0oul-7V5OtAedArdTwP2EqKEPbWjrZS07KvPSvjy5bTpcKsp8XPLPfq7e7mFfNT7XIE-UXjIkv-s32aWA74FUdMiyOd4QyZHFXUSBT~nvwYdaN3OeAeEfjcG4Lp2-BnrSAAVtpV9-r-odGhJeOp-Kg21tSZz1H9NpdDpbQ-f0-GCQuib5aygWdpBo7uWw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA]]></string>
+    <string name="my_hajj_booking2"><![CDATA[https://s3-alpha-sig.figma.com/img/1abd/e489/09da69058d7bfe9e09dcad7602fb10b7?Expires=1609113600&Signature=XbHQShZOzJpVO5XdXG9qUYlvgSbmHqDgOdhixQGyKpN-UTlxO79TWDOyemCGB2XXFJ824B9pc1NmeLsYwBy9mF3xg~fKxKd5KTJzcPglXs8FbEteOIIgGQhqXdf-HWuXCRNoL~L92ZFdOnzJw27K-bIYoA4USQfLipSmJ7A7iT6--uW1fJSRrdTGJ5zZEIuIyTPQryjcO1YHXTLHpFsXgcPMQJsvbJXV-vlB1xl0OKW0c4xhXFwRUaElIJU15MSvC2VM~DyxZC~hRId4EVLclyS66c7B347TiS~0sT1YfBzwbartdG3OMnHLawN6Q6-xv7mG6owWk9VhH~ncw6gXRg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA]]></string>
+    <string name="inside_my_hotels_booking"><![CDATA[https://s3-alpha-sig.figma.com/img/84cb/cd25/203d7bb70013047ff4161f8076cbc108?Expires=1609113600&Signature=Gh5z3aqUEnUgR4iS8NVOkjArIZn-l0DDFgBClc3sOC6XrqjqDo2n8YFip4n0jyKKwU2gCmzRejgY7h3ez4UyFYrEcVngpq5IWbOvMGSDk4DAinleMWGxfyJ748bJwPu6PVe11KYzhn6~06xdba3T3CNHRqbGBYhYl12QboKPZpB-h-ft96xepW3gb9CIKkHu4yeFR1FJWtF2M3-VnuybomXJI6aQuyOJEpwc21JtiEeHYESatBlkkpzgwImk7GqLafPZhQ41X-t~DLmXIFcgjMyRWLtSkUAHxc-cBGPOQSlIz5Ie7LQFhGcy6YeC1OlNrtjQO40WpfETyy4tbQaqYA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA]]></string>
+    <string name="my_flight_booking"><![CDATA[https://s3-alpha-sig.figma.com/img/c65d/3625/9c34b57babd5db5c36a1cd3e6a69a351?Expires=1609113600&Signature=OYavwYphfG3p64M2UXeGeyZW8v888ji0XD9fPXcNEkClZPrdEFLlY0aBjSRvkxpVHih0pb7y9I9cZcsMwPC7Muat9STB5qovq-sj4QaoQF9caOK7~DOabU~9lVMI1l844m1ZfcPJ6ZzOPBT2XVoYWCVceXC2fyikKIUfrJlDgbF9Wg~EiuB3i~NVn7PPWldksUD46oGT4kZxfboyVmw-js98KKzgk9QJha1ECIe86~YL0Y74gHrhORqluPOwUkItEqSrtkWuR8Omc4H7Jeil1ryw9D60peL~TPgiImoh0Lt5j2X5dDhwBi1TfyPeVD4rI-rv-SpNwozbWgnOu25Xnw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA]]></string>
+    <string name="e_visa_my_booking">https://www.barakatravel.net/uploads/include/cover.jpg</string>
 
 </resources>

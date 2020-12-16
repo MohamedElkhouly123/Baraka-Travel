@@ -166,6 +166,22 @@
                         android:inputType="textAutoComplete" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragment_hajj_and_umrah_booking_til_passport"
+                    style="@style/text_input_booking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorTextAppearance="@style/error_appearance"
+                    >
+                    <Spinner
+                        android:id="@+id/fragment_hajj_and_umrah_booking_sp_passport"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_47sdp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:textAlignment="center"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/fragment_hajj_and_umrah_booking_til_phone"
                     style="@style/text_input_booking"
                     android:layout_width="match_parent"
@@ -184,23 +200,9 @@
                         android:hint="@string/contact_number"
                         android:inputType="phone"
                         />
+
                 </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/fragment_hajj_and_umrah_booking_til_passport"
-                    style="@style/text_input_booking"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorTextAppearance="@style/error_appearance"
-                    >
-                <Spinner
-                    android:id="@+id/fragment_hajj_and_umrah_booking_sp_passport"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_47sdp"
-                    android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
-                    android:textAlignment="center"
-                    />
-                </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/fragment_hajj_and_umrah_booking_til_email"
                     style="@style/text_input_booking"
@@ -235,6 +237,22 @@
                         android:hint="@string/where_are_you_traveling_from"
                         android:ems="10"
                         android:inputType="textAutoComplete" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragment_hajj_and_umrah_booking_til_visa"
+                    style="@style/text_input_booking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorTextAppearance="@style/error_appearance"
+                    >
+                    <Spinner
+                        android:id="@+id/fragment_hajj_and_umrah_booking_sp_visa"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_47sdp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:textAlignment="center"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/fragment_hajj_and_umrah_booking_til_zip_code"

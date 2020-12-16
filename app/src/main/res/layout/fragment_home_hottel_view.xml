@@ -374,17 +374,18 @@
                         android:text="@string/About_HOTEL"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15ssp" />
-                    <TextView
-                        android:id="@+id/fragment_home_hottel_view_about_hotel_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/distance_details_madinah"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:textColor="@color/gray66"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
+
+            <TextView
+                android:id="@+id/fragment_home_hottel_view_about_hotel_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:text="@string/distance_details_madinah"
+                android:textColor="@color/gray66"
+                android:textSize="@dimen/_12ssp" />
+        </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -426,6 +427,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/home_discover_fragment_sub_home_rooms_ly"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_5sdp"
@@ -557,8 +559,8 @@
                     android:layout_weight="1"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_25sdp"
                     android:background="@drawable/buttonstyl_blue"
                     android:text="@string/write_your_rating_here"
                     android:textColor="@color/white"

@@ -14,6 +14,7 @@ import butterknife.BindView;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadBoolean;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadUserData;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.REMEMBER_ME;
+import static com.example.barakatravelapp.data.local.SharedPreferencesManger.clean;
 import static com.example.barakatravelapp.utils.HelperMethod.replaceFragment;
 import static com.example.barakatravelapp.utils.HelperMethod.replaceFragmentWithAnimation;
 
@@ -24,6 +25,7 @@ public class SplashCycleActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_cycle);
+//        clean(this);
         replaceFragment(getSupportFragmentManager(), R.id.splash_activity_fram, new SplashFragment());
         splashScreen();
 

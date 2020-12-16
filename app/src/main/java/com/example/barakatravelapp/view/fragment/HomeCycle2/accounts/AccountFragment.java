@@ -98,10 +98,11 @@ public class AccountFragment extends BaSeFragment {
     private List<ItemGeneralObjectModel> getAllItemList() {
 
         List<ItemGeneralObjectModel> allItems = new ArrayList<ItemGeneralObjectModel>();
-        allItems.add(new ItemGeneralObjectModel(getString(R.string.My_Umrah_Bookings),R.drawable.my_umrah_booking));
-        allItems.add(new ItemGeneralObjectModel(getString(R.string.My_Hajj_Bookings),R.drawable.my_hajj_booking2));
-        allItems.add(new ItemGeneralObjectModel(getString(R.string.My_Hotel_Bookings),R.drawable.inside_my_hotels_booking));
-        allItems.add(new ItemGeneralObjectModel(getString(R.string.My_Flight_Bookings),R.drawable.my_flight_booking));
+        allItems.add(new ItemGeneralObjectModel(getString(R.string.My_Umrah_Bookings),getString(R.string.my_umrah_booking),R.drawable.my_umrah_booking));
+        allItems.add(new ItemGeneralObjectModel(getString(R.string.My_Hajj_Bookings),getString(R.string.my_hajj_booking2),R.drawable.my_hajj_booking2));
+        allItems.add(new ItemGeneralObjectModel(getString(R.string.My_Hotel_Bookings),getString(R.string.inside_my_hotels_booking),R.drawable.inside_my_hotels_booking));
+        allItems.add(new ItemGeneralObjectModel(getString(R.string.My_Flight_Bookings),getString(R.string.my_flight_booking),R.drawable.my_flight_booking));
+        allItems.add(new ItemGeneralObjectModel(getString(R.string.My_E_Visa_Bookings),getString(R.string.e_visa_my_booking),R.drawable.e_visa_my_booking));
 
 
         return allItems;
@@ -116,7 +117,7 @@ public class AccountFragment extends BaSeFragment {
 //        homeCycleActivity.bottomNavView.getMenu().getItem(0).setChecked(true);
     }
 
-    @OnClick({R.id.fragment_home_account_profile_edit_bttn, R.id.fragment_home_account_profile_e_visa_bttn})
+    @OnClick({R.id.fragment_home_account_profile_edit_bttn, R.id.fragment_home_account_profile_e_visa_bttn, R.id.fragment_home_account_profile_more_bttn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fragment_home_account_profile_edit_bttn:
@@ -132,12 +133,12 @@ public class AccountFragment extends BaSeFragment {
 
 
                 break;
-//            case R.id.fragment_home_account_profile_cardview_my_account_item_next_btn:
-////                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new MyAllBookingFragment());
-//                navController.navigate(R.id.action_navigation_account_to_myUmrahBookingFragment);
-//                homeCycleActivity.setNavigation("g");
-//
-//                break;
+            case R.id.fragment_home_account_profile_more_bttn:
+//                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new MyAllBookingFragment());
+                navController.navigate(R.id.action_navigation_account_to_changeDetailsMoreFragment);
+                homeCycleActivity.setNavigation("g");
+
+                break;
         }
     }
 }

@@ -19,9 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.barakatravelapp.R;
+import com.example.barakatravelapp.adapter.GetBookingsEVisaItemsAdapter;
 import com.example.barakatravelapp.adapter.GetBookingsFlightsItemsAdapter;
 import com.example.barakatravelapp.adapter.GetBookingsHajjAndUmrahItemsAdapter;
 import com.example.barakatravelapp.adapter.GetBookingsHotelsItemsAdapter;
+import com.example.barakatravelapp.data.model.getBookingEvisaResponce.EVisaDate;
+import com.example.barakatravelapp.data.model.getBookingEvisaResponce.GetBookingEvisaResponce;
 import com.example.barakatravelapp.data.model.getBookingFlightsResponce.BookingFlight;
 import com.example.barakatravelapp.data.model.getBookingFlightsResponce.GetBookingFlightsResponce;
 import com.example.barakatravelapp.data.model.getBookingHotelsResponce.BookingsHotel;
@@ -43,7 +46,6 @@ import retrofit2.Call;
 
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadUserData;
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
 
 public class MyAllBookingFragment extends BaSeFragment {
@@ -66,12 +68,15 @@ public class MyAllBookingFragment extends BaSeFragment {
     private String bookingType;
     private UserData userData;
     private LinearLayoutManager linearLayout;
-    public List<BookingFlight> getFlightsItemsListData = new ArrayList<BookingFlight>();
-    public GetBookingsFlightsItemsAdapter getFlightsItemsAdapter;
-    public List<BookingsHotel> getHotelsItemsListData = new ArrayList<BookingsHotel>();
-    public GetBookingsHotelsItemsAdapter getHotelsItemsAdapter;
-    public List<BookingPackage> getTopUmarAndTophajjPackagesData = new ArrayList<BookingPackage>();
-    public GetBookingsHajjAndUmrahItemsAdapter getHajjAndUmrahItemsAdapter;
+    private List<BookingFlight> getFlightsItemsListData = new ArrayList<BookingFlight>();
+    private GetBookingsFlightsItemsAdapter getFlightsItemsAdapter;
+    private List<BookingsHotel> getHotelsItemsListData = new ArrayList<BookingsHotel>();
+    private GetBookingsHotelsItemsAdapter getHotelsItemsAdapter;
+    private List<BookingPackage> getTopUmarAndTophajjPackagesData = new ArrayList<BookingPackage>();
+    private GetBookingsHajjAndUmrahItemsAdapter getHajjAndUmrahItemsAdapter;
+    private GetBookingsEVisaItemsAdapter getBookingsEVisaItemsAdapter;
+    private List<EVisaDate> eVisaDates= new ArrayList<EVisaDate>();
+
     private ViewModelGetBookingsLists viewModel;
     public Integer maxPage = 0;
     private OnEndLess onEndLess;
@@ -117,10 +122,11 @@ public class MyAllBookingFragment extends BaSeFragment {
 
                                 getFlightsItemsAdapter.notifyDataSetChanged();
                                 maxPage++;
+                                if(getFlightsItemsListData.size()!=0){
                                 noResultErrorTitle.setVisibility(View.GONE);
-
                             } else {
-                                noResultErrorTitle.setVisibility(View.VISIBLE);
+                                    noResultErrorTitle.setVisibility(View.VISIBLE);
+                                }
                             }
 
                         }
@@ -154,10 +160,11 @@ public class MyAllBookingFragment extends BaSeFragment {
 //                                if(getHotelsItemsListData.size()){
                                 maxPage++;
 //                                }
-                                noResultErrorTitle.setVisibility(View.GONE);
-//
-                            } else {
-                                noResultErrorTitle.setVisibility(View.VISIBLE);
+                                if(getHotelsItemsListData.size()!=0){
+                                    noResultErrorTitle.setVisibility(View.GONE);
+                                } else {
+                                    noResultErrorTitle.setVisibility(View.VISIBLE);
+                                }
                             }
 //                                showToast(getActivity(), "success1");
 
@@ -192,15 +199,53 @@ public class MyAllBookingFragment extends BaSeFragment {
 //                                if(getHotelsItemsListData.size()){
                                     maxPage++;
 //                                }
-                                    noResultErrorTitle.setVisibility(View.GONE);
-
-                                } else {
-                                    noResultErrorTitle.setVisibility(View.VISIBLE);
+                                    if(getTopUmarAndTophajjPackagesData.size()!=0){
+                                        noResultErrorTitle.setVisibility(View.GONE);
+                                    } else {
+                                        noResultErrorTitle.setVisibility(View.VISIBLE);
+                                    }
                                 }
 //                                showToast(getActivity(), "success1");
 
                             }
                         } else {
+
+                        }
+
+                    } catch (Exception e) {
+                    }
+                }
+            });
+        }
+
+        if(bookingType.equalsIgnoreCase(getString(R.string.My_E_Visa_Bookings))){
+
+            viewModel.makeGetBookingsEVisaDataList().observe(getViewLifecycleOwner(), new Observer<GetBookingEvisaResponce>() {
+                @Override
+                public void onChanged(@Nullable GetBookingEvisaResponce response) {
+                    try {
+                        if (response != null) {
+//                        showToast(getActivity(), "success1");
+                            if (response.getStatus().equals("success")) {
+//                            maxPage = response.getData().getLastPage();
+
+                                if (response.getData() != null) {
+                                    eVisaDates.clear();
+                                    eVisaDates.addAll(response.getData());
+//                                showToast(getActivity(), "list="+getFlightsItemsListData.get(0));
+
+                                    getBookingsEVisaItemsAdapter.notifyDataSetChanged();
+                                    maxPage++;
+                                    if(eVisaDates.size()!=0){
+                                        noResultErrorTitle.setVisibility(View.GONE);
+                                    } else {
+                                        noResultErrorTitle.setVisibility(View.VISIBLE);
+                                    }
+                                }
+
+                            }
+                        } else {
+//                        showToast(getActivity(), "success1");
 
                         }
 
@@ -240,17 +285,23 @@ public class MyAllBookingFragment extends BaSeFragment {
             fragmentMyAllBookingRecyclerView.setAdapter(getHotelsItemsAdapter);
         }
         if(bookingType.equalsIgnoreCase(getString(R.string.My_Flight_Bookings))) {
-            getFlightsItemsAdapter = new GetBookingsFlightsItemsAdapter(getActivity(), getContext(), getFlightsItemsListData, navController);
+            getFlightsItemsAdapter = new GetBookingsFlightsItemsAdapter(getActivity(), getContext(), bookingType,getFlightsItemsListData, navController);
             fragmentMyAllBookingRecyclerView.setAdapter(getFlightsItemsAdapter);
         }
         if(bookingType.equalsIgnoreCase(getString(R.string.My_Hajj_Bookings))) {
-            getHajjAndUmrahItemsAdapter = new GetBookingsHajjAndUmrahItemsAdapter(getActivity(), getContext(), bookingType,"hajj", getTopUmarAndTophajjPackagesData);
+            getHajjAndUmrahItemsAdapter = new GetBookingsHajjAndUmrahItemsAdapter(getActivity(), getContext(),navController, bookingType,"hajj", getTopUmarAndTophajjPackagesData);
             fragmentMyAllBookingRecyclerView.setAdapter(getHajjAndUmrahItemsAdapter);
 
         }
         if(bookingType.equalsIgnoreCase(getString(R.string.My_Umrah_Bookings))) {
-            getHajjAndUmrahItemsAdapter = new GetBookingsHajjAndUmrahItemsAdapter(getActivity(), getContext(), bookingType,"umrah", getTopUmarAndTophajjPackagesData);
+            getHajjAndUmrahItemsAdapter = new GetBookingsHajjAndUmrahItemsAdapter(getActivity(), getContext(), navController, bookingType,"umrah", getTopUmarAndTophajjPackagesData);
             fragmentMyAllBookingRecyclerView.setAdapter(getHajjAndUmrahItemsAdapter);
+
+        }
+
+        if(bookingType.equalsIgnoreCase(getString(R.string.My_E_Visa_Bookings))) {
+            getBookingsEVisaItemsAdapter = new GetBookingsEVisaItemsAdapter(getActivity(), getContext(), bookingType, eVisaDates,navController);
+            fragmentMyAllBookingRecyclerView.setAdapter(getBookingsEVisaItemsAdapter);
 
         }
 //            showToast(getActivity(), "success adapter");
@@ -299,7 +350,12 @@ public class MyAllBookingFragment extends BaSeFragment {
                 getHajjAndUmrahHomeList(0,"umrah");
             }
         }
-    }
+        if(bookingType.equalsIgnoreCase(getString(R.string.My_E_Visa_Bookings))) {
+            if (getTopUmarAndTophajjPackagesData.size() == 0) {
+                getEVisaList(0);
+            }
+        }
+        }
 
     private void getByType(int page) {
         if(bookingType.equalsIgnoreCase(getString(R.string.My_Hotel_Bookings))){
@@ -320,7 +376,11 @@ public class MyAllBookingFragment extends BaSeFragment {
 
 
         }
-    }
+        if(bookingType.equalsIgnoreCase(getString(R.string.My_E_Visa_Bookings))) {
+            getEVisaList(page);
+
+        }
+        }
 
 
     private void getHotelsHomeList(int page) {
@@ -337,6 +397,24 @@ public class MyAllBookingFragment extends BaSeFragment {
         viewModel.getHBookingsotelsDataList(getActivity(), errorSubView, getHotelsResponceCall,fragmentMyAllBookingSrRefresh, loadMore);
 //            showToast(getActivity(), "success without fillter");
 
+
+
+    }
+
+    private void getEVisaList(int page) {
+        if (page == 0) {
+            maxPage = 0;
+        }
+
+        Call<GetBookingEvisaResponce> getEVisaResponceCall;
+//        startShimmer(page);
+
+        reInit();
+        getEVisaResponceCall = getApiClient().getBookingEVisaItemList(page,userData.getId());
+
+//            clientRestaurantsCall = getApiClient().getRestaurantsWithoutFiltter(page);
+        viewModel.getBookingsEVsaDataList(getActivity(), errorSubView, getEVisaResponceCall, fragmentMyAllBookingSrRefresh, loadMore);
+//            showToast(getActivity(), "success ");
 
 
     }
@@ -386,19 +464,25 @@ public class MyAllBookingFragment extends BaSeFragment {
         }
         if(bookingType.equalsIgnoreCase(getString(R.string.My_Flight_Bookings))) {
             getFlightsItemsListData = new ArrayList<>();
-            getFlightsItemsAdapter = new GetBookingsFlightsItemsAdapter(getActivity(), getContext(), getFlightsItemsListData, navController);
+            getFlightsItemsAdapter = new GetBookingsFlightsItemsAdapter(getActivity(), getContext(), bookingType, getFlightsItemsListData, navController);
             fragmentMyAllBookingRecyclerView.setAdapter(getFlightsItemsAdapter);
         }
         if(bookingType.equalsIgnoreCase(getString(R.string.My_Hajj_Bookings))) {
             getTopUmarAndTophajjPackagesData = new ArrayList<>();
-            getHajjAndUmrahItemsAdapter = new GetBookingsHajjAndUmrahItemsAdapter(getActivity(), getContext(), bookingType,"hajj", getTopUmarAndTophajjPackagesData);
+            getHajjAndUmrahItemsAdapter = new GetBookingsHajjAndUmrahItemsAdapter(getActivity(), getContext(), navController, bookingType,"hajj", getTopUmarAndTophajjPackagesData);
             fragmentMyAllBookingRecyclerView.setAdapter(getHajjAndUmrahItemsAdapter);
 
         }
         if(bookingType.equalsIgnoreCase(getString(R.string.My_Umrah_Bookings))) {
             getTopUmarAndTophajjPackagesData = new ArrayList<>();
-            getHajjAndUmrahItemsAdapter = new GetBookingsHajjAndUmrahItemsAdapter(getActivity(), getContext(), bookingType,"umrah", getTopUmarAndTophajjPackagesData);
+            getHajjAndUmrahItemsAdapter = new GetBookingsHajjAndUmrahItemsAdapter(getActivity(), getContext(), navController, bookingType,"umrah", getTopUmarAndTophajjPackagesData);
             fragmentMyAllBookingRecyclerView.setAdapter(getHajjAndUmrahItemsAdapter);
+        }
+        if(bookingType.equalsIgnoreCase(getString(R.string.My_E_Visa_Bookings))) {
+            eVisaDates= new ArrayList<EVisaDate>();
+            getBookingsEVisaItemsAdapter = new GetBookingsEVisaItemsAdapter(getActivity(), getContext(), bookingType, eVisaDates,navController);
+            fragmentMyAllBookingRecyclerView.setAdapter(getBookingsEVisaItemsAdapter);
+
         }
         }
 
@@ -429,5 +513,6 @@ public class MyAllBookingFragment extends BaSeFragment {
 
     @OnClick(R.id.fragment_my_all_booking_back_img)
     public void onViewClicked() {
+        onBack();
     }
 }

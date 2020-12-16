@@ -95,8 +95,9 @@ public class GetBookingsHotelsItemsAdapter extends RecyclerView.Adapter<GetBooki
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("Object",  hotelDataList.get(position).getHotel());
-                bundle.putString("DiscoverOrHotel", "hotel");
-                navController.navigate(R.id.action_navigation_hotels_to_hottelViewFragment,bundle);
+                bundle.putString("DiscoverOrHotel", "book_hotel");
+                bundle.putString("getRoomPrice", hotelDataList.get(position).getRoomPrice());
+                navController.navigate(R.id.action_myUmrahBookingFragment_to_hottelViewFragment,bundle);
                 HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
                 navigationActivity.setNavigation("g");
 //                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);

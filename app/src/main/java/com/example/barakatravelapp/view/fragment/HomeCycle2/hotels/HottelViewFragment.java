@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,7 @@ public class HottelViewFragment extends BaSeFragment implements PhotoGallaryAdap
 
     @BindView(R.id.fragment_home_hottel_view_name_tv)
     TextView fragmentHomeHottelViewNameTv;
-//    @BindView(R.id.fragment_home_hottel_view_from_date_tv)
+    //    @BindView(R.id.fragment_home_hottel_view_from_date_tv)
 //    TextView fragmentHomeHottelViewFromDateTv;
 //    @BindView(R.id.fragment_home_hottel_view_to_date_tv)
 //    TextView fragmentHomeHottelViewToDateTv;
@@ -60,6 +61,8 @@ public class HottelViewFragment extends BaSeFragment implements PhotoGallaryAdap
     RecyclerView fragmentHomeHottelViewRoomsAvailabilityRvItemHz3Rv;
     @BindView(R.id.content_bottom_sheet_photo_gallery_item_img)
     TouchImageView cardviewHzHajjDetailsPhotoGalleryItemImg;
+    @BindView(R.id.home_discover_fragment_sub_home_rooms_ly)
+    LinearLayout homeDiscoverFragmentSubHomeRoomsLy;
     private NavController navController;
     private String isSuccessfulOrFlightOrDiscoffer;
     private HotelData hotelData;
@@ -70,6 +73,7 @@ public class HottelViewFragment extends BaSeFragment implements PhotoGallaryAdap
     private boolean openSheet = false;
     private HotelAminitesHzRvAdapter hotelAminitesHzRvAdapter;
     private GetHotelRomesItemsAdapter getHotelRomesItemsAdapter;
+    private String roomPrice;
 
     public HottelViewFragment() {
         // Required empty public constructor
@@ -80,6 +84,7 @@ public class HottelViewFragment extends BaSeFragment implements PhotoGallaryAdap
         if (this.getArguments() != null) {
 //            isSuccessfulOrFlightOrDiscoffer = this.getArguments().getString("ISSUCCESSFUL");
             isDiscoverOrHotel = this.getArguments().getString("DiscoverOrHotel");
+            roomPrice = this.getArguments().getString("getRoomPrice");
             hotelData = (HotelData) this.getArguments().getSerializable("Object");
 
         }
@@ -95,6 +100,8 @@ public class HottelViewFragment extends BaSeFragment implements PhotoGallaryAdap
     }
 
     private void setData() {
+
+
         fragmentHomeHottelViewNameTv.setText(hotelData.getName());
 //        fragmentHomeHottelViewFromDateTv.setText(hotelData.getGetRooms().get(0).getFromDate());
 //        fragmentHomeHottelViewToDateTv.setText(hotelData.getGetRooms().get(0).getToDate());
@@ -109,7 +116,11 @@ public class HottelViewFragment extends BaSeFragment implements PhotoGallaryAdap
         }
         initHozental(hotelData, fragmentHomeHottelViewPhotoGalaryRvItemHzRv, 1);
         initHozental(hotelData, fragmentHomeHottelViewHotelAmenitiesRvItemHz2Rv, 2);
-        initHozental(hotelData, fragmentHomeHottelViewRoomsAvailabilityRvItemHz3Rv, 3);
+//        if (isDiscoverOrHotel.equalsIgnoreCase("book_hotel")) {
+//        homeDiscoverFragmentSubHomeRoomsLy.setVisibility(View.GONE);
+//        } else {
+            initHozental(hotelData, fragmentHomeHottelViewRoomsAvailabilityRvItemHz3Rv, 3);
+//        }
 
         String iframe2 = hotelData.getLocation();
         fragmentHomeHottelViewWvMvMap.canZoomOut();
@@ -138,7 +149,7 @@ public class HottelViewFragment extends BaSeFragment implements PhotoGallaryAdap
         }
 
         if (itemNum == 3) {
-            getHotelRomesItemsAdapter = new GetHotelRomesItemsAdapter(getContext(), getActivity(),hotelData,hotelData.getGetRooms(),navController);
+            getHotelRomesItemsAdapter = new GetHotelRomesItemsAdapter(getContext(), getActivity(),roomPrice,isDiscoverOrHotel, hotelData, hotelData.getGetRooms(), navController);
             fragmentGeneralRvItemHzRv.setAdapter(getHotelRomesItemsAdapter);
         }
     }
@@ -149,13 +160,21 @@ public class HottelViewFragment extends BaSeFragment implements PhotoGallaryAdap
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             openSheet = false;
         } else {
-        if (isDiscoverOrHotel.equalsIgnoreCase("discover")) {
-            navController.navigate(R.id.action_hottelViewFragment_to_navigation_discover);
+            if (isDiscoverOrHotel.equalsIgnoreCase("discover")) {
+                navController.navigate(R.id.action_hottelViewFragment_to_navigation_discover);
+                homeCycleActivity.setNavigation("v");
+            }
+            if (isDiscoverOrHotel.equalsIgnoreCase("hotel")) {
+                navController.navigate(R.id.action_hottelViewFragment_to_navigation_hotels);
+                homeCycleActivity.setNavigation("v");
+
+            }
+            if (isDiscoverOrHotel.equalsIgnoreCase("book_hotel")) {
+                Bundle bundle = new Bundle();
+                bundle.putString("BookingType", getString(R.string.My_Hotel_Bookings));
+                navController.navigate(R.id.action_hottelViewFragment_to_myUmrahBookingFragment, bundle);
+            }
         }
-        if (isDiscoverOrHotel.equalsIgnoreCase("hotel")) {
-            navController.navigate(R.id.action_hottelViewFragment_to_navigation_hotels);
-        }
-        homeCycleActivity.setNavigation("v");}
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment,new SuccessfulPaymentFragment());
 //        Bundle bundle = new Bundle();
 //        if (isSuccessfulOrFlightOrDiscoffer.equalsIgnoreCase("successfullPayment")) {
@@ -187,7 +206,7 @@ public class HottelViewFragment extends BaSeFragment implements PhotoGallaryAdap
     public void onMethodCallback(String photoPath) {
         openSheet = true;
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        String hotelImage = "https://www.barakatravel.net/"+photoPath.trim();
+        String hotelImage = "https://www.barakatravel.net/" + photoPath.trim();
         onLoadImageFromUrl(cardviewHzHajjDetailsPhotoGalleryItemImg, hotelImage, getContext());
 
     }

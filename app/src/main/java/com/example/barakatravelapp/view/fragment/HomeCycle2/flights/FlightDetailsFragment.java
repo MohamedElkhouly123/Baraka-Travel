@@ -1,5 +1,6 @@
 package com.example.barakatravelapp.view.fragment.HomeCycle2.flights;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -88,8 +89,15 @@ public class FlightDetailsFragment extends BaSeFragment {
     @Override
     public void onBack() {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new FlightsFragment());
-        navController.navigate(R.id.action_flightDetailsFragment_to_navigation_flight);
-        homeCycleActivity.setNavigation("v");
+        if (flightOrBook.equalsIgnoreCase("bookingFlight")) {
+            Bundle bundle = new Bundle();
+            bundle.putString("BookingType", getString(R.string.My_Flight_Bookings));
+            navController.navigate(R.id.action_flightDetailsFragment_to_myUmrahBookingFragment,bundle);
+
+        }else {
+
+            navController.navigate(R.id.action_flightDetailsFragment_to_navigation_flight);
+        homeCycleActivity.setNavigation("v");}
 //        homeCycleActivity.bottomNavView.getMenu().getItem(2).setChecked(true);
     }
 

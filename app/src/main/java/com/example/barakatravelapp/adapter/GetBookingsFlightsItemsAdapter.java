@@ -31,15 +31,16 @@ import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
 public class GetBookingsFlightsItemsAdapter extends RecyclerView.Adapter<GetBookingsFlightsItemsAdapter.ViewHolder> {
 
 
-
+    private final String bookingType;
     private BaseActivity activity;
     private Context context;
     private List<BookingFlight> flightsListData;
     private NavController navController;
 
-    public GetBookingsFlightsItemsAdapter(Activity activity, Context context, List<BookingFlight> flightsListData, NavController navController) {
+    public GetBookingsFlightsItemsAdapter(Activity activity, Context context, String bookingType, List<BookingFlight> flightsListData, NavController navController) {
         this.activity = (BaseActivity) activity;
         this.context = context;
+        this.bookingType = bookingType;
         this.flightsListData = flightsListData;
         this.navController = navController;
 //        showToast(activity, "date="+flightsListData.get(0).getFlight().getReservationTo());

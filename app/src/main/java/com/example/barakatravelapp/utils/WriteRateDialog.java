@@ -98,7 +98,7 @@ public class WriteRateDialog {
             ToastCreator.onCreateErrorToast(activity, "Enter Phone");
             return;
         }
-        if (!validationLength(rateMessageTv, activity.getString(R.string.invalid_user_name), 2)) {
+        if (!validationLength(rateMessageTv, activity.getString(R.string.invalid_message), 2)) {
             return;
         }
         onCall(activity,dialog,hotelOrPackage);

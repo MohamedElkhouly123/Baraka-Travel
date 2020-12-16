@@ -12,6 +12,9 @@ public class UserLoginGeneralResponce {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("paypal")
+    @Expose
+    private String paypal;
     @SerializedName("user")
     @Expose
     private UserData user;
@@ -27,6 +30,15 @@ public class UserLoginGeneralResponce {
     public String getMessage() { return message; }
 
     public void setMessage(String message) { this.message = message; }
+
+    public String getPaypal() {
+        return paypal;
+    }
+
+    public void setPaypal(String paypal) {
+        this.paypal = paypal;
+    }
+
 
     public UserData getUser() {
         return user;

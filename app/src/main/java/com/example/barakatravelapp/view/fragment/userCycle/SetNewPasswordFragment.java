@@ -106,7 +106,7 @@ public class SetNewPasswordFragment extends BaSeFragment {
 
             resetPasswordCall = getApiClient().userResetPassword(email);
 
-        viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUpAndBooking(getActivity(),resetPasswordCall,true);
+        viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUpAndBooking(getActivity(),resetPasswordCall, "Succes Set New Password", true);
 
 
     }

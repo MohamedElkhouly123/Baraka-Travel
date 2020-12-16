@@ -2,6 +2,8 @@ package com.example.barakatravelapp.data.model;
 
 public class ItemGeneralObjectModel {
 
+
+    private String photoPath;
     private String passportName;
     private String passportPrice;
     private String passportvalidaty;
@@ -9,6 +11,19 @@ public class ItemGeneralObjectModel {
     private String name;
     private int photo;
     private int passportPhoto;
+
+    private String quesion;
+    private String answer;
+
+    public ItemGeneralObjectModel(String quesion, String answer) {
+        this.quesion = quesion;
+        this.answer = answer;
+    }
+
+    public ItemGeneralObjectModel(String name, String photoPath,int photo) {
+        this.name = name;
+        this.photoPath = photoPath;
+    }
 
     public ItemGeneralObjectModel(String name, int photo) {
         this.name = name;
@@ -25,6 +40,14 @@ public class ItemGeneralObjectModel {
         this.photo = photo;
         this.passportPhoto = passportPhoto;
 
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     public String getPassportName() {
@@ -81,6 +104,22 @@ public class ItemGeneralObjectModel {
 
     public void setPassportPhoto(int passportPhoto) {
         this.passportPhoto = passportPhoto;
+    }
+
+    public String getQuesion() {
+        return quesion;
+    }
+
+    public void setQuesion(String quesion) {
+        this.quesion = quesion;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
 

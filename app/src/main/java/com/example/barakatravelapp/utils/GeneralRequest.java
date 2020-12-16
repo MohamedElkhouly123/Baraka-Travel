@@ -35,7 +35,7 @@ public class GeneralRequest {
                         if (response.body().getStatus().equals("success")) {
 
                             ToastCreator.onCreateSuccessToast(activity,success);
-                            ToastCreator.onCreateSuccessToast(activity,response.message());
+//                            ToastCreator.onCreateSuccessToast(activity,response.message());
 
                         } else {
                             onCreateErrorToast(activity, response.body().getMessage());

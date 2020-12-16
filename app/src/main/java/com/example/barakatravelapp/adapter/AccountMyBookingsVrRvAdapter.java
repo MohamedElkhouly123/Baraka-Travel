@@ -23,6 +23,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
+
 public class AccountMyBookingsVrRvAdapter extends RecyclerView.Adapter<AccountMyBookingsVrRvAdapter.ViewHolder> {
 
 
@@ -66,6 +68,7 @@ public class AccountMyBookingsVrRvAdapter extends RecyclerView.Adapter<AccountMy
             holder.position = position;
             holder.cardviewMyAccountItemNameTv.setText(itemList.get(position).getName());
             holder.cardviewMyAccountItemBookingImg.setImageResource(itemList.get(position).getPhoto());
+            onLoadImageFromUrl(holder.cardviewMyAccountItemBookingImg,itemList.get(position).getPhotoPath().trim(), context);
 
         } catch (Exception e) {
 

@@ -2,6 +2,7 @@ package com.example.barakatravelapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.getBookingPackageResponce.BookingPackage;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
-import com.example.barakatravelapp.utils.DialogAdapterCallback;
 import com.example.barakatravelapp.view.activity.BaseActivity;
-import com.example.barakatravelapp.view.fragment.HomeCycle2.accounts.MyAllBookingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +39,12 @@ public class GetBookingsHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<Ge
     private List<String> hotelImages= new ArrayList<>();
     private NavController navController;
 
-    public GetBookingsHajjAndUmrahItemsAdapter(Activity activity, Context context, String bookingType, String hajjOrUmrah, List<BookingPackage> getHajjAndUmraItemsListData) {
+    public GetBookingsHajjAndUmrahItemsAdapter(Activity activity, Context context, NavController navController, String bookingType, String hajjOrUmrah, List<BookingPackage> getHajjAndUmraItemsListData) {
         getHajjAndUmraItemsListData.clear();
         this.activity = (BaseActivity) activity;
         this.context = context;
         this.hajjOrUmrah = hajjOrUmrah;
-//        this.dialogAdapterCallback = dialogAdapterCallback;
+        this.navController = navController;
         this.bookingType = bookingType;
         this.getHajjAndUmraItemsListData = getHajjAndUmraItemsListData;
     }
@@ -105,25 +103,11 @@ public class GetBookingsHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<Ge
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
-//                navigationActivity.setNavigation("g");
-//                Bundle bundle = new Bundle();
-//                bundle.putString("DiscoverOrHajjOrUmrah", hajjOrUmrah);
-//                bundle.putSerializable("Object",  getHajjAndUmraItemsListData.get(position));
-//                if(hajjOrUmrah.equalsIgnoreCase("hajj")){
-//                navController.navigate(R.id.action_navigation_umrah_to_luxuryUmrahPackageFragment,bundle);
-//                }else {
-//                    navController.navigate(R.id.action_navigation_hajj_to_luxuryUmrahPackageFragment,bundle);
-//                }
-
-//                dialogAdapterCallback.onMethodCallback(getHajjAndUmraItemsListData.get(position).getPackageDetail());
-
-//                navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment);
-//                navigationActivity.setNavigation("g");
-//                FoodMenueFragment foodMenueFragment=new FoodMenueFragment();
-//                foodMenueFragment.restaurantsListData = clientRestaurantsDataList.get(position);
-//                HelperMethod.replaceFragment(navigationActivity.getSupportFragmentManager(), R.id.home_activity_fram, new RestaurantCategoryTabsFragment());
-
+                Bundle bundle = new Bundle();
+                bundle.putString("DiscoverOrHajjOrUmrah", bookingType);
+                bundle.putInt("getPackagePricingId", getHajjAndUmraItemsListData.get(position).getPackagePricingId());
+                bundle.putSerializable("Object",  getHajjAndUmraItemsListData.get(position).getPackageDetail());
+                navController.navigate(R.id.action_myUmrahBookingFragment_to_luxuryUmrahPackageFragment,bundle);
             }
         });
     }

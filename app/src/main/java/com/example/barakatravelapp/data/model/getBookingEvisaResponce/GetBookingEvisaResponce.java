@@ -10,9 +10,12 @@ public class GetBookingEvisaResponce {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("message")
+    @Expose
+    private String message;
     @SerializedName("data")
     @Expose
-    private List<Datum> data = null;
+    private List<EVisaDate> data = null;
 
     public String getStatus() {
         return status;
@@ -22,12 +25,19 @@ public class GetBookingEvisaResponce {
         this.status = status;
     }
 
-    public List<Datum> getData() {
+    public List<EVisaDate> getData() {
         return data;
     }
 
-    public void setData(List<Datum> data) {
+    public void setData(List<EVisaDate> data) {
         this.data = data;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

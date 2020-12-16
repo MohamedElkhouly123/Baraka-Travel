@@ -1,6 +1,10 @@
 package com.example.barakatravelapp.view.fragment.HomeCycle2.discover;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -49,7 +54,6 @@ import static com.example.barakatravelapp.utils.HelperMethod.convertFileToMultip
 import static com.example.barakatravelapp.utils.HelperMethod.convertToRequestBody;
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
 import static com.example.barakatravelapp.utils.HelperMethod.openGalleryِAlpom;
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 import static com.example.barakatravelapp.utils.validation.Validation.cleanError;
 import static com.example.barakatravelapp.utils.validation.Validation.validationAllEmpty;
 import static com.example.barakatravelapp.utils.validation.Validation.validationEmail;
@@ -58,7 +62,7 @@ import static com.example.barakatravelapp.utils.validation.Validation.validation
 
 
 public class HajjAndUmrahBookingFragment extends BaSeFragment {
-    private static final String CLIENTPROFILEIMAGE ="image" ;
+    private static final String CLIENTPROFILEIMAGE = "image";
     @BindView(R.id.fragment_hajj_and_umrah_booking_umrah_package_name_tv)
     TextView fragmentHajjAndUmrahBookingUmrahPackageNameTv;
     @BindView(R.id.fragment_hajj_and_umrah_booking_sp_gender)
@@ -89,16 +93,20 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
     TextInputLayout fragmentHajjAndUmrahBookingTilZipCode;
     @BindView(R.id.fragment_hajj_and_umrah_booking_sp_traveling_alone)
     Spinner fragmentHajjAndUmrahBookingSpTravelingAlone;
+    @BindView(R.id.fragment_hajj_and_umrah_booking_sp_visa)
+    Spinner fragmentHajjAndUmrahBookingSpVisa;
     private NavController navController;
     private SpinnerAdapter genderSpinnerAdapter;
     private SpinnerAdapter passportSpinnerAdapter;
     private SpinnerAdapter travelAloneSpinnerAdapter;
+    private SpinnerAdapter paymentTypeSpinnerAdapter;
     private List<GeneralResposeData> genderList = new ArrayList<GeneralResposeData>();
     private List<GeneralResposeData> passportList = new ArrayList<GeneralResposeData>();
     private List<GeneralResposeData> travelAloneList = new ArrayList<GeneralResposeData>();
-    private int genderSelectedId1 =0;
-    private int passportSelectedId1=0;
-    private int travelAloneSelectedId1 =0;
+    private List<GeneralResposeData> paymentTypeList = new ArrayList<GeneralResposeData>();
+    private int genderSelectedId1 = 0;
+    private int passportSelectedId1 = 0;
+    private int travelAloneSelectedId1 = 0 ,paymentTypeSelectedId1=0;
     private ViewModelUser viewModelUser;
     private GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackage;
     private Pricing pricing;
@@ -106,10 +114,10 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
     private String mPersonalPath;
     private UserData userData;
     private static ArrayList<AlbumFile> alpom = new ArrayList<>();
-    private AdapterView.OnItemSelectedListener listener;
-    private AdapterView.OnItemSelectedListener listener2;
-    private AdapterView.OnItemSelectedListener listener3;
+
+    private AdapterView.OnItemSelectedListener listener,listener2,listener3,listener4;
     private String isDiscoverOrHajjOrUmarah;
+    private String url;
 
 //    private List<String> passportList = new ArrayList<String>();
 //    private List<String> travelAloneList = new ArrayList<String>();
@@ -131,7 +139,7 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
 
         ButterKnife.bind(this, root);
         navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
-        userData=LoadUserData(getActivity());
+        userData = LoadUserData(getActivity());
         initListener();
         setSpiners();
         return root;
@@ -145,9 +153,16 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
             public void onChanged(@Nullable UserLoginGeneralResponce response) {
                 if (response != null) {
                     if (response.getStatus().equals("success")) {
-                        navController.navigate(R.id.action_hajjAndUmrahBookingFragment_to_successfulPaymentFragment);
 //                        showToast(getActivity(), "success");
+                           url=response.getPaypal();
+                           String type =String.valueOf(paymentTypeSpinnerAdapter.getItem(paymentTypeSelectedId1));
+                       if(type.equalsIgnoreCase("Visa"))
+                        {
+                            showBookingDialog();
+                        }else {
+                           navController.navigate(R.id.action_hajjAndUmrahBookingFragment_to_successfulPaymentFragment);
 
+                       }
                     }
                 }
             }
@@ -157,8 +172,8 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
     private void setSpiners() {
         fragmentHajjAndUmrahBookingUmrahPackageNameTv.setText(getTopUmarAndTophajjPackage.getUmar().getName());
 
-        genderList.add(new GeneralResposeData(0,"male"));
-        genderList.add(new GeneralResposeData(1,"female"));
+        genderList.add(new GeneralResposeData(0, "male"));
+        genderList.add(new GeneralResposeData(1, "female"));
         genderSpinnerAdapter = new SpinnerAdapter(getActivity());
         genderSpinnerAdapter.setData(genderList, "Gender");
         fragmentHajjAndUmrahBookingSpGender.setAdapter(genderSpinnerAdapter);
@@ -167,18 +182,19 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                     genderSelectedId1 = i;
+                genderSelectedId1 = i;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         };
         fragmentHajjAndUmrahBookingSpGender.setOnItemSelectedListener(listener);
-        passportList.add(new GeneralResposeData(0,"US/Canadian"));
-        passportList.add(new GeneralResposeData(1,"Indian/Pakistani"));
-        passportList.add(new GeneralResposeData(2,"Bangladeshi"));
-        passportList.add(new GeneralResposeData(3,"Other Nationality"));
+        passportList.add(new GeneralResposeData(0, "US/Canadian"));
+        passportList.add(new GeneralResposeData(1, "Indian/Pakistani"));
+        passportList.add(new GeneralResposeData(2, "Bangladeshi"));
+        passportList.add(new GeneralResposeData(3, "Other Nationality"));
         passportSpinnerAdapter = new SpinnerAdapter(getActivity());
         passportSpinnerAdapter.setData(passportList, "Passport");
         fragmentHajjAndUmrahBookingSpPassport.setAdapter(passportSpinnerAdapter);
@@ -189,14 +205,15 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
 
                 passportSelectedId1 = i;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         };
         fragmentHajjAndUmrahBookingSpPassport.setOnItemSelectedListener(listener2);
-        travelAloneList.add(new GeneralResposeData(0,"yes"));
-        travelAloneList.add(new GeneralResposeData(1,"no"));
+        travelAloneList.add(new GeneralResposeData(0, "yes"));
+        travelAloneList.add(new GeneralResposeData(1, "no"));
         travelAloneSpinnerAdapter = new SpinnerAdapter(getActivity());
         travelAloneSpinnerAdapter.setData(travelAloneList, "Traveling Alone");
         fragmentHajjAndUmrahBookingSpTravelingAlone.setAdapter(travelAloneSpinnerAdapter);
@@ -207,21 +224,94 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
 
                 travelAloneSelectedId1 = i;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         };
         fragmentHajjAndUmrahBookingSpTravelingAlone.setOnItemSelectedListener(listener3);
+
+        paymentTypeList.add(new GeneralResposeData(0, "Cashe"));
+        paymentTypeList.add(new GeneralResposeData(1, "Visa"));
+        paymentTypeSpinnerAdapter = new SpinnerAdapter(getActivity());
+        paymentTypeSpinnerAdapter.setData(paymentTypeList, "Payment Type");
+        fragmentHajjAndUmrahBookingSpVisa.setAdapter(paymentTypeSpinnerAdapter);
+        fragmentHajjAndUmrahBookingSpVisa.setSelection(travelAloneSelectedId1);
+        listener4 = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                paymentTypeSelectedId1 = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        };
+        fragmentHajjAndUmrahBookingSpVisa.setOnItemSelectedListener(listener4);
     }
 
-    @Override
+    private void showBookingDialog(){
+        try {
+//                final View view = activity.getLayoutInflater().inflate(R.layout.dialog_restaurant_add_category, null);
+//            alertDialog = new AlertDialog.Builder(HomeFragment.this).create();
+            AlertDialog alertDialog;
+            alertDialog = new AlertDialog.Builder(getActivity()).create();
+//            alertDialog.setTitle("Delete");
+            alertDialog.setMessage("Thank you for Package booking , Please Pay Now to complete your booking");
+            alertDialog.setCancelable(false);
+
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Pay Now", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    try {
+                        Intent i = new Intent("android.intent.action.MAIN");
+                        i.setComponent(ComponentName.unflattenFromString("com.android.chrome/com.android.chrome.Main"));
+                        i.addCategory("android.intent.category.LAUNCHER");
+                        i.setData(Uri.parse(url));
+                        getActivity().startActivity(i);
+                    }
+                    catch(ActivityNotFoundException e) {
+                        // Chrome is not installed
+                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        getActivity().startActivity(i);
+                        dialog.cancel();
+                    }
+                    navController.navigate(R.id.action_hajjAndUmrahBookingFragment_to_successfulPaymentFragment);
+                    alertDialog.dismiss() ;
+
+                }
+            });
+
+
+
+//                alertDialog.setView(view);
+//            alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
+//                @SuppressLint("ResourceAsColor")
+//                @Override
+//                public void onShow(DialogInterface arg0) {
+//                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(R.color.red);
+////                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(R.color.pink);
+//
+//                }
+//            });
+
+            alertDialog.show();
+
+        } catch (Exception e) {
+
+        }
+    }
+
+@Override
     public void onBack() {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new ChangeDetailsFragment());
         Bundle bundle = new Bundle();
-        bundle.putSerializable("Object",  getTopUmarAndTophajjPackage);
+        bundle.putSerializable("Object", getTopUmarAndTophajjPackage);
         bundle.putString("DiscoverOrHajjOrUmrah", isDiscoverOrHajjOrUmarah);
-        navController.navigate(R.id.action_hajjAndUmrahBookingFragment_to_luxuryUmrahPackageFragment,bundle);
+        navController.navigate(R.id.action_hajjAndUmrahBookingFragment_to_luxuryUmrahPackageFragment, bundle);
     }
 
     @OnClick({R.id.fragment_hajj_and_umrah_booking_back_btn, R.id.fragment_hajj_and_umrah_booking_get_passport_image_btn, R.id.fragment_hajj_and_umrah_booking_get_personal_image_btn, R.id.fragment_hajj_and_umrah_booking_subbmet_btn})
@@ -229,16 +319,17 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
         switch (view.getId()) {
             case R.id.fragment_hajj_and_umrah_booking_back_btn:
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("Object",  getTopUmarAndTophajjPackage);
-                navController.navigate(R.id.action_hajjAndUmrahBookingFragment_to_luxuryUmrahPackageFragment,bundle);
+                bundle.putSerializable("Object", getTopUmarAndTophajjPackage);
+                navController.navigate(R.id.action_hajjAndUmrahBookingFragment_to_luxuryUmrahPackageFragment, bundle);
                 break;
             case R.id.fragment_hajj_and_umrah_booking_get_passport_image_btn:
                 openGalleryِAlpom(getActivity(), alpom, new Action<ArrayList<AlbumFile>>() {
                     @Override
                     public void onAction(@NonNull ArrayList<AlbumFile> result) {
                         mPassportPath = result.get(0).getPath();
-                        if(mPassportPath!=null){
-                            onLoadImageFromUrl(fragmentHajjAndUmrahBookingGetPassportImageImg,mPassportPath, getContext());}
+                        if (mPassportPath != null) {
+                            onLoadImageFromUrl(fragmentHajjAndUmrahBookingGetPassportImageImg, mPassportPath, getContext());
+                        }
                     }
                 }, 1);
                 break;
@@ -247,8 +338,9 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
                     @Override
                     public void onAction(@NonNull ArrayList<AlbumFile> result) {
                         mPersonalPath = result.get(0).getPath();
-                        if(mPersonalPath!=null){
-                            onLoadImageFromUrl(fragmentHajjAndUmrahBookingGetPersonalImageImg,mPersonalPath, getContext());}
+                        if (mPersonalPath != null) {
+                            onLoadImageFromUrl(fragmentHajjAndUmrahBookingGetPersonalImageImg, mPersonalPath, getContext());
+                        }
                     }
                 }, 1);
                 break;
@@ -258,6 +350,7 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
                 break;
         }
     }
+
     private void onValidation() {
 
         List<EditText> editTexts = new ArrayList<>();
@@ -271,12 +364,11 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
         textInputLayouts.add(fragmentHajjAndUmrahBookingTilEmail);
         textInputLayouts.add(fragmentHajjAndUmrahBookingTravelingFrom);
         textInputLayouts.add(fragmentHajjAndUmrahBookingTilZipCode);
-//        textInputLayouts.add(fragmentHajjAndUmrahBookingTilWriteComment);
+        textInputLayouts.add(fragmentHajjAndUmrahBookingTilWriteComment);
         spinners.add(fragmentHajjAndUmrahBookingSpGender);
         spinners.add(fragmentHajjAndUmrahBookingSpPassport);
         spinners.add(fragmentHajjAndUmrahBookingSpTravelingAlone);
-
-
+        spinners.add(fragmentHajjAndUmrahBookingSpVisa);
 
 
         cleanError(textInputLayouts);
@@ -286,10 +378,11 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
             ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.empty));
             return;
         }
-        if (!validationLength(fragmentHajjAndUmrahBookingTilFirstName, getString(R.string.invalid_user_name), 3)) {
-            return;}
+        if (!validationLength(fragmentHajjAndUmrahBookingTilFirstName, getString(R.string.invalid_first_name), 3)) {
+            return;
+        }
 
-        if (!validationLength(fragmentHajjAndUmrahBookingTilLastName, getString(R.string.invalid_user_name), 3)) {
+        if (!validationLength(fragmentHajjAndUmrahBookingTilLastName, getString(R.string.invalid_last_name), 3)) {
             return;
         }
 
@@ -304,14 +397,21 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
         }
 
 
-//        if (!validationLength(fragmentHajjAndUmrahBookingTilWriteComment, getString(R.string.invalid_order_time), 2)) {
-//            return;
-//        }
+        if (!validationLength(fragmentHajjAndUmrahBookingTilWriteComment, getString(R.string.invalid_required_field), 1)) {
+            return;
+        }
 
-//        if (!validationLength(fragmentHajjAndUmrahBookingTilZipCode, getString(R.string.invalid_zip_code), 1)) {
-//            return;
-//        }
+        if (!validationLength(fragmentHajjAndUmrahBookingTilZipCode, getString(R.string.invalid_required_field), 1)) {
+            return;
+        }
 
+        if (!validationLength(fragmentHajjAndUmrahBookingTilAddress, getString(R.string.invalid_required_field), 1)) {
+            return;
+        }
+
+        if (!validationLength(fragmentHajjAndUmrahBookingTravelingFrom, getString(R.string.invalid_required_field), 1)) {
+            return;
+        }
 
         if (fragmentHajjAndUmrahBookingSpGender.getSelectedItemPosition() == 0) {
             ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_gender));
@@ -322,24 +422,27 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
             ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_passport));
             return;
         }
+
+        if (fragmentHajjAndUmrahBookingSpVisa.getSelectedItemPosition() == 0) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_pay_type));
+            return;
+        }
+
         if (fragmentHajjAndUmrahBookingSpTravelingAlone.getSelectedItemPosition() == 0) {
             ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_travel));
             return;
         }
 
 
+        if (mPassportPath != null && mPersonalPath != null) {
+            onCall();
 
 
-            if (mPassportPath!=null&& mPersonalPath!=null) {
-                onCall();
-
-
-            }else {
-                ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_image));
+        } else {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_image));
 //                showToast(getActivity(), "Please Select Image First");
-                return;
-            }
-
+            return;
+        }
 
 
     }
@@ -347,7 +450,7 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
     private void onCall() {
         RequestBody userId = convertToRequestBody(String.valueOf(userData.getId()));
         RequestBody PrisingId = convertToRequestBody(String.valueOf(pricing.getId()));
-        int packagePricing =pricing.getPrice();
+        int packagePricing = pricing.getPrice();
         RequestBody Price = convertToRequestBody(String.valueOf(packagePricing));
         RequestBody firstName = convertToRequestBody(fragmentHajjAndUmrahBookingTilFirstName.getEditText().getText().toString());
         RequestBody lastName = convertToRequestBody(fragmentHajjAndUmrahBookingTilLastName.getEditText().getText().toString());
@@ -361,7 +464,7 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
         RequestBody genderIdValue = convertToRequestBody(String.valueOf(genderSpinnerAdapter.getItem(genderSelectedId1)));
         RequestBody passportIdValue = convertToRequestBody(String.valueOf(passportSpinnerAdapter.getItem(passportSelectedId1)));
         RequestBody travelAloneIdValue = convertToRequestBody(String.valueOf(travelAloneSpinnerAdapter.getItem(travelAloneSelectedId1)));
-        RequestBody paymentType = convertToRequestBody("Cashe");
+        RequestBody paymentType = convertToRequestBody(String.valueOf(paymentTypeSpinnerAdapter.getItem(paymentTypeSelectedId1)));
         RequestBody paid = convertToRequestBody(String.valueOf(packagePricing));
         RequestBody remaining = convertToRequestBody(String.valueOf(0));
 //        showToast(getActivity(), String.valueOf(mPassportPath));
@@ -371,15 +474,13 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
 //            imageFiles.add(convertFileToMultipart2("file_"+(i+1), mPassportPath));
 //            //Where selectedFiles is selected file URI list
 //        }
-        MultipartBody.Part clientPassportPhoto = convertFileToMultipart(mPassportPath, "passport_image",getActivity());
+        MultipartBody.Part clientPassportPhoto = convertFileToMultipart(mPassportPath, "passport_image", getActivity());
         MultipartBody.Part clientPersonalPhoto = convertFileToMultipart(mPersonalPath, "personal_image", getActivity());
 
         Call<UserLoginGeneralResponce> clientBookingCall;
 
-        clientBookingCall = getApiClient().umrahAndHajjBooking(userId,PrisingId,Price,address,contactNum,email,travelingFrom,commetMessage,travelAloneIdValue,paymentType,paid,remaining,firstName,lastName,zipCode,genderIdValue,passportIdValue,clientPassportPhoto,clientPersonalPhoto);
-        viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUpAndBooking(getActivity(), clientBookingCall,true);
-
-
+        clientBookingCall = getApiClient().umrahAndHajjBooking(userId, PrisingId, Price, address, contactNum, email, travelingFrom, commetMessage, travelAloneIdValue, paymentType, paid, remaining, firstName, lastName, zipCode, genderIdValue, passportIdValue, clientPassportPhoto, clientPersonalPhoto);
+        viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUpAndBooking(getActivity(), clientBookingCall, "Succes Package Booking", false);
 
 
     }

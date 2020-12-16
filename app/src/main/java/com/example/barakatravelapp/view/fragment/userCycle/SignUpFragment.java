@@ -146,11 +146,11 @@ private void onValidation() {
         return;
     }
 
-    if (!validationLength(fragmentSignUpTilFirstName, getString(R.string.invalid_user_name), 3)) {
+    if (!validationLength(fragmentSignUpTilFirstName, getString(R.string.invalid_first_name), 3)) {
         return;
     }
 
-    if (!validationLength(fragmentSignUpTilLastName, getString(R.string.invalid_user_name), 3)) {
+    if (!validationLength(fragmentSignUpTilLastName, getString(R.string.invalid_last_name), 3)) {
         return;
     }
 
@@ -188,7 +188,7 @@ private void onValidation() {
 
 
             clientCall = getApiClient().onSignUp(firstName,lastName,phone , email, password);
-            viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUpAndBooking(getActivity(), clientCall,true);
+            viewModelUser.setAndMakeResetAndNewPasswordResponseAndSignUpAndBooking(getActivity(), clientCall, "Succes Register", true);
 
 
 

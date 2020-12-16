@@ -202,11 +202,11 @@ public class ChangeDetailsFragment extends BaSeFragment {
             return;
         }
 
-        if (!validationLength(fragmentChangeDetailsTilFirstName, getString(R.string.invalid_user_name), 3)) {
+        if (!validationLength(fragmentChangeDetailsTilFirstName, getString(R.string.invalid_first_name), 3)) {
             return;
         }
 
-        if (!validationLength(fragmentChangeDetailsTilLastName, getString(R.string.invalid_user_name), 3)) {
+        if (!validationLength(fragmentChangeDetailsTilLastName, getString(R.string.invalid_last_name), 3)) {
             return;
         }
 

@@ -10,11 +10,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.barakatravelapp.data.model.getBookingEvisaResponce.GetBookingEvisaResponce;
 import com.example.barakatravelapp.data.model.getBookingFlightsResponce.GetBookingFlightsResponce;
 import com.example.barakatravelapp.data.model.getBookingHotelsResponce.GetBookingHotelsResponce;
 import com.example.barakatravelapp.data.model.getBookingPackageResponce.GetBookingPackageResponce;
-import com.example.barakatravelapp.data.model.getHotelsResponce.GetHotelsResponce;
-import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetUmrahAndHujjResponce;
 import com.example.barakatravelapp.utils.ToastCreator;
 
 import retrofit2.Call;
@@ -31,6 +30,7 @@ public class ViewModelGetBookingsLists extends ViewModel {
     private MutableLiveData<GetBookingFlightsResponce> getBookingsFlightResponce = new MutableLiveData<GetBookingFlightsResponce>();
     private MutableLiveData<GetBookingHotelsResponce> getBookingsHotelsResponce = new MutableLiveData<>();
     private MutableLiveData<GetBookingPackageResponce> getBookingsHajjAndUmrahResponce = new MutableLiveData<>();
+    private MutableLiveData<GetBookingEvisaResponce> getBookingsEVisaResponce = new MutableLiveData<>();
 
 
 
@@ -242,4 +242,74 @@ public class ViewModelGetBookingsLists extends ViewModel {
     }
 
 
+
+    public MutableLiveData<GetBookingEvisaResponce> makeGetBookingsEVisaDataList() {
+        return getBookingsEVisaResponce;
+    }
+
+    public void getBookingsEVsaDataList(final Activity activity, final LinearLayout errorSubView, final Call<GetBookingEvisaResponce> method, final SwipeRefreshLayout flightsHomeFragmentSrRefreshRv, final RelativeLayout loadMore) {
+        if (isConnected(activity)) {
+
+            flightsHomeFragmentSrRefreshRv.setRefreshing(true);
+            errorSubView.setVisibility(View.GONE);
+
+            method.enqueue(new Callback<GetBookingEvisaResponce>() {
+                @Override
+                public void onResponse(Call<GetBookingEvisaResponce> call, Response<GetBookingEvisaResponce> response) {
+
+                    if (response.body() != null) {
+                        try {
+//                            clientAndRestaurantHomeFragmentSFlShimmer.stopShimmer();
+//                            clientAndRestaurantHomeFragmentSFlShimmer.setVisibility(View.GONE);
+                            loadMore.setVisibility(View.GONE);
+                            flightsHomeFragmentSrRefreshRv.setRefreshing(false);
+                            if (response.body().getStatus().equals("success")) {
+//
+                                getBookingsEVisaResponce.postValue(response.body());
+
+                                ToastCreator.onCreateSuccessToast(activity, "Success");
+                            } else {
+                                onCreateErrorToast(activity, response.body().getMessage());
+//                                new HomeFragment().setError(String.valueOf(R.string.error_list));
+
+                            }
+
+                        } catch(Exception e){
+
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<GetBookingEvisaResponce> call, Throwable t) {
+                    try {
+//                        clientAndRestaurantHomeFragmentSFlShimmer.stopShimmer();
+//                        clientAndRestaurantHomeFragmentSFlShimmer.setVisibility(View.GONE);
+                        loadMore.setVisibility(View.GONE);
+                        flightsHomeFragmentSrRefreshRv.setRefreshing(false);
+//                        onCreateErrorToast(activity, t.getMessage());
+
+//                        new HomeFragment().setError(String.valueOf(R.string.error_list));
+                        getBookingsEVisaResponce.postValue(null);
+                    } catch (Exception e) {
+
+                    }
+                }
+            });
+        } else {
+            try {
+//                clientAndRestaurantHomeFragmentSFlShimmer.stopShimmer();
+//                clientAndRestaurantHomeFragmentSFlShimmer.setVisibility(View.GONE);
+                loadMore.setVisibility(View.GONE);
+                flightsHomeFragmentSrRefreshRv.setRefreshing(false);
+                errorSubView.setVisibility(View.VISIBLE);
+//                new HomeFragment().setError(String.valueOf(R.string.error_inter_net));
+//                onCreateErrorToast(activity, activity.getString(R.string.error_inter_net));
+            } catch (Exception e) {
+
+            }
+
+        }
+    }
 }

@@ -264,13 +264,22 @@ public class Validation {
         Country country = new Country();
 
         Country country1 = country.getCountry(locale);
+//
+//        String phone1 = phone.getText().toString().replace("+2", "");
+//        if (phone1.length() >= country1.getLength_min() && phone.getText().length() <= country1.getLength_max()) {
+//            return true;
+//        } else {
+//            phone.setError(activity.getString(R.string.invalid_phone1) + " " + country1.getLength_min()
+//                    + " " + activity.getString(R.string.invalid_phone2));
+//            return false;
+//        }
+        String phone1 = phone.getText().toString().replace("+1", "");
 
-        String phone1 = phone.getText().toString().replace("+2", "");
-        if (phone1.length() >= country1.getLength_min() && phone.getText().length() <= country1.getLength_max()) {
+//        if (phone1.length() >= country1.getLength_min() && phone.getEditText().getText().length() <= country1.getLength_max()) {
+        if (phone.getText().length() == 10||phone.getText().length() == 12){
             return true;
         } else {
-            phone.setError(activity.getString(R.string.invalid_phone1) + " " + country1.getLength_min()
-                    + " " + activity.getString(R.string.invalid_phone2));
+            phone.setError(activity.getString(R.string.invalid_phone1));
             return false;
         }
     }
@@ -287,7 +296,7 @@ public class Validation {
         String phone1 = phone.getEditText().getText().toString().replace("+1", "");
 
 //        if (phone1.length() >= country1.getLength_min() && phone.getEditText().getText().length() <= country1.getLength_max()) {
-        if (phone.getEditText().getText().length() == 12){
+        if (phone.getEditText().getText().length() == 10||phone.getEditText().getText().length() == 12){
             return true;
         } else {
             phone.setError(activity.getString(R.string.invalid_phone1));

@@ -83,6 +83,7 @@ public class GetFlightsItemsAdapter extends RecyclerView.Adapter<GetFlightsItems
 //                replaceFragment(activity.getSupportFragmentManager(), R.id.home_activity_fram, new ContactWithUsFragment(),"t");
                 Bundle bundle = new Bundle();
 //                bundle.putString("DiscoverOrHajjOrUmrah", hajjOrUmrah);
+                bundle.putString("BookingFlight", "Flight");
                 bundle.putSerializable("Object",  flightsListData.get(position));
                 navController.navigate(R.id.action_navigation_flight_to_flightDetailsFragment,bundle);
                 HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;

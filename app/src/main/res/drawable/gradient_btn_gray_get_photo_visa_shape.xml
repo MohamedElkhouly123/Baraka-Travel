@@ -5,8 +5,8 @@
         android:width="3px"
         android:color="@color/gray_text_color" />
     <padding android:top="@dimen/_10sdp"
-        android:left="@dimen/_9sdp"
-        android:right="@dimen/_9sdp"
+        android:left="1dp"
+        android:right="1dp"
         android:bottom="@dimen/_10sdp" />
     <corners android:radius="8dp" />
 </shape>

@@ -293,14 +293,17 @@ public class GetEVisaFragment extends BaSeFragment {
         }
 
         if (!validationLength(fragmentGetEVisaTilFirstName, getString(R.string.invalid_first_name), 3)) {
+            ToastCreator.onCreateErrorToast(getActivity(),  getString(R.string.invalid_first_name));
             return;
         }
 
         if (!validationLength(fragmentGetEVisaTilLastName, getString(R.string.invalid_last_name), 3)) {
+            ToastCreator.onCreateErrorToast(getActivity(),  getString(R.string.invalid_last_name));
             return;
         }
 
         if (!validationEmail(getActivity(), fragmentGetEVisaTilEmail)) {
+            ToastCreator.onCreateErrorToast(getActivity(),  getString(R.string.invalid_email_required_field));
 
             return;
         }

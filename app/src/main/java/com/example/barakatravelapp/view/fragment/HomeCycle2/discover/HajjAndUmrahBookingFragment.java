@@ -318,9 +318,7 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fragment_hajj_and_umrah_booking_back_btn:
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Object", getTopUmarAndTophajjPackage);
-                navController.navigate(R.id.action_hajjAndUmrahBookingFragment_to_luxuryUmrahPackageFragment, bundle);
+                  onBack();
                 break;
             case R.id.fragment_hajj_and_umrah_booking_get_passport_image_btn:
                 openGalleryِAlpom(getActivity(), alpom, new Action<ArrayList<AlbumFile>>() {
@@ -379,14 +377,18 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
             return;
         }
         if (!validationLength(fragmentHajjAndUmrahBookingTilFirstName, getString(R.string.invalid_first_name), 3)) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_first_name));
+
             return;
         }
 
         if (!validationLength(fragmentHajjAndUmrahBookingTilLastName, getString(R.string.invalid_last_name), 3)) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_last_name));
             return;
         }
 
-        if (!validationEmail(getActivity(), fragmentHajjAndUmrahBookingTilEmail)) {
+        if (!validationLength(fragmentHajjAndUmrahBookingTilAddress, getString(R.string.invalid_address_required_field), 1)) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_address_required_field));
 
             return;
         }
@@ -396,20 +398,23 @@ public class HajjAndUmrahBookingFragment extends BaSeFragment {
             return;
         }
 
-
-        if (!validationLength(fragmentHajjAndUmrahBookingTilWriteComment, getString(R.string.invalid_required_field), 1)) {
+        if (!validationEmail(getActivity(), fragmentHajjAndUmrahBookingTilEmail)) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_email_required_field));
             return;
         }
 
-        if (!validationLength(fragmentHajjAndUmrahBookingTilZipCode, getString(R.string.invalid_required_field), 1)) {
+        if (!validationLength(fragmentHajjAndUmrahBookingTravelingFrom, getString(R.string.invalid_traveling_from_required_field), 1)) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_traveling_from_required_field));
             return;
         }
 
-        if (!validationLength(fragmentHajjAndUmrahBookingTilAddress, getString(R.string.invalid_required_field), 1)) {
+        if (!validationLength(fragmentHajjAndUmrahBookingTilZipCode, getString(R.string.invalid_zip_required_field), 1)) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_zip_required_field));
             return;
         }
 
-        if (!validationLength(fragmentHajjAndUmrahBookingTravelingFrom, getString(R.string.invalid_required_field), 1)) {
+        if (!validationLength(fragmentHajjAndUmrahBookingTilWriteComment, getString(R.string.invalid_comment_required_field), 1)) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_comment_required_field));
             return;
         }
 

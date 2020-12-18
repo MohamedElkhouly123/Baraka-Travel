@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageView
-            android:id="@+id/dialog_day_by_day_rv_cancel_btn_tv"
+            android:id="@+id/dialog_day_by_day_rv_and_evisa_more_cancel_btn_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -31,9 +31,9 @@
             >
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/dialog_day_by_day_rv_recycler_view"
+                android:id="@+id/dialog_day_by_day_and_evisa_more_rv_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_above="@+id/load_more"
                 android:layout_marginBottom="@dimen/_32sdp"
                 android:scrollbars="vertical" />

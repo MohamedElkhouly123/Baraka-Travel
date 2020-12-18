@@ -50,12 +50,15 @@ public class BookingPackage {
     @SerializedName("city_code")
     @Expose
     private String cityCode;
+    @SerializedName("packagePerson")
+    @Expose
+    private PackagePerson packagePerson;
 
     public GetTopUmarAndTophajjPackage getPackageDetail() {
         return packageDetail;
     }
 
-    public void setPackageDetail(Umar GetTopUmarAndTophajjPackage) {
+    public void setPackageDetail(GetTopUmarAndTophajjPackage packageDetail) {
         this.packageDetail = packageDetail;
     }
 
@@ -161,6 +164,14 @@ public class BookingPackage {
 
     public void setCityCode(String cityCode) {
         this.cityCode = cityCode;
+    }
+
+    public PackagePerson getPackagePerson() {
+        return packagePerson;
+    }
+
+    public void setPackagePerson(PackagePerson packagePerson) {
+        this.packagePerson = packagePerson;
     }
 
 }

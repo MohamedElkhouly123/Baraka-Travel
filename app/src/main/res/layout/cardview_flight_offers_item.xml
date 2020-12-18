@@ -13,9 +13,10 @@
     android:layout_height="@dimen/_125sdp"
     app:cardElevation="3dp"
     app:cardCornerRadius="5dp"
-    android:layout_marginTop="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_5sdp"
     android:layout_marginStart="@dimen/_10sdp"
     android:layout_marginEnd="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
     android:clickable="true"
     android:focusable="true"
     app:cardBackgroundColor="@android:color/white"
@@ -51,12 +52,26 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:gravity="center|left"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/_7sdp"
             android:layout_marginEnd="@dimen/_7sdp"
             android:padding="@dimen/_3sdp"
             android:orientation="horizontal"
             android:background="@drawable/circle_btn_yello_shape"
             >
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/cardview_flight_offers_item_offer_num_tv"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="@dimen/_9ssp"-->
+<!--                    android:layout_marginStart="@dimen/_6sdp"-->
+<!--                    android:layout_marginEnd="@dimen/_4sdp"-->
+<!--                    android:text="Pending"-->
+<!--                    android:textColor="@color/white" />-->
+<!--            </LinearLayout>-->
             <ImageView
                 android:id="@+id/cardview_flight_offers_item_offer_shadow_img"
                 android:layout_width="wrap_content"

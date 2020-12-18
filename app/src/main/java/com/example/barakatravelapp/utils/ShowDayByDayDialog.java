@@ -13,12 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.adapter.ShowDayByDayVrRvAdapter;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
-import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.UmarhDay;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.barakatravelapp.utils.HelperMethod.showToast;
 
 public class ShowDayByDayDialog extends DialogFragment {
 
@@ -43,18 +37,18 @@ public class ShowDayByDayDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         // TODO Auto-generated method stub
-        View rootView= getActivity().getLayoutInflater().inflate(R.layout.dialog_day_by_day_rv, null);
+        View rootView= getActivity().getLayoutInflater().inflate(R.layout.dialog_day_by_day_and_evisa_more_rv, null);
 
         //SET TITLE DIALOG TITLE
 //        getDialog().setTitle("Best Players In The World");
 //        this.getDialog().setTitle("أختيار القسم العام");
 //        this.getDialog().setCancelable(true);
 
-        cancelBtn=(ImageView) rootView.findViewById(R.id.dialog_day_by_day_rv_cancel_btn_tv);
+        cancelBtn=(ImageView) rootView.findViewById(R.id.dialog_day_by_day_rv_and_evisa_more_cancel_btn_tv);
 //        backBtn=(TextView) rootView.findViewById(R.id.dialog_categories_rv_back_btn_tv);
 //        titleName=(TextView) rootView.findViewById(R.id.dialog_categories_rv_category_name_tv);
 //        showToast(getActivity(), String.valueOf(getTopUmarAndTophajjPackage.getUmarImages().get(0)));
-        RecyclerView dialogCategoriesRvRecyclerView = (RecyclerView) rootView.findViewById(R.id.dialog_day_by_day_rv_recycler_view);
+        RecyclerView dialogCategoriesRvRecyclerView = (RecyclerView) rootView.findViewById(R.id.dialog_day_by_day_and_evisa_more_rv_recycler_view);
 
         lLayout = new LinearLayoutManager(getActivity());
 

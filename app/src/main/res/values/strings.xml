@@ -118,9 +118,14 @@
     <string name="invalid_password">Password must be more than 7 of chars and numbers</string>
     <string name="invalid_user_name">Username must be more than 2 chars</string>
     <string name="invalid_first_name">First Name must be more than 2 chars</string>
-    <string name="invalid_last_name">First Name must be more than 2 chars</string>
-    <string name="invalid_message">Message must be more than 1 chars</string>
-    <string name="invalid_required_field">Required Field</string>
+    <string name="invalid_last_name">Last Name must be more than 2 chars</string>
+    <string name="invalid_message">Message must be more than 2 chars</string>
+    <string name="invalid_required_field">Field Required</string>
+    <string name="invalid_address_required_field">Address Field Required</string>
+    <string name="invalid_email_required_field">Email Field Required</string>
+    <string name="invalid_traveling_from_required_field">Traveling From Field Required</string>
+    <string name="invalid_zip_required_field">Zip Code From Field Required</string>
+    <string name="invalid_comment_required_field">Write Comment From Field Required</string>
     <string name="umrah">Umrah</string>
     <string name="hajj_and_umrah"><![CDATA[Hajj & Umrah]]></string>
     <string name="invalid_search">Search keyword mast be more than 2 chars</string>
@@ -143,7 +148,7 @@
     <string name="name">Name</string>
     <string name="phone_number">Phone Number</string>
     <string name="message">Message</string>
-    <string name="select_image">Please Select your Photo First</string>
+    <string name="select_image">Please Select your Photos First</string>
     <string name="gender">Gender</string>
     <string name="your_first_name_as_passport">Your First Name As Passport</string>
     <string name="your_last_name_as_passport">Your Last Name As Passport</string>
@@ -228,10 +233,12 @@
     <string name="ADDRESS_CONTACT_INFO"><![CDATA[ADDRESS & CONTACT INFO]]></string>
     <string name="add_photos">Add Photos</string>
     <string name="My_E_Visa_Bookings">My E-Visa Bookings</string>
-    <string name="my_umrah_booking"><![CDATA[https://s3-alpha-sig.figma.com/img/9dfc/2bb0/55f488a73d3847c7c8683c58810deeff?Expires=1609113600&Signature=gsAh21gFiuZUEJ~EmRevrPQbG64a9jgV8DxaQtmjPZnvixI13x3mEIOgr6dsEjw1Z6jtzNJrPZqCh8styQrYVsSzdRibP7feWqmK8PvjlH1EKju67vPYv4UPfmi3HZ1WIK0gToTSCaF~IqzQYp-Y4N25x0oul-7V5OtAedArdTwP2EqKEPbWjrZS07KvPSvjy5bTpcKsp8XPLPfq7e7mFfNT7XIE-UXjIkv-s32aWA74FUdMiyOd4QyZHFXUSBT~nvwYdaN3OeAeEfjcG4Lp2-BnrSAAVtpV9-r-odGhJeOp-Kg21tSZz1H9NpdDpbQ-f0-GCQuib5aygWdpBo7uWw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA]]></string>
-    <string name="my_hajj_booking2"><![CDATA[https://s3-alpha-sig.figma.com/img/1abd/e489/09da69058d7bfe9e09dcad7602fb10b7?Expires=1609113600&Signature=XbHQShZOzJpVO5XdXG9qUYlvgSbmHqDgOdhixQGyKpN-UTlxO79TWDOyemCGB2XXFJ824B9pc1NmeLsYwBy9mF3xg~fKxKd5KTJzcPglXs8FbEteOIIgGQhqXdf-HWuXCRNoL~L92ZFdOnzJw27K-bIYoA4USQfLipSmJ7A7iT6--uW1fJSRrdTGJ5zZEIuIyTPQryjcO1YHXTLHpFsXgcPMQJsvbJXV-vlB1xl0OKW0c4xhXFwRUaElIJU15MSvC2VM~DyxZC~hRId4EVLclyS66c7B347TiS~0sT1YfBzwbartdG3OMnHLawN6Q6-xv7mG6owWk9VhH~ncw6gXRg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA]]></string>
-    <string name="inside_my_hotels_booking"><![CDATA[https://s3-alpha-sig.figma.com/img/84cb/cd25/203d7bb70013047ff4161f8076cbc108?Expires=1609113600&Signature=Gh5z3aqUEnUgR4iS8NVOkjArIZn-l0DDFgBClc3sOC6XrqjqDo2n8YFip4n0jyKKwU2gCmzRejgY7h3ez4UyFYrEcVngpq5IWbOvMGSDk4DAinleMWGxfyJ748bJwPu6PVe11KYzhn6~06xdba3T3CNHRqbGBYhYl12QboKPZpB-h-ft96xepW3gb9CIKkHu4yeFR1FJWtF2M3-VnuybomXJI6aQuyOJEpwc21JtiEeHYESatBlkkpzgwImk7GqLafPZhQ41X-t~DLmXIFcgjMyRWLtSkUAHxc-cBGPOQSlIz5Ie7LQFhGcy6YeC1OlNrtjQO40WpfETyy4tbQaqYA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA]]></string>
-    <string name="my_flight_booking"><![CDATA[https://s3-alpha-sig.figma.com/img/c65d/3625/9c34b57babd5db5c36a1cd3e6a69a351?Expires=1609113600&Signature=OYavwYphfG3p64M2UXeGeyZW8v888ji0XD9fPXcNEkClZPrdEFLlY0aBjSRvkxpVHih0pb7y9I9cZcsMwPC7Muat9STB5qovq-sj4QaoQF9caOK7~DOabU~9lVMI1l844m1ZfcPJ6ZzOPBT2XVoYWCVceXC2fyikKIUfrJlDgbF9Wg~EiuB3i~NVn7PPWldksUD46oGT4kZxfboyVmw-js98KKzgk9QJha1ECIe86~YL0Y74gHrhORqluPOwUkItEqSrtkWuR8Omc4H7Jeil1ryw9D60peL~TPgiImoh0Lt5j2X5dDhwBi1TfyPeVD4rI-rv-SpNwozbWgnOu25Xnw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA]]></string>
     <string name="e_visa_my_booking">https://www.barakatravel.net/uploads/include/cover.jpg</string>
+    <string name="my_flight_booking">https://barakatravel.net/uploads/WhatsApp%20Image%202020-12-16%20at%2003.03.40.jpeg</string>
+    <string name="inside_my_hotels_booking">https://barakatravel.net/uploads/WhatsApp%20Image%202020-12-16%20at%2003.03.39.jpeg</string>
+    <string name="my_hajj_booking2">https://barakatravel.net/uploads/WhatsApp%20Image%202020-12-16%20at%2003.03.40%20(1).jpeg</string>
+    <string name="my_umrah_booking">https://barakatravel.net/uploads/WhatsApp%20Image%202020-12-16%20at%2003.03.40%20(2).jpeg</string>
+    <string name="more">More</string>
+    <string name="complete_payment">Complete Payment</string>
 
 </resources>

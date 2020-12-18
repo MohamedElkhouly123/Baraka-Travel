@@ -29,6 +29,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadUserData;
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadCirImageFromUrl;
+import static com.example.barakatravelapp.utils.ToastCreator.onCreateErrorToast;
+import static com.example.barakatravelapp.utils.network.InternetState.isConnected;
 
 
 public class AccountFragment extends BaSeFragment {
@@ -47,6 +49,8 @@ public class AccountFragment extends BaSeFragment {
     TextView fragmentHomeAccountProfileEvisaEmailTv;
     @BindView(R.id.fragment_home_account_profile_recycler_view)
     RecyclerView fragmentHomeAccountProfileRecyclerView;
+    @BindView(R.id.error_title)
+    TextView errorTitle;
     private NavController navController;
     private LinearLayoutManager lLayout;
     private UserData userData;
@@ -66,6 +70,10 @@ public class AccountFragment extends BaSeFragment {
         navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
         setData();
         init();
+        if (!isConnected(getActivity())) {
+            onCreateErrorToast(getActivity(), getString(R.string.error_inter_net));
+        }
+
         return root;
     }
 

@@ -136,7 +136,8 @@ public class ContactUsFragment extends BaSeFragment {
             return;
         }
 
-        if (!validationLength(fragmentContactUsTilMessage, getString(R.string.invalid_last_name), 3)) {
+        if (!validationPhone(getActivity(), fragmentContactUsTilPhone)) {
+            ToastCreator.onCreateErrorToast(getActivity(), "Enter Phone");
             return;
         }
 
@@ -145,11 +146,9 @@ public class ContactUsFragment extends BaSeFragment {
             return;
         }
 
-        if (!validationPhone(getActivity(), fragmentContactUsTilPhone)) {
-            ToastCreator.onCreateErrorToast(getActivity(), "Enter Phone");
+        if (!validationLength(fragmentContactUsTilMessage, getString(R.string.invalid_message), 3)) {
             return;
         }
-
 
 
         onCall();

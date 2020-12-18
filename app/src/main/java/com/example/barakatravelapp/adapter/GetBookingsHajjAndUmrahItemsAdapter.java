@@ -11,12 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.getBookingPackageResponce.BookingPackage;
+import com.example.barakatravelapp.data.model.getBookingPackageResponce.PackagePerson;
 import com.example.barakatravelapp.data.model.getUmrahAndHujjResponce.GetTopUmarAndTophajjPackage;
+import com.example.barakatravelapp.utils.GeneralHajjDescriptionDetailsDialog;
 import com.example.barakatravelapp.view.activity.BaseActivity;
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ public class GetBookingsHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<Ge
     private BaseActivity activity;
     private Context context;
     private List<BookingPackage> getHajjAndUmraItemsListData = new ArrayList<>();
-    private List<String> hotelImages= new ArrayList<>();
+    private List<String> hotelImages = new ArrayList<>();
     private NavController navController;
 
     public GetBookingsHajjAndUmrahItemsAdapter(Activity activity, Context context, NavController navController, String bookingType, String hajjOrUmrah, List<BookingPackage> getHajjAndUmraItemsListData) {
@@ -50,10 +53,9 @@ public class GetBookingsHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<Ge
     }
 
 
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.cardview_general_vert_hajj_and_hotels_item,
+        View view = LayoutInflater.from(activity).inflate(R.layout.cardview_general_vert_booking_hajj_and_hotels_item,
                 parent, false);
 
         return new ViewHolder(view);
@@ -71,31 +73,20 @@ public class GetBookingsHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<Ge
 
 
         GetTopUmarAndTophajjPackage getTopUmarAndTophajjPackageData = getHajjAndUmraItemsListData.get(position).getPackageDetail();
-        int nights = getTopUmarAndTophajjPackageData.getUmar().getDuration() - 1;
-        holder.cardviewGeneralVertHajjAndHotelsItemTvRateAndNightsNum.setText(nights + " Nights");
-        holder.cardviewGeneralVertHajjAndHotelsItemPriceTv.setText("$ "+getTopUmarAndTophajjPackageData.getUmar().getMinPrice());
-        holder.cardviewGeneralVertHajjAndHotelsItemNameTv.setText(getTopUmarAndTophajjPackageData.getUmar().getName());
-        holder.cardviewGeneralVertHajjAndHotelsItemFromDateTv.setText(getTopUmarAndTophajjPackageData.getUmar().getStartDateInformat());
-        holder.cardviewGeneralVertHajjAndHotelsItemToDateTv.setText(getTopUmarAndTophajjPackageData.getUmar().getEndDateInformat());
-        List<String> umarOrHajjImages=getTopUmarAndTophajjPackageData.getUmarImages();
-        holder.cardviewGeneralVertHajjAndHotelsItemNightsTv.setVisibility(View.GONE);
-        onLoadImageFromUrl(holder.cardviewGeneralVertHajjAndHotelsItemHotelImg, umarOrHajjImages.get(0).trim(), context);
-        if(getTopUmarAndTophajjPackageData.getUmar().getIsOffer()!= null){
-            holder.cardviewGeneralVertHajjAndHotelsItemOfferShadowImg.setVisibility(View.VISIBLE);
+        PackagePerson packagePerson = getHajjAndUmraItemsListData.get(position).getPackagePerson();
+
+        holder.cardviewGeneralVertBookingHajjAndHotelsItemUserNameTv.setText("Name : "+packagePerson.getFirstName()+" "+packagePerson.getLastName());
+        holder.cardviewGeneralVertBookingHajjAndHotelsItemPackageNameTv.setText("Package Name : "+getTopUmarAndTophajjPackageData.getUmar().getName());
+        holder.cardviewGeneralVertBookingHajjAndHotelsItemDepartureDateTv.setText( "Departure Date : "+getHajjAndUmraItemsListData.get(position).getDepartureDate());
+        holder.cardviewGeneralVertBookingHajjAndHotelsItemReturnDateTv.setText( "Return Date : "+getHajjAndUmraItemsListData.get(position).getReturnDate());
+        holder.cardviewGeneralVertBookingHajjAndHotelsItemTotalPriceTv.setText("Total : $" + getHajjAndUmraItemsListData.get(position).getTotalPrice());
+        holder.cardviewGeneralVertBookingHajjAndHotelsItemCommentTv.setText("Comment : "+ getHajjAndUmraItemsListData.get(position).getPriefTravel());
+        String status =getHajjAndUmraItemsListData.get(position).getStatus();
+        if (!status.equalsIgnoreCase("complete")){
+          holder.cardviewGeneralVertBookingHajjAndHotelsItemStatusLy.setBackgroundResource(R.drawable.circle_btn_yello_shape);
         }
-//        List<GetRoom> getRoom =  hotelList.getGetRooms();
-//        holder.cardviewGeneralVertHajjAndHotelsItemNameTv.setText(hotelList.getName());
-//        holder.cardviewGeneralVertHajjAndHotelsItemPriceTv.setText("$ "+hotelList.getMinPrice());
-//        holder.cardviewGeneralVertHajjAndHotelsItemFromDateTv.setText(getRoom.get(0).getFromDate());
-//        holder.cardviewGeneralVertHajjAndHotelsItemToDateTv.setText(getRoom.get(0).getToDate());
-//        holder.cardviewGeneralVertHajjAndHotelsItemRateImg.setVisibility(View.VISIBLE);
-//////        if (flightList.getIsOffer()!=null)
-//        holder.cardviewGeneralVertHajjAndHotelsItemTvRateAndNightsNum.setText(hotelList.getRate().toString());
-//        hotelImages = hotelList.getHotelImages();
-//        String hotelImage = "https://www.barakatravel.net/"+hotelImages.get(0).trim();
-////        Glide.with(context).load(hotelImages.get(0)).asBitmap().override(1080, 600).into(holder.cardviewGeneralVertHajjAndHotelsItemHotelImg);
-////                                        showToast(activity,hotelImages.get(0) );
-//        onLoadImageFromUrl(holder.cardviewGeneralVertHajjAndHotelsItemHotelImg, hotelImage.trim(), context);
+        holder.cardviewGeneralVertBookingHajjAndHotelsItemStatusTv.setText( getHajjAndUmraItemsListData.get(position).getStatus());
+
     }
 
     private void setAction(ViewHolder holder, int position) {
@@ -103,22 +94,24 @@ public class GetBookingsHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<Ge
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("DiscoverOrHajjOrUmrah", bookingType);
-                bundle.putInt("getPackagePricingId", getHajjAndUmraItemsListData.get(position).getPackagePricingId());
-                bundle.putSerializable("Object",  getHajjAndUmraItemsListData.get(position).getPackageDetail());
-                navController.navigate(R.id.action_myUmrahBookingFragment_to_luxuryUmrahPackageFragment,bundle);
+
+//                Bundle bundle = new Bundle();
+//                bundle.putString("DiscoverOrHajjOrUmrah", bookingType);
+//                bundle.putInt("getPackagePricingId", getHajjAndUmraItemsListData.get(position).getPackagePricingId());
+//                bundle.putSerializable("Object", getHajjAndUmraItemsListData.get(position).getPackageDetail());
+//                navController.navigate(R.id.action_myUmrahBookingFragment_to_luxuryUmrahPackageFragment, bundle);
             }
         });
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(position==0){
+        if (position == 0) {
             return 0;
         }
         return 1;
     }
+
     @Override
     public int getItemCount() {
         return getHajjAndUmraItemsListData.size();
@@ -126,28 +119,22 @@ public class GetBookingsHajjAndUmrahItemsAdapter extends RecyclerView.Adapter<Ge
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-//        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_title_tv)
-//        TextView cardviewGeneralVertHajjAndHotelsItemTitleTv;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_hotel_img)
-        ImageView cardviewGeneralVertHajjAndHotelsItemHotelImg;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_offer_shadow_img)
-        ImageView cardviewGeneralVertHajjAndHotelsItemOfferShadowImg;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_tv_rate_and_nights_num)
-        TextView cardviewGeneralVertHajjAndHotelsItemTvRateAndNightsNum;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_rate_img)
-        ImageView cardviewGeneralVertHajjAndHotelsItemRateImg;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_price_tv)
-        TextView cardviewGeneralVertHajjAndHotelsItemPriceTv;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_nights_tv)
-        TextView cardviewGeneralVertHajjAndHotelsItemNightsTv;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_from_date_tv)
-        TextView cardviewGeneralVertHajjAndHotelsItemFromDateTv;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_to_date_tv)
-        TextView cardviewGeneralVertHajjAndHotelsItemToDateTv;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_additional_part)
-        LinearLayout cardviewGeneralVertHajjAndHotelsItemAdditionalPart;
-        @BindView(R.id.cardview_general_vert_hajj_and_hotels_item_name_tv)
-        TextView cardviewGeneralVertHajjAndHotelsItemNameTv;
+        @BindView(R.id.cardview_general_vert_booking_hajj_and_hotels_item_status_tv)
+        TextView cardviewGeneralVertBookingHajjAndHotelsItemStatusTv;
+        @BindView(R.id.cardview_general_vert_booking_hajj_and_hotels_item_user_name_tv)
+        TextView cardviewGeneralVertBookingHajjAndHotelsItemUserNameTv;
+        @BindView(R.id.cardview_general_vert_booking_hajj_and_hotels_item_package_name_tv)
+        TextView cardviewGeneralVertBookingHajjAndHotelsItemPackageNameTv;
+        @BindView(R.id.cardview_general_vert_booking_hajj_and_hotels_item_departure_date_tv)
+        TextView cardviewGeneralVertBookingHajjAndHotelsItemDepartureDateTv;
+        @BindView(R.id.cardview_general_vert_booking_hajj_and_hotels_item_return_date_tv)
+        TextView cardviewGeneralVertBookingHajjAndHotelsItemReturnDateTv;
+        @BindView(R.id.cardview_general_vert_booking_hajj_and_hotels_item_total_price_tv)
+        TextView cardviewGeneralVertBookingHajjAndHotelsItemTotalPriceTv;
+        @BindView(R.id.cardview_general_vert_booking_hajj_and_hotels_item_comment_tv)
+        TextView cardviewGeneralVertBookingHajjAndHotelsItemCommentTv;
+        @BindView(R.id.cardview_general_vert_booking_hajj_and_hotels_item_status_ly)
+        LinearLayout cardviewGeneralVertBookingHajjAndHotelsItemStatusLy;
         private View view;
 
         public ViewHolder(View itemView) {

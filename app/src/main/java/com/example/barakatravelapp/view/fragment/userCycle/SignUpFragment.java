@@ -147,28 +147,33 @@ private void onValidation() {
     }
 
     if (!validationLength(fragmentSignUpTilFirstName, getString(R.string.invalid_first_name), 3)) {
+        ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_first_name));
+
         return;
     }
 
     if (!validationLength(fragmentSignUpTilLastName, getString(R.string.invalid_last_name), 3)) {
-        return;
-    }
-
-    if (!validationEmail(getActivity(), fragmentSignUpTilEmail)) {
-
-        return;
-    }
-
-    if (!validationPassword(fragmentSignUpTilPassword, 8, getString(R.string.invalid_password))) {
-        return;
-    }
-
-    if (!validationConfirmPassword(getActivity(), fragmentSignUpTilPassword, fragmentSignUpTilConfirmPassword)) {
+        ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_last_name));
         return;
     }
 
     if (!validationPhone(getActivity(), fragmentSignUpTilPhone)) {
         ToastCreator.onCreateErrorToast(getActivity(), "Enter Phone");
+        return;
+    }
+
+    if (!validationEmail(getActivity(), fragmentSignUpTilEmail)) {
+        ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_email_required_field));
+        return;
+    }
+
+    if (!validationPassword(fragmentSignUpTilPassword, 8, getString(R.string.invalid_password))) {
+        ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_password));
+        return;
+    }
+
+    if (!validationConfirmPassword(getActivity(), fragmentSignUpTilPassword, fragmentSignUpTilConfirmPassword)) {
+        ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.invalid_password));
         return;
     }
 

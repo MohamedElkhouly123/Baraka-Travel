@@ -33,8 +33,11 @@ import com.example.barakatravelapp.data.model.getBookingPackageResponce.BookingP
 import com.example.barakatravelapp.data.model.getBookingPackageResponce.GetBookingPackageResponce;
 import com.example.barakatravelapp.data.model.userLoginResponce.UserData;
 import com.example.barakatravelapp.utils.OnEndLess;
+import com.example.barakatravelapp.utils.PhotoGallaryAdapterCallback;
 import com.example.barakatravelapp.view.fragment.BaSeFragment;
 import com.example.barakatravelapp.view.viewModel.ViewModelGetBookingsLists;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.ortiz.touchview.TouchImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +49,10 @@ import retrofit2.Call;
 
 import static com.example.barakatravelapp.data.api.ApiClient.getApiClient;
 import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadUserData;
+import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
 
 
-public class MyAllBookingFragment extends BaSeFragment {
+public class MyAllBookingFragment extends BaSeFragment implements PhotoGallaryAdapterCallback {
 
     @BindView(R.id.fragment_my_all_booking_name_title_tv)
     TextView fragmentMyAllBookingNameTitleTv;
@@ -64,6 +68,8 @@ public class MyAllBookingFragment extends BaSeFragment {
     TextView noResultErrorTitle;
     @BindView(R.id.fragment_my_all_booking_sr_refresh)
     SwipeRefreshLayout fragmentMyAllBookingSrRefresh;
+    @BindView(R.id.content_bottom_sheet_photo_gallery_item_img)
+    TouchImageView cardviewHzHajjDetailsPhotoGalleryItemImg2;
     private NavController navController;
     private String bookingType;
     private UserData userData;
@@ -76,7 +82,8 @@ public class MyAllBookingFragment extends BaSeFragment {
     private GetBookingsHajjAndUmrahItemsAdapter getHajjAndUmrahItemsAdapter;
     private GetBookingsEVisaItemsAdapter getBookingsEVisaItemsAdapter;
     private List<EVisaDate> eVisaDates= new ArrayList<EVisaDate>();
-
+    private BottomSheetBehavior bottomSheetBehavior;
+    private boolean openSheet = false;
     private ViewModelGetBookingsLists viewModel;
     public Integer maxPage = 0;
     private OnEndLess onEndLess;
@@ -89,12 +96,14 @@ public class MyAllBookingFragment extends BaSeFragment {
         if (this.getArguments() != null) {
             bookingType = this.getArguments().getString("BookingType");
         }
-        View root = inflater.inflate(R.layout.fragment_my_all_booking, container, false);
+        View root = inflater.inflate(R.layout.evisa_bottom_sheets_abb_bar3, container, false);
 
         ButterKnife.bind(this, root);
         navController = Navigation.findNavController(getActivity(), R.id.home_activity_fragment);
         fragmentMyAllBookingNameTitleTv.setText(bookingType);
         userData = LoadUserData(getActivity());
+        bottomSheetBehavior = BottomSheetBehavior.from(root.findViewById(R.id.bottom1));
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         setUpActivity();
         initListener();
         init();
@@ -122,11 +131,13 @@ public class MyAllBookingFragment extends BaSeFragment {
 
                                 getFlightsItemsAdapter.notifyDataSetChanged();
                                 maxPage++;
-                                if(getFlightsItemsListData.size()!=0){
                                 noResultErrorTitle.setVisibility(View.GONE);
-                            } else {
+                                if(getFlightsItemsListData.size()==0){
                                     noResultErrorTitle.setVisibility(View.VISIBLE);
+
                                 }
+                            }else {
+                                noResultErrorTitle.setVisibility(View.VISIBLE);
                             }
 
                         }
@@ -159,12 +170,13 @@ public class MyAllBookingFragment extends BaSeFragment {
                                 getHotelsItemsAdapter.notifyDataSetChanged();
 //                                if(getHotelsItemsListData.size()){
                                 maxPage++;
-//                                }
-                                if(getHotelsItemsListData.size()!=0){
-                                    noResultErrorTitle.setVisibility(View.GONE);
-                                } else {
+                                noResultErrorTitle.setVisibility(View.GONE);
+                                if(getHotelsItemsListData.size()==0){
                                     noResultErrorTitle.setVisibility(View.VISIBLE);
+
                                 }
+                            }else {
+                                noResultErrorTitle.setVisibility(View.VISIBLE);
                             }
 //                                showToast(getActivity(), "success1");
 
@@ -199,11 +211,13 @@ public class MyAllBookingFragment extends BaSeFragment {
 //                                if(getHotelsItemsListData.size()){
                                     maxPage++;
 //                                }
-                                    if(getTopUmarAndTophajjPackagesData.size()!=0){
-                                        noResultErrorTitle.setVisibility(View.GONE);
-                                    } else {
+                                    noResultErrorTitle.setVisibility(View.GONE);
+                                    if(getTopUmarAndTophajjPackagesData.size()==0){
                                         noResultErrorTitle.setVisibility(View.VISIBLE);
+
                                     }
+                                } else {
+                                    noResultErrorTitle.setVisibility(View.VISIBLE);
                                 }
 //                                showToast(getActivity(), "success1");
 
@@ -236,11 +250,13 @@ public class MyAllBookingFragment extends BaSeFragment {
 
                                     getBookingsEVisaItemsAdapter.notifyDataSetChanged();
                                     maxPage++;
-                                    if(eVisaDates.size()!=0){
-                                        noResultErrorTitle.setVisibility(View.GONE);
-                                    } else {
+                                    noResultErrorTitle.setVisibility(View.GONE);
+                                    if(eVisaDates.size()==0){
                                         noResultErrorTitle.setVisibility(View.VISIBLE);
                                     }
+                                }else {
+                                    noResultErrorTitle.setVisibility(View.VISIBLE);
+
                                 }
 
                             }
@@ -300,7 +316,7 @@ public class MyAllBookingFragment extends BaSeFragment {
         }
 
         if(bookingType.equalsIgnoreCase(getString(R.string.My_E_Visa_Bookings))) {
-            getBookingsEVisaItemsAdapter = new GetBookingsEVisaItemsAdapter(getActivity(), getContext(), bookingType, eVisaDates,navController);
+            getBookingsEVisaItemsAdapter = new GetBookingsEVisaItemsAdapter(getActivity(), getContext(), bookingType, eVisaDates,navController,this::onMethodCallback);
             fragmentMyAllBookingRecyclerView.setAdapter(getBookingsEVisaItemsAdapter);
 
         }
@@ -480,7 +496,7 @@ public class MyAllBookingFragment extends BaSeFragment {
         }
         if(bookingType.equalsIgnoreCase(getString(R.string.My_E_Visa_Bookings))) {
             eVisaDates= new ArrayList<EVisaDate>();
-            getBookingsEVisaItemsAdapter = new GetBookingsEVisaItemsAdapter(getActivity(), getContext(), bookingType, eVisaDates,navController);
+            getBookingsEVisaItemsAdapter = new GetBookingsEVisaItemsAdapter(getActivity(), getContext(), bookingType, eVisaDates,navController,this::onMethodCallback);
             fragmentMyAllBookingRecyclerView.setAdapter(getBookingsEVisaItemsAdapter);
 
         }
@@ -506,13 +522,25 @@ public class MyAllBookingFragment extends BaSeFragment {
     @Override
     public void onBack() {
 //        replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fragment, new AccountFragment());
+        if (openSheet) {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+//            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_activity_fram, new ProfileFragment());
+            openSheet = false;
+        } else {
         navController.navigate(R.id.action_myUmrahBookingFragment_to_navigation_account);
-        homeCycleActivity.setNavigation("v");
+        homeCycleActivity.setNavigation("v");}
 //        homeCycleActivity.bottomNavView.getMenu().getItem(4).setChecked(true);
     }
 
     @OnClick(R.id.fragment_my_all_booking_back_img)
     public void onViewClicked() {
         onBack();
+    }
+    @Override
+    public void onMethodCallback(String photoPath) {
+        openSheet = true;
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        onLoadImageFromUrl(cardviewHzHajjDetailsPhotoGalleryItemImg2, photoPath, getContext());
+
     }
 }

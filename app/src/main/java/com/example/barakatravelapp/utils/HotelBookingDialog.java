@@ -72,9 +72,10 @@ public class HotelBookingDialog {
         bookNowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkinDate.getDate_txt()!=null){
+                if(checkinDate.getDate_txt()!=null&&checkoutDate.getDate_txt()!=null&&checkoutDate.getDate_txt()!=checkinDate.getDate_txt()){
                 onCall(activity,dialog,hotelData,getRoom);
                 }else {
+                    ToastCreator.onCreateErrorToast(activity, activity.getString(R.string.select_date));
                     return;
                 }
 
@@ -137,7 +138,7 @@ public class HotelBookingDialog {
             updateItemCal = getApiClient().bookHotel(reserfedFrom, reserfedTo, userId, hotelId, roomId);
 
 
-        sentUserRateAndBookHotelCallBack(activity,updateItemCal,"Success BookingsHotel Booking");
+        sentUserRateAndBookHotelCallBack(activity,updateItemCal,"Success Hotel Booking");
         dialog.cancel();
 
     }

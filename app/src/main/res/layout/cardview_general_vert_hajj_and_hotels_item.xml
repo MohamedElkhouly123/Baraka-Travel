@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingStart="@dimen/_13sdp"
     android:paddingEnd="@dimen/_13sdp"
+    android:paddingBottom="@dimen/_5sdp"
     >
     <TextView
         android:id="@+id/cardview_general_vert_hajj_and_hotels_item_title_tv"
@@ -21,7 +22,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="0dp"
         >
@@ -42,7 +43,7 @@
             android:id="@+id/cardview_general_vert_hajj_and_hotels_item_offer_shadow_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_gravity="right"
             android:background="@drawable/offer_white_shape"
             android:src="@drawable/ic_whatshot_black_24dp" />

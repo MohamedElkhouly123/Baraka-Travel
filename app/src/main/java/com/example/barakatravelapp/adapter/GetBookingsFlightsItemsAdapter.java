@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.barakatravelapp.R;
 import com.example.barakatravelapp.data.model.getBookingFlightsResponce.BookingFlight;
 import com.example.barakatravelapp.data.model.getFlightResponce.FlightData;
+import com.example.barakatravelapp.data.model.userLoginResponce.UserData;
+import com.example.barakatravelapp.utils.GeneralBookDescriptionDetailsDialog;
+import com.example.barakatravelapp.utils.GeneralHajjDescriptionDetailsDialog;
 import com.example.barakatravelapp.view.activity.BaseActivity;
 import com.example.barakatravelapp.view.activity.HomeCycleActivity;
 
@@ -25,6 +29,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.barakatravelapp.data.local.SharedPreferencesManger.LoadUserData;
 import static com.example.barakatravelapp.utils.HelperMethod.onLoadImageFromUrl;
 
 
@@ -36,6 +41,7 @@ public class GetBookingsFlightsItemsAdapter extends RecyclerView.Adapter<GetBook
     private Context context;
     private List<BookingFlight> flightsListData;
     private NavController navController;
+    private UserData userData;
 
     public GetBookingsFlightsItemsAdapter(Activity activity, Context context, String bookingType, List<BookingFlight> flightsListData, NavController navController) {
         this.activity = (BaseActivity) activity;
@@ -43,6 +49,8 @@ public class GetBookingsFlightsItemsAdapter extends RecyclerView.Adapter<GetBook
         this.bookingType = bookingType;
         this.flightsListData = flightsListData;
         this.navController = navController;
+        userData = LoadUserData(activity);
+
 //        showToast(activity, "date="+flightsListData.get(0).getFlight().getReservationTo());
     }
 
@@ -50,7 +58,7 @@ public class GetBookingsFlightsItemsAdapter extends RecyclerView.Adapter<GetBook
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_flight_offers_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_book_flight_offers_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -65,34 +73,35 @@ public class GetBookingsFlightsItemsAdapter extends RecyclerView.Adapter<GetBook
         holder.position = position;
         FlightData flightList = flightsListData.get(position).getFlight();
 //        showToast(activity, "list="+flightList.getReservationTo());
-//        if(position == 0){
-//            holder.cardviewFlightOffersItemTopFlightsTitleTv.setVisibility(View.VISIBLE);
-//        }
-        holder.cardviewFlightOffersItemFlightNameTv.setText(flightList.getFlightName());
-        holder.cardviewFlightOffersItemLocationFromToTv.setText("Location : " + flightList.getFrom() + " To " + flightList.getTo());
-        holder.cardviewFlightOffersItemReservationFromToDateTv.setText("Reservation " + flightList.getReservationFrom() + " To " + flightList.getReservationTo());
-        holder.cardviewFlightOffersItemOferPresedgeTv.setText(flightList.getIsOffer() + " %");
-//        if (flightList.getIsOffer()!=null)
-        holder.cardviewFlightOffersItemOfferNumTv.setText(flightList.getIsOffer() + " %");
-        holder.cardviewFlightOffersItemBookNowBtn.setVisibility(View.GONE);
-//        Glide.with(context).load(foodList.getPhotoUrl()).asBitmap().override(1080, 600).into(holder.cardviewItemClientFoodOrderMenuImg);
-        onLoadImageFromUrl(holder.cardviewFlightOffersItemFlightAirportLogoImg, flightList.getImage(), context);
+        holder.cardviewBookFlightOffersItemUserNameTv.setText("Name : " +userData.getFirstName()+" "+userData.getLastName());
+        holder.cardviewBookFlightOffersItemFlightNameTv.setText("Flight Name : " +flightList.getFlightName());
+        holder.cardviewBookFlightOffersItemPlacesCoveredTv.setText("Places Covered : " + flightList.getFrom() + " To " + flightList.getTo());
+        holder.cardviewBookFlightOffersItemFromToDateTv.setText("Reservation From : " + flightList.getReservationFrom() + " To " + flightList.getReservationTo());
+        holder.cardviewBookFlightOffersItemPriceTv.setText("Price : " +flightsListData.get(position).getTotalPrice());
+        int totalMembers =flightsListData.get(position).getNumOfAdults()+flightsListData.get(position).getNumOfChild();
+        holder.cardviewBookFlightOffersItemTotalMembersTv.setText("Total Members : " +totalMembers+" ( Adult:"+flightsListData.get(position).getNumOfAdults()+" , Children:"+flightsListData.get(position).getNumOfChild()+" )");
+//        holder.cardviewBookFlightOffersItemFlightNameTv.setText("Flight Name : " +flightList.getFlightName());
+        String status =flightsListData.get(position).getStatus();
+       if (!status.equalsIgnoreCase("complete")){
+            holder.cardviewBookFlightOffersItemStatusLy.setBackgroundResource(R.drawable.circle_btn_yello_shape);
+        }
+        holder.cardviewBookFlightOffersItemStatusTv.setText( flightsListData.get(position).getStatus());
+
     }
 
 
     private void setAction(ViewHolder holder, int position) {
-        holder.fragmentHomeFlightsCardviewFlightOffersItemCrLy.setOnClickListener(new View.OnClickListener() {
+        holder.cardviewBookFlightOffersItemDiscriptionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                AddOrderFragment addOrderFragment = new AddOrderFragment();
-//                addOrderFragment.item = foodListData.get(position);
-//                replaceFragment(activity.getSupportFragmentManager(), R.id.home_activity_fram, new ContactWithUsFragment(),"t");
-                Bundle bundle = new Bundle();
-                bundle.putString("BookingFlight", "bookingFlight");
-                bundle.putSerializable("Object", flightsListData.get(position).getFlight());
-                navController.navigate(R.id.action_myUmrahBookingFragment_to_flightDetailsFragment, bundle);
-                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
-                navigationActivity.setNavigation("g");
+                new GeneralBookDescriptionDetailsDialog().showDialog(activity,flightsListData.get(position).getFlight().getDescription() , "flight");
+
+//                Bundle bundle = new Bundle();
+//                bundle.putString("BookingFlight", "bookingFlight");
+//                bundle.putSerializable("Object", flightsListData.get(position).getFlight());
+//                navController.navigate(R.id.action_myUmrahBookingFragment_to_flightDetailsFragment, bundle);
+//                HomeCycleActivity navigationActivity = (HomeCycleActivity) activity;
+//                navigationActivity.setNavigation("g");
             }
         });
     }
@@ -103,24 +112,24 @@ public class GetBookingsFlightsItemsAdapter extends RecyclerView.Adapter<GetBook
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.fragment_home_flights_cardview_flight_offers_item_cr_ly)
-        CardView fragmentHomeFlightsCardviewFlightOffersItemCrLy;
-        @BindView(R.id.cardview_flight_offers_item_flight_airport_logo_img)
-        ImageView cardviewFlightOffersItemFlightAirportLogoImg;
-        @BindView(R.id.cardview_flight_offers_item_offer_shadow_img)
-        ImageView cardviewFlightOffersItemOfferShadowImg;
-        @BindView(R.id.cardview_flight_offers_item_offer_num_tv)
-        TextView cardviewFlightOffersItemOfferNumTv;
-        @BindView(R.id.cardview_flight_offers_item_flight_name_tv)
-        TextView cardviewFlightOffersItemFlightNameTv;
-        @BindView(R.id.cardview_flight_offers_item_location_from_to_tv)
-        TextView cardviewFlightOffersItemLocationFromToTv;
-        @BindView(R.id.cardview_flight_offers_item_reservation_from_to_date_tv)
-        TextView cardviewFlightOffersItemReservationFromToDateTv;
-        @BindView(R.id.cardview_flight_offers_item_ofer_presedge_tv)
-        TextView cardviewFlightOffersItemOferPresedgeTv;
-        @BindView(R.id.cardview_flight_offers_item_book_now_btn)
-        TextView cardviewFlightOffersItemBookNowBtn;
+        @BindView(R.id.cardview_book_flight_offers_item_status_tv)
+        TextView cardviewBookFlightOffersItemStatusTv;
+        @BindView(R.id.cardview_book_flight_offers_item_status_ly)
+        LinearLayout cardviewBookFlightOffersItemStatusLy;
+        @BindView(R.id.cardview_book_flight_offers_item_user_name_tv)
+        TextView cardviewBookFlightOffersItemUserNameTv;
+        @BindView(R.id.cardview_book_flight_offers_item_flight_name_tv)
+        TextView cardviewBookFlightOffersItemFlightNameTv;
+        @BindView(R.id.cardview_book_flight_offers_item_from_to_date_tv)
+        TextView cardviewBookFlightOffersItemFromToDateTv;
+        @BindView(R.id.cardview_book_flight_offers_item_price_tv)
+        TextView cardviewBookFlightOffersItemPriceTv;
+        @BindView(R.id.cardview_book_flight_offers_item_total_members_tv)
+        TextView cardviewBookFlightOffersItemTotalMembersTv;
+        @BindView(R.id.cardview_book_flight_offers_item_places_covered_tv)
+        TextView cardviewBookFlightOffersItemPlacesCoveredTv;
+        @BindView(R.id.cardview_book_flight_offers_item_discription_btn)
+        TextView cardviewBookFlightOffersItemDiscriptionBtn;
         View view;
         private int position;
 

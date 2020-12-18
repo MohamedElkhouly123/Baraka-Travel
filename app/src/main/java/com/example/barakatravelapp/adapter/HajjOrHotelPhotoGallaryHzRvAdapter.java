@@ -42,7 +42,8 @@ public class HajjOrHotelPhotoGallaryHzRvAdapter extends RecyclerView.Adapter<Haj
 //    private ApiService apiService;
 
     public HajjOrHotelPhotoGallaryHzRvAdapter(Context context, Activity activity,
-                                              String hajjOrHotel, List<String> hajjAndUmrahImages, PhotoGallaryAdapterCallback photoGallaryAdapterCallback
+                                              String hajjOrHotel, List<String> hajjAndUmrahImages,
+                                              PhotoGallaryAdapterCallback photoGallaryAdapterCallback
     ) {
         this.context = context;
         this.activity = activity;

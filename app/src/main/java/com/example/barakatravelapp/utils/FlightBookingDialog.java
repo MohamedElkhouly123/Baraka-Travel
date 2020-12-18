@@ -204,7 +204,7 @@ public class FlightBookingDialog {
         Call<GetDiscoverHomeResponce> flightBookingCal= null;
             flightBookingCal = getApiClient().bookFlight(flightId,numForAdult,numForChild,userId);
 
-        sentUserRateAndBookHotelCallBack(activity,flightBookingCal, "Success BookingFlight Booking");
+        sentUserRateAndBookHotelCallBack(activity,flightBookingCal, "Success Flight Booking");
         dialog.cancel();
 
     }

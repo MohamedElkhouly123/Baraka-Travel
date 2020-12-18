@@ -130,6 +130,7 @@ public class ChangeDetailsFragment extends BaSeFragment {
         fragmentChangeDetailsTilPassword.getEditText().setText(password);
         if(userData.getImage()!=null){
             String personalImage = "https://www.barakatravel.net/"+userData.getImage().trim();
+            mPath=personalImage;
             onLoadCirImageFromUrl(fragmentChangeDetailsMyProfilePhotoCircularImageView,personalImage.trim(), getContext());}
     }
         @Override
@@ -215,6 +216,11 @@ public class ChangeDetailsFragment extends BaSeFragment {
             return;
         }
 
+        if (!validationPhone(getActivity(), fragmentChangeDetailsTilPhone)) {
+            ToastCreator.onCreateErrorToast(getActivity(), "Enter Phone");
+            return;
+        }
+
         if (!validationPassword(fragmentChangeDetailsTilPassword, 8, getString(R.string.invalid_password))) {
             return;
         }
@@ -222,12 +228,6 @@ public class ChangeDetailsFragment extends BaSeFragment {
         if (!validationConfirmPassword(getActivity(), fragmentChangeDetailsTilPassword, fragmentChangeDetailsTilConfirmPassword)) {
             return;
         }
-
-        if (!validationPhone(getActivity(), fragmentChangeDetailsTilPhone)) {
-            ToastCreator.onCreateErrorToast(getActivity(), "Enter Phone");
-            return;
-        }
-
 
         if (mPath !=null) {
             onCall();

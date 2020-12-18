@@ -139,7 +139,7 @@ public class SubHomeDiscoverVrRvAdapter extends RecyclerView.Adapter<SubHomeDisc
     private void splitTopHotelToMakkaAndMadina() {
         for (int ind = 0; ind < getHomeDisscoverGetHotelsDataItemsListData.size(); ind++) {
             HotelData hotelData = getHomeDisscoverGetHotelsDataItemsListData.get(ind);
-            if (hotelData.getCity().equals("Makkah")||hotelData.getCity().equals("Makkah")) {
+            if (hotelData.getCity().equals("Makkah")||hotelData.getCity().equals("Mecca")) {
                 getHomeDisscoverGetHotelsMakahDataItemsListData.add(hotelData);
 //                showToast(activity, "list=" + getHomeDisscoverGetHotelsMakahDataItemsListData.get(1).getCity());
             } else {

@@ -25,7 +25,7 @@ public class GeneralHajjDescriptionDetailsDialog {
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 //        dialog.setCanceledOnTouchOutside(true);
-        dialog.setContentView(R.layout.dialog_general_hajj_details_description);
+        dialog.setContentView(R.layout.dialog_general_hajj_book_details_description);
         dialog.setCanceledOnTouchOutside(true);
 
         adultNum=0;

@@ -100,7 +100,7 @@ public class ViewModelUser extends ViewModel {
                                 dismissProgressDialog();
                                 generalLoginAndUpdateProfileResponse.postValue(response.body());
 //                                if (response.body().getMessage()!=null) {
-                                ToastCreator.onCreateSuccessToast(activity, response.body().getStatus());
+                                ToastCreator.onCreateSuccessToast(activity, "Success");
 
 //                                }
 
